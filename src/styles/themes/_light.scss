@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "./palette";
+
+$md-custom-primary: mat.define-palette(palette.$md-custom-primary);
+$md-custom-accent: mat.define-palette(palette.$md-custom-accent-light);
+
+@function _define-light-theme($config) {
+  $theme: mat.define-light-theme($config);
+  $color: map.get($theme, color);
+  $color: map.merge(
+    $color,
+    (
+      background: palette.$light-theme-background-palette,
+      foreground: palette.$light-theme-foreground-palette,
+    )
+  );
+  @return map.merge(
+    $theme,
+    (
+      color: $color,
+    )
+  );
+}
+
+$invoice-light-theme: _define-light-theme(
+  (
+    color: (
+      primary: $md-custom-primary,
+      accent: $md-custom-accent,
+    ),
+  )
+);

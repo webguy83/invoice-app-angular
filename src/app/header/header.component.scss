@@ -1,0 +1,40 @@
+header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.logo-container {
+  position: relative;
+  min-width: 7.2rem;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 0 20px 20px 0;
+  display: flex;
+  align-items: flex-end;
+
+  .lower-half {
+    height: 50%;
+    flex: 1;
+    border-radius: 2rem 0;
+  }
+
+  .icon {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+  }
+}
+
+.thumb-container {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding: 0 2.4rem;
+  border-left: 1px solid #494e6e;
+}

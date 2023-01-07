@@ -1,0 +1,26 @@
+@use "@angular/material" as mat;
+@use "./themes/light";
+@use "./themes/dark";
+@use "./typography/config" as typography;
+@use "../app/header/header.theme" as headerTheme;
+
+@include mat.core(typography.$main-typography);
+@include mat.core-color(light.$invoice-light-theme);
+@include mat.button-theme(light.$invoice-light-theme);
+@include headerTheme.theme(light.$invoice-light-theme);
+
+.dark-theme {
+  @include mat.core-color(dark.$invoice-dark-theme);
+  @include mat.button-theme(dark.$invoice-dark-theme);
+  @include headerTheme.theme(dark.$invoice-dark-theme);
+}
+
+html,
+body {
+  height: 100%;
+  font-size: 62.5%;
+}
+body {
+  margin: 0;
+  font-family: "League Spartan", sans-serif;
+}
