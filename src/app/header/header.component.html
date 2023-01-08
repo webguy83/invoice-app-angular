@@ -1,4 +1,9 @@
-<header>
+<header
+  [ngClass]="{
+    desktop: ($bp | async) === 'desktop',
+    tablet: ($bp | async) === 'tablet'
+  }"
+>
   <div class="logo-container">
     <div class="lower-half"></div>
     <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="28" height="26">
@@ -13,9 +18,10 @@
     class="theme-btn"
     mat-icon-button
     disableRipple
-    aria-label="Dark Mode"
+    aria-label="Theme Mode"
+    (click)="toggleTheme()"
   >
-    <mat-icon>dark_mode</mat-icon>
+    <mat-icon>{{ (isDark$ | async) ? "light_mode" : "dark_mode" }}</mat-icon>
   </button>
   <div class="thumb-container">
     <img

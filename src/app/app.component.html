@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngClass]="{ desktop: ($bp | async) === 'desktop' }">
   <app-header></app-header>
   <main>main stuff</main>
 </div>
