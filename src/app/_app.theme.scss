@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../styles/themes/palette";
+
+$palette: mat.define-palette(palette.$md-custom-primary);
+$color: map.get($palette, 500);
+$light-color: map.get($palette, 400);
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $bg-palette: map.get($color-config, "background");
+
+  main {
+    background-color: mat.get-color-from-palette($bg-palette, background);
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

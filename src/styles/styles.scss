@@ -3,16 +3,22 @@
 @use "./themes/dark";
 @use "./typography/config" as typography;
 @use "../app/header/header.theme" as headerTheme;
+@use "../app/filter-bar/filter-bar.theme" as filterBarTheme;
+@use "../app/app.theme" as appTheme;
 
 @include mat.core(typography.$main-typography);
 @include mat.core-color(light.$invoice-light-theme);
 @include mat.button-theme(light.$invoice-light-theme);
 @include headerTheme.theme(light.$invoice-light-theme);
+@include filterBarTheme.theme(light.$invoice-light-theme);
+@include appTheme.theme(light.$invoice-light-theme);
 
 .dark-theme {
   @include mat.core-color(dark.$invoice-dark-theme);
   @include mat.button-theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
+  @include filterBarTheme.theme(dark.$invoice-dark-theme);
+  @include appTheme.theme(dark.$invoice-dark-theme);
 }
 
 html,

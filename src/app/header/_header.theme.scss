@@ -25,6 +25,10 @@ header {
     background-color: mat.get-color-from-palette($bg-palette, app-bar);
   }
 
+  .header-container {
+    background-color: mat.get-color-from-palette($bg-palette, background);
+  }
+
   .theme-btn {
     color: mat.get-color-from-palette($bg-palette, theme-mode-icon);
     transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);

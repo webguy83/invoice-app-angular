@@ -1,34 +1,41 @@
-<header
-  [ngClass]="{
-    desktop: ($bp | async) === 'desktop',
-    tablet: ($bp | async) === 'tablet'
-  }"
->
-  <div class="logo-container">
-    <div class="lower-half"></div>
-    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="28" height="26">
-      <path
-        fill="#FFF"
-        fill-rule="evenodd"
-        d="M20.513 0C24.965 2.309 28 6.91 28 12.21 28 19.826 21.732 26 14 26S0 19.826 0 12.21C0 6.91 3.035 2.309 7.487 0L14 12.9z"
-      />
-    </svg>
-  </div>
-  <button
-    class="theme-btn"
-    mat-icon-button
-    disableRipple
-    aria-label="Theme Mode"
-    (click)="toggleTheme()"
+<div class="header-container">
+  <header
+    [ngClass]="{
+      desktop: ($bp | async) === 'desktop',
+      tablet: ($bp | async) === 'tablet'
+    }"
   >
-    <mat-icon>{{ (isDark$ | async) ? "light_mode" : "dark_mode" }}</mat-icon>
-  </button>
-  <div class="thumb-container">
-    <img
-      src="../../assets/image-avatar.jpg"
-      width="32px"
-      height="32px"
-      alt="avatar"
-    />
-  </div>
-</header>
+    <div class="logo-container">
+      <div class="lower-half"></div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon"
+        width="28"
+        height="26"
+      >
+        <path
+          fill="#FFF"
+          fill-rule="evenodd"
+          d="M20.513 0C24.965 2.309 28 6.91 28 12.21 28 19.826 21.732 26 14 26S0 19.826 0 12.21C0 6.91 3.035 2.309 7.487 0L14 12.9z"
+        />
+      </svg>
+    </div>
+    <button
+      class="theme-btn"
+      mat-icon-button
+      disableRipple
+      aria-label="Theme Mode"
+      (click)="toggleTheme()"
+    >
+      <mat-icon>{{ (isDark$ | async) ? "light_mode" : "dark_mode" }}</mat-icon>
+    </button>
+    <div class="thumb-container">
+      <img
+        src="../../assets/image-avatar.jpg"
+        width="32px"
+        height="32px"
+        alt="avatar"
+      />
+    </div>
+  </header>
+</div>
