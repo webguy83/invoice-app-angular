@@ -3,34 +3,13 @@
 $ff: "'League Spartan', sans-serif";
 
 $main-typography: mat.define-typography-config(
-  $headline:
+  $headline-1:
     mat.define-typography-level(
       32px,
       $font-family: $ff,
       $font-weight: 700,
       $line-height: 36px,
       $letter-spacing: -1px
-    ),
-  $title:
-    mat.define-typography-level(
-      20px,
-      $font-family: $ff,
-      $font-weight: 700,
-      $letter-spacing: -0.63px
-    ),
-  $subheading-2:
-    mat.define-typography-level(
-      16px,
-      $font-family: $ff,
-      $font-weight: 700,
-      $letter-spacing: -0.8px
-    ),
-  $subheading-1:
-    mat.define-typography-level(
-      12px,
-      $font-family: $ff,
-      $font-weight: 700,
-      $letter-spacing: -0.25px
     ),
   $body-1:
     mat.define-typography-level(
@@ -47,5 +26,4 @@ $main-typography: mat.define-typography-config(
     ),
   $button:
     mat.define-typography-level(16px, $font-family: $ff, $font-weight: 700),
-  $input: mat.define-typography-level(inherit, 1.125, 400),
 );

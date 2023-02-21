@@ -9,10 +9,6 @@ $light-color: map.get($palette, 400);
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
   $bg-palette: map.get($color-config, "background");
-
-  main {
-    background-color: mat.get-color-from-palette($bg-palette, background);
-  }
 }
 
 @mixin theme($theme) {

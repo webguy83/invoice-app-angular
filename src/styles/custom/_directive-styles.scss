@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../themes/palette";
+
+$palette: mat.define-palette(palette.$md-custom-primary);
+$bg-color: map.get($palette, 500);
+$bg-color-hover: map.get($palette, 400);
+
+.button-bg {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $bg-color;
+  cursor: pointer;
+  padding: 10.5px 15px;
+  gap: 15px;
+  border: none;
+  color: white;
+  font-size: 12px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-family: inherit;
+  transition: 0.3s;
+  white-space: nowrap;
+
+  &:hover:enabled {
+    background-color: $bg-color-hover;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+}

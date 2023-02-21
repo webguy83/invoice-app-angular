@@ -8,9 +8,15 @@ import { HeaderComponent } from './header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FilterBarComponent } from './filter-bar/filter-bar.component';
+import { StyledButtonDirective } from './shared/directives/styled-button.directive';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FilterBarComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FilterBarComponent,
+    StyledButtonDirective,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
