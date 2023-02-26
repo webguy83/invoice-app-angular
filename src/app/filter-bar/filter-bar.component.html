@@ -3,7 +3,16 @@
   <p class="mat-body-1 num-of-invoices">No invoices</p>
 </div>
 <div class="cta">
-  <button>Filter</button>
+  <div class="sec-center">
+    <input class="dropdown" type="checkbox" id="dropdown" name="dropdown" />
+    <label class="for-dropdown" for="dropdown" [matMenuTriggerFor]="aboveMenu"
+      >Filter<mat-icon class="arrow">keyboard_arrow_down</mat-icon></label
+    >
+    <mat-menu #aboveMenu="matMenu">
+      <button mat-menu-item>Item 1</button>
+      <button mat-menu-item>Item 2</button>
+    </mat-menu>
+  </div>
   <button appStyledButton>
     <mat-icon>add_circle</mat-icon>
     <span>New Invoice</span>
