@@ -30,11 +30,14 @@ header {
   }
 
   .theme-btn {
-    color: mat.get-color-from-palette($bg-palette, theme-mode-icon);
+    color: mat.get-color-from-palette($bg-palette, theme-mode-icon) !important;
     transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
-      color: mat.get-color-from-palette($bg-palette, theme-mode-icon-hover);
+      color: mat.get-color-from-palette(
+        $bg-palette,
+        theme-mode-icon-hover
+      ) !important;
     }
   }
 }

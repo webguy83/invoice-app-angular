@@ -1,0 +1,11 @@
+<label class="checkbox-container">
+  <ng-content></ng-content>
+  <input
+    aria-label="checkbox"
+    type="checkbox"
+    [ngModel]="checked"
+    (ngModelChange)="onModelChange($event)"
+    checked="checked"
+  />
+  <span class="checkmark"></span>
+</label>

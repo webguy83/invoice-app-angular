@@ -8,16 +8,18 @@
 @use "../app/filter-bar/filter-bar.theme" as filterBarTheme;
 @use "../app/app.theme" as appTheme;
 @use "./themes/palette";
+@use "../app/custom-checkbox/custom-checkbox-theme" as customCheckboxTheme;
 
 @include mat.core();
 @include mat.typography-hierarchy(typography.$main-typography);
 @include mat.core-color(light.$invoice-light-theme);
 @include mat.fab-theme(light.$invoice-light-theme);
 @include mat.menu-theme(light.$invoice-light-theme);
-// @include mat.button-theme(light.$invoice-light-theme);
+@include mat.checkbox-theme(light.$invoice-light-theme);
 @include headerTheme.theme(light.$invoice-light-theme);
 @include filterBarTheme.theme(light.$invoice-light-theme);
 @include appTheme.theme(light.$invoice-light-theme);
+@include customCheckboxTheme.theme(light.$invoice-light-theme);
 
 .light-theme {
   $color-config: mat.get-color-config(light.$invoice-light-theme);
@@ -29,10 +31,11 @@
   @include mat.core-color(dark.$invoice-dark-theme);
   @include mat.fab-theme(dark.$invoice-dark-theme);
   @include mat.menu-theme(dark.$invoice-dark-theme);
-  // @include mat.button-theme(dark.$invoice-dark-theme);
+  @include mat.checkbox-theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
   @include filterBarTheme.theme(dark.$invoice-dark-theme);
   @include appTheme.theme(dark.$invoice-dark-theme);
+  @include customCheckboxTheme.theme(dark.$invoice-dark-theme);
 
   $color-config: mat.get-color-config(dark.$invoice-dark-theme);
   $bg-palette: map.get($color-config, "background");
@@ -48,4 +51,8 @@ body {
 body {
   margin: 0;
   font-family: "League Spartan", sans-serif;
+}
+
+.status-group {
+  padding: 18px 72px 0 18px !important;
 }

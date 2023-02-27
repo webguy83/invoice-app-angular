@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../../styles/themes/palette";
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
+  $bg-palette: map.get($color-config, "background");
+  $primaryConfig: map.get($color-config, "primary");
+  $primaryColor: map.get($primaryConfig, 500);
+
+  .checkmark {
+    background-color: mat.get-color-from-palette($bg-palette, check-box-bg);
+  }
+
+  .checkbox-container:hover input ~ .checkmark {
+    box-shadow: inset 0px 0px 0px 1px $primaryColor;
+  }
+
+  .checkbox-container input:checked ~ .checkmark {
+    background-color: $primaryColor;
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

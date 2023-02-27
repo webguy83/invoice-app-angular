@@ -9,6 +9,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FilterBarComponent } from './filter-bar/filter-bar.component';
 import { StyledButtonDirective } from './shared/directives/styled-button.directive';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CustomCheckboxComponent } from './custom-checkbox/custom-checkbox.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,7 @@ import { StyledButtonDirective } from './shared/directives/styled-button.directi
     HeaderComponent,
     FilterBarComponent,
     StyledButtonDirective,
+    CustomCheckboxComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,9 @@ import { StyledButtonDirective } from './shared/directives/styled-button.directi
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

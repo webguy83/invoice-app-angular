@@ -185,6 +185,7 @@ $grey-palette: (
 $light-theme-background-palette: (
   status-bar: map.get($grey-palette, 300),
   app-bar: $fourth-colour,
+  check-box-bg: $light-accent-hover,
   background: $lightgrey,
   filter-btn: #6e8098,
   secondary-background: $white,
@@ -207,11 +208,12 @@ $light-theme-background-palette: (
 $dark-theme-background-palette: (
   status-bar: $fourth-colour-light-hover,
   app-bar: $fourth-colour-dark-hover,
+  check-box-bg: $fourth-colour-dark-hover,
   background: $darkBg,
   filter-btn: #fff,
   secondary-background: $fourth-colour-light-hover,
   hover: rgba($white, 0.04),
-  card: map.get($grey-palette, 800),
+  card: $dark-accent,
   dialog: $fourth-colour-light-hover,
   theme-mode-icon: $theme-mode-colour,
   theme-mode-icon-hover: $light-accent-hover,

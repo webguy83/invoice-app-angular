@@ -8,13 +8,36 @@
     <label class="for-dropdown" for="dropdown" [matMenuTriggerFor]="aboveMenu"
       >Filter<mat-icon class="arrow">keyboard_arrow_down</mat-icon></label
     >
-    <mat-menu #aboveMenu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
+
+    <mat-menu #aboveMenu="matMenu" class="status-group" [formGroup]="status">
+      <p>
+        <app-custom-checkbox
+          formControlName="draft"
+          (click)="$event.stopPropagation()"
+        >
+          <span> Draft </span>
+        </app-custom-checkbox>
+      </p>
+      <p>
+        <app-custom-checkbox
+          formControlName="pending"
+          (click)="$event.stopPropagation()"
+        >
+          <span> Pending </span>
+        </app-custom-checkbox>
+      </p>
+      <p>
+        <app-custom-checkbox
+          formControlName="paid"
+          (click)="$event.stopPropagation()"
+        >
+          <span> Paid </span>
+        </app-custom-checkbox>
+      </p>
     </mat-menu>
   </div>
   <button appStyledButton>
     <mat-icon>add_circle</mat-icon>
-    <span>New Invoice</span>
+    <span>New</span>
   </button>
 </div>
