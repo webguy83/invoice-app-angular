@@ -12,6 +12,7 @@ import { StyledButtonDirective } from './shared/directives/styled-button.directi
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CustomCheckboxComponent } from './custom-checkbox/custom-checkbox.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CustomCheckboxComponent } from './custom-checkbox/custom-checkbox.compo
     FilterBarComponent,
     StyledButtonDirective,
     CustomCheckboxComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
