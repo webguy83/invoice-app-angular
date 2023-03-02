@@ -4,5 +4,16 @@
 
 main {
   flex: 1;
-  padding: 2.4rem;
+  min-height: calc(100vh - 72px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.desktop main {
+  min-height: 100vh;
+}
+
+.tablet main {
+  min-height: calc(100vh - 80px);
 }

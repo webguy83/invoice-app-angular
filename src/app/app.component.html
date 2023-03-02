@@ -1,7 +1,14 @@
-<div class="container" [ngClass]="{ desktop: ($bp | async) === 'desktop' }">
+<div
+  class="container"
+  [ngClass]="{
+    desktop: ($bp | async) === 'desktop',
+    tablet: ($bp | async) === 'tablet'
+  }"
+>
   <app-header></app-header>
   <main>
     <app-filter-bar></app-filter-bar>
     <app-home></app-home>
+    <footer></footer>
   </main>
 </div>

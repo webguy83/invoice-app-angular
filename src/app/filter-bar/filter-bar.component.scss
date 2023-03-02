@@ -25,6 +25,17 @@ h1 {
   letter-spacing: 0.25px;
 }
 
+.title,
+.num-of-invoices {
+  margin-bottom: 0;
+}
+
+.info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 button {
   font-weight: 700;
 }
@@ -32,6 +43,8 @@ button {
 :host {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 20px;
 }
 
 [type="checkbox"]:checked,
