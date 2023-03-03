@@ -11,6 +11,7 @@ export class StyleManagerService {
     if (this.localStorageService.getItem('isDark')) {
       this._isDarkSubject.next(true);
       document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
     } else if (
       this.localStorageService.getItem('isDark') === null &&
       window.matchMedia('(prefers-color-scheme)').media !== 'not all'
@@ -19,6 +20,7 @@ export class StyleManagerService {
       if (isDark) {
         this._isDarkSubject.next(true);
         document.body.classList.add('dark-theme');
+        document.body.classList.remove('light-theme');
       }
     }
   }
@@ -26,10 +28,12 @@ export class StyleManagerService {
   toggleTheme() {
     if (this._isDarkSubject.getValue()) {
       document.body.classList.remove('dark-theme');
+      document.body.classList.add('light-theme');
       this._isDarkSubject.next(false);
       this.localStorageService.setItem('isDark', false);
     } else {
       document.body.classList.add('dark-theme');
+      document.body.classList.remove('light-theme');
       this._isDarkSubject.next(true);
       this.localStorageService.setItem('isDark', true);
     }
