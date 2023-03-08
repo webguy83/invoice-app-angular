@@ -13,6 +13,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CustomCheckboxComponent } from './custom-checkbox/custom-checkbox.component';
 import { HomeComponent } from './home/home.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { LoadingComponent } from './shared/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingService } from './shared/loading/loading.service';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -22,10 +29,13 @@ import { HomeComponent } from './home/home.component';
     StyledButtonDirective,
     CustomCheckboxComponent,
     HomeComponent,
+    LoadingComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
@@ -33,8 +43,10 @@ import { HomeComponent } from './home/home.component';
     MatCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
   ],
-  providers: [],
+  providers: [LoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

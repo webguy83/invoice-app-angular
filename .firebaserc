@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "frontendmentor-invoice": {
+      "hosting": {
+        "invoice-app": [
+          "frontendmentor-invoice"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "frontendmentor-invoice"
+  }
+}

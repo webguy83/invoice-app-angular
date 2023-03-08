@@ -22,6 +22,7 @@
   @include mat.fab-theme(light.$invoice-light-theme);
   @include mat.menu-theme(light.$invoice-light-theme);
   @include mat.checkbox-theme(light.$invoice-light-theme);
+  @include mat.progress-spinner-theme(light.$invoice-light-theme);
   @include headerTheme.theme(light.$invoice-light-theme);
   @include homeTheme.theme(light.$invoice-light-theme);
   @include filterBarTheme.theme(light.$invoice-light-theme);
@@ -37,6 +38,7 @@
   @include mat.fab-theme(dark.$invoice-dark-theme);
   @include mat.menu-theme(dark.$invoice-dark-theme);
   @include mat.checkbox-theme(dark.$invoice-dark-theme);
+  @include mat.progress-spinner-theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
   @include homeTheme.theme(dark.$invoice-dark-theme);
   @include filterBarTheme.theme(dark.$invoice-dark-theme);
@@ -52,7 +54,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: "League Spartan", sans-serif;
+  font-family: "Spartan", sans-serif;
 }
 
 .status-group {

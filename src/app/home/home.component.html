@@ -1,4 +1,11 @@
-<div class="empty-logo-container">
+<app-loading></app-loading>
+
+<app-card *ngFor="let invoice of invoices$ | async"></app-card>
+
+<div
+  *ngIf="(invoices$ | async)?.length === 0 && !(isLoading$ | async)"
+  class="empty-logo-container"
+>
   <img
     class="empty-logo"
     src="../../assets/illustration-empty.svg"
