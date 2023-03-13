@@ -4,16 +4,23 @@
 
 main {
   flex: 1;
-  min-height: calc(100vh - 72px);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  padding: 0 2.4rem;
 }
 
-.desktop main {
+.content-container {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.desktop .content-container {
   min-height: 100vh;
 }
 
-.tablet main {
+.tablet .content-container {
   min-height: calc(100vh - 80px);
 }

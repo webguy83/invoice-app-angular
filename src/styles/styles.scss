@@ -28,6 +28,7 @@
   @include filterBarTheme.theme(light.$invoice-light-theme);
   @include appTheme.theme(light.$invoice-light-theme);
   @include customCheckboxTheme.theme(light.$invoice-light-theme);
+  color: palette.$fourth-colour-light-hover;
 }
 
 .dark-theme {
@@ -44,6 +45,7 @@
   @include filterBarTheme.theme(dark.$invoice-dark-theme);
   @include appTheme.theme(dark.$invoice-dark-theme);
   @include customCheckboxTheme.theme(dark.$invoice-dark-theme);
+  color: palette.$white;
 }
 
 html,
@@ -52,6 +54,7 @@ body {
   height: 100%;
   font-size: 62.5%;
 }
+
 body {
   margin: 0;
   font-family: "Spartan", sans-serif;

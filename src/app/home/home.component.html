@@ -1,6 +1,15 @@
 <app-loading></app-loading>
 
-<app-card *ngFor="let invoice of invoices$ | async"></app-card>
+<app-card
+  *ngFor="let invoice of invoices$ | async"
+  [cardData]="{
+    id: invoice.id,
+    paymentDue: invoice.paymentDue,
+    clientName: invoice.clientName,
+    total: invoice.total,
+    status: invoice.status
+  }"
+></app-card>
 
 <div
   *ngIf="(invoices$ | async)?.length === 0 && !(isLoading$ | async)"
