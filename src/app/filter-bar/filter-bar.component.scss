@@ -7,7 +7,6 @@ $color: map.get($palette, 500);
 h1 {
   font-size: 2rem;
   font-weight: 700;
-  line-height: 22.4px;
   letter-spacing: -1px;
   &:not(.mobile) {
     font-size: 3.2rem;
@@ -71,4 +70,8 @@ button {
   display: flex;
   align-items: center;
   gap: 20px;
+}
+
+.text {
+  padding-top: 3px;
 }

@@ -45,13 +45,15 @@
           formControlName="paid"
           (click)="$event.stopPropagation()"
         >
-          <span> Paid </span>
+          <span class="text"> Paid </span>
         </app-custom-checkbox>
       </p>
     </mat-menu>
   </div>
   <button appStyledButton>
     <mat-icon>add_circle</mat-icon>
-    <span>New {{ ($bp | async) !== "mobile" ? "Invoice" : "" }}</span>
+    <span class="text"
+      >New {{ ($bp | async) !== "mobile" ? "Invoice" : "" }}</span
+    >
   </button>
 </div>

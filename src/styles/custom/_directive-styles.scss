@@ -12,8 +12,8 @@ $bg-color-hover: map.get($palette, 400);
   align-items: center;
   background-color: $bg-color;
   cursor: pointer;
-  padding: 10.5px 15px;
-  gap: 5px;
+  padding: 14px 20px;
+  gap: 10px;
   border: none;
   color: white;
   font-size: 12px;
@@ -30,5 +30,9 @@ $bg-color-hover: map.get($palette, 400);
   &:disabled {
     opacity: 0.3;
     cursor: default;
+  }
+
+  & .text {
+    padding-top: 3px;
   }
 }
