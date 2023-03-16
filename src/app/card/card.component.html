@@ -1,7 +1,7 @@
-<ul *ngIf="cardData" class="card">
+<ul *ngIf="cardData" class="inv-card">
   <li class="id">#{{ cardData.id.slice(0, 6) }}</li>
-  <li>Due {{ cardData.paymentDue }}</li>
-  <li>{{ cardData.clientName }}</li>
-  <li>{{ cardData.total }}</li>
-  <li>{{ cardData.status }}</li>
+  <li class="dueDate">Due {{ cardData.paymentDue }}</li>
+  <li class="clientName">{{ cardData.clientName }}</li>
+  <li class="total">&#163;{{ cardData.total }}</li>
+  <li class="status">{{ cardData.status }}</li>
 </ul>

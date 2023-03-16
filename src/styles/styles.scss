@@ -7,6 +7,7 @@
 @use "../app/header/header.theme" as headerTheme;
 @use "../app/home/home.theme" as homeTheme;
 @use "../app/filter-bar/filter-bar.theme" as filterBarTheme;
+@use "../app/card/card.theme" as cardTheme;
 @use "../app/app.theme" as appTheme;
 @use "./themes/palette";
 @use "../app/custom-checkbox/custom-checkbox-theme" as customCheckboxTheme;
@@ -26,6 +27,7 @@
   @include headerTheme.theme(light.$invoice-light-theme);
   @include homeTheme.theme(light.$invoice-light-theme);
   @include filterBarTheme.theme(light.$invoice-light-theme);
+  @include cardTheme.theme(light.$invoice-light-theme);
   @include appTheme.theme(light.$invoice-light-theme);
   @include customCheckboxTheme.theme(light.$invoice-light-theme);
   color: palette.$fourth-colour-light-hover;
@@ -43,6 +45,7 @@
   @include headerTheme.theme(dark.$invoice-dark-theme);
   @include homeTheme.theme(dark.$invoice-dark-theme);
   @include filterBarTheme.theme(dark.$invoice-dark-theme);
+  @include cardTheme.theme(dark.$invoice-dark-theme);
   @include appTheme.theme(dark.$invoice-dark-theme);
   @include customCheckboxTheme.theme(dark.$invoice-dark-theme);
   color: palette.$white;
