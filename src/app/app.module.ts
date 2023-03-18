@@ -20,6 +20,7 @@ import { LoadingComponent } from './shared/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingService } from './shared/loading/loading.service';
 import { CardComponent } from './card/card.component';
+import { StatusComponent } from './status/status.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CardComponent } from './card/card.component';
     HomeComponent,
     LoadingComponent,
     CardComponent,
+    StatusComponent,
   ],
   imports: [
     BrowserModule,

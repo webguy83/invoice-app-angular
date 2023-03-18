@@ -13,6 +13,7 @@ $fourth-colour-light-hover: #0c0e16;
 $fourth-colour-dark-hover: #1e2139;
 $theme-mode-colour: #7e88c3;
 $medgrey: #888eb0;
+$greyishBlue: #858bb2;
 
 $lightgrey: #f8f8fb;
 $darkBg: #141625;
@@ -236,6 +237,8 @@ $light-theme-foreground-palette: (
   divider: $fourth-colour-light-hover,
   dividers: $fourth-colour-light-hover,
   disabled: $fourth-colour-light-hover,
+  card-date: $theme-mode-colour,
+  card-name: $greyishBlue,
   disabled-button: rgba($fourth-colour-light-hover, 0.26),
   disabled-text: $fourth-colour-light-hover,
   elevation: $fourth-colour-light-hover,
@@ -256,6 +259,8 @@ $dark-theme-foreground-palette: (
   divider: $white,
   dividers: $white,
   disabled: $white,
+  card-date: $light-accent-hover,
+  card-name: $white,
   disabled-button: rgba($white, 0.3),
   disabled-text: $white,
   elevation: $fourth-colour-light-hover,

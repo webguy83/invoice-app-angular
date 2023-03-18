@@ -1,0 +1,10 @@
+<div
+  [ngClass]="{ paid: status === 'paid', draft: status === 'draft' }"
+  class="status-container"
+>
+  <div
+    [ngClass]="{ paid: status === 'paid', draft: status === 'draft' }"
+    class="bullet"
+  ></div>
+  <span class="status-text">{{ status }}</span>
+</div>

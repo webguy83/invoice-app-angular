@@ -14,6 +14,14 @@ $light-color: map.get($palette, 400);
   .inv-card {
     background-color: mat.get-color-from-palette($bg-palette, inv-card);
   }
+
+  .dueDate {
+    color: mat.get-color-from-palette($fg-palette, card-date);
+  }
+
+  .clientName {
+    color: mat.get-color-from-palette($fg-palette, card-name);
+  }
 }
 
 @mixin theme($theme) {
