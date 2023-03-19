@@ -251,11 +251,11 @@ $light-theme-foreground-palette: (
   slider-min: rgba($fourth-colour-light-hover, 0.87),
   slider-off: rgba($fourth-colour-light-hover, 0.26),
   slider-off-active: rgba($fourth-colour-light-hover, 0.38),
+  status-block: $fourth-colour,
 );
 
 $dark-theme-foreground-palette: (
   base: $white,
-  //   company-button: $white,
   divider: $white,
   dividers: $white,
   disabled: $white,
@@ -273,4 +273,5 @@ $dark-theme-foreground-palette: (
   slider-min: $white,
   slider-off: rgba($white, 0.3),
   slider-off-active: rgba($white, 0.3),
+  status-block: $light-accent-hover,
 );

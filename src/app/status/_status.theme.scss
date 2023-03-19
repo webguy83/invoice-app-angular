@@ -1,0 +1,33 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../../styles/themes/palette";
+
+$palette: mat.define-palette(palette.$md-custom-primary);
+$color: map.get($palette, 500);
+$light-color: map.get($palette, 400);
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
+  $bg-palette: map.get($color-config, "background");
+
+  .status-container.draft {
+    background-color: rgba(
+      mat.get-color-from-palette($fg-palette, status-block),
+      0.06
+    );
+    color: mat.get-color-from-palette($fg-palette, status-block);
+
+    .bullet.draft {
+      background-color: mat.get-color-from-palette($fg-palette, status-block);
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

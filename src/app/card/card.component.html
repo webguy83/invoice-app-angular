@@ -5,5 +5,8 @@
   <li class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</li>
   <li class="clientName">{{ cardData.clientName }}</li>
   <li class="total">{{ cardData.total | currency : "GBP" }}</li>
-  <li class="status"><app-status [status]="cardData.status"></app-status></li>
+  <li class="status-block">
+    <app-status [status]="cardData.status"></app-status
+    ><mat-icon fontIcon="keyboard_arrow_right" color="primary"></mat-icon>
+  </li>
 </ul>

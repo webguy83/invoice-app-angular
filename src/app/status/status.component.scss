@@ -6,11 +6,6 @@
   color: #ff8f00;
   padding: 13px 0;
 
-  &.draft {
-    background-color: #373b530f;
-    color: #373b53;
-  }
-
   &.paid {
     background-color: #33d69f0f;
     color: #33d69f;
@@ -23,10 +18,6 @@
     background-color: #ff8f00;
     border-radius: 50%;
     margin-right: 7px;
-
-    &.draft {
-      background-color: #373b53;
-    }
 
     &.paid {
       background-color: #33d69f;

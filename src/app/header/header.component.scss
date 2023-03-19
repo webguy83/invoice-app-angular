@@ -2,6 +2,7 @@ header {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  height: 100%;
 
   img {
     border-radius: 50%;
@@ -16,6 +17,7 @@ header {
   .logo-container {
     max-width: none;
     margin-bottom: auto;
+    max-height: 103px;
   }
 
   .thumb-container {
@@ -63,4 +65,8 @@ header {
   align-items: center;
   padding: 0 2.4rem;
   border-left: 1px solid #494e6e;
+}
+
+.header-container {
+  height: 100%;
 }
