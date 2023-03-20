@@ -1,12 +1,27 @@
-<ul *ngIf="cardData" class="inv-card">
-  <li class="id">
+<div *ngIf="cardData && showLargeCard" class="inv-card">
+  <span class="id">
     <span class="hashTag">#</span>{{ cardData.id.slice(0, 6) }}
-  </li>
-  <li class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</li>
-  <li class="clientName">{{ cardData.clientName }}</li>
-  <li class="total">{{ cardData.total | currency : "GBP" }}</li>
-  <li class="status-block">
+  </span>
+  <span class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</span>
+  <span class="clientName">{{ cardData.clientName }}</span>
+  <span class="total">{{ cardData.total | currency : "GBP" }}</span>
+  <span class="status-block">
     <app-status [status]="cardData.status"></app-status
     ><mat-icon fontIcon="keyboard_arrow_right" color="primary"></mat-icon>
-  </li>
-</ul>
+  </span>
+</div>
+
+<div *ngIf="cardData && !showLargeCard" class="inv-card-small">
+  <span class="id">
+    <span class="hashTag">#</span>{{ cardData.id.slice(0, 6) }}
+  </span>
+  <span class="clientName">{{ cardData.clientName }}</span>
+  <div class="date-total">
+    <p class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</p>
+    <p class="total">{{ cardData.total | currency : "GBP" }}</p>
+  </div>
+
+  <span class="status-block">
+    <app-status [status]="cardData.status"></app-status>
+  </span>
+</div>

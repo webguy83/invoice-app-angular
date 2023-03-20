@@ -2,6 +2,7 @@
 
 <app-card
   *ngFor="let invoice of invoices$ | async"
+  [showLargeCard]="($bp | async) !== 'mobile'"
   [cardData]="{
     id: invoice.id,
     paymentDue: invoice.paymentDue,
@@ -9,6 +10,7 @@
     total: invoice.total,
     status: invoice.status
   }"
+  class="card"
 ></app-card>
 
 <div
@@ -23,8 +25,9 @@
   <div class="messages">
     <p class="nothing-msg">There is nothing here</p>
     <p>
-      Create an invoice by clicking the <strong>New Invoice</strong> button and
-      get started
+      Create an invoice by clicking the
+      <strong>New {{ ($bp | async) !== "mobile" ? "Invoice" : "" }}</strong>
+      button and get started
     </p>
   </div>
 </div>

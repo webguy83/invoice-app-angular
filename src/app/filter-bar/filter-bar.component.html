@@ -2,12 +2,18 @@
   <h1
     class="title"
     [ngClass]="{
-      mobile: ($bp | async) === 'mobile'
+      mobile: (bp$ | async) === 'mobile'
     }"
   >
     Invoices
   </h1>
-  <p class="mat-body-1 num-of-invoices">No invoices</p>
+  <p class="mat-body-1 num-of-invoices" *ngIf="invoices$ | async as invoices">
+    {{
+      (bp$ | async) !== "mobile"
+        ? getNumOfInvoicesMsg(invoices)
+        : getNumOfInvoicesMsgMobile(invoices)
+    }}
+  </p>
 </div>
 <div class="cta">
   <div class="sec-center">
@@ -17,7 +23,7 @@
       for="dropdown"
       [matMenuTriggerFor]="filterMenu"
       #t="matMenuTrigger"
-      >Filter {{ ($bp | async) !== "mobile" ? "by status" : ""
+      >Filter {{ (bp$ | async) !== "mobile" ? "by status" : ""
       }}<mat-icon class="arrow">{{
         t.menuOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"
       }}</mat-icon></label
@@ -53,7 +59,7 @@
   <button appStyledButton>
     <mat-icon>add_circle</mat-icon>
     <span class="text"
-      >New {{ ($bp | async) !== "mobile" ? "Invoice" : "" }}</span
+      >New {{ (bp$ | async) !== "mobile" ? "Invoice" : "" }}</span
     >
   </button>
 </div>

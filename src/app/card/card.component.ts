@@ -16,6 +16,7 @@ interface CardData {
 })
 export class CardComponent {
   @Input() cardData: CardData | null = null;
+  @Input() showLargeCard = true;
 
   constructor() {}
 }
