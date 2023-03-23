@@ -34,6 +34,7 @@
   @include appTheme.theme(light.$invoice-light-theme);
   @include customCheckboxTheme.theme(light.$invoice-light-theme);
   color: palette.$fourth-colour-light-hover;
+  transition: all 0.2s;
 }
 
 .dark-theme {
@@ -54,6 +55,7 @@
   @include appTheme.theme(dark.$invoice-dark-theme);
   @include customCheckboxTheme.theme(dark.$invoice-dark-theme);
   color: palette.$white;
+  transition: all 0.2s;
 }
 
 html,

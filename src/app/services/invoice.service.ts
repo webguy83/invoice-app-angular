@@ -1,3 +1,4 @@
+import { tap, map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   Firestore,
@@ -22,6 +23,15 @@ export class InvoiceService {
     ) as CollectionReference<Invoice>;
     return collectionData(col, {
       idField: 'id',
-    });
+    }).pipe(
+      map((invoices) => {
+        return invoices.map((invoice) => {
+          return {
+            ...invoice,
+            id: invoice.id.slice(0, 6),
+          };
+        });
+      })
+    );
   }
 }
