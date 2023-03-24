@@ -1,33 +1,44 @@
-<app-loading></app-loading>
-
-<app-card
-  *ngFor="let invoice of invoices$ | async"
-  [showLargeCard]="($bp | async) !== 'mobile'"
-  [cardData]="{
-    id: invoice.id,
-    paymentDue: invoice.paymentDue,
-    clientName: invoice.clientName,
-    total: invoice.total,
-    status: invoice.status
-  }"
-  class="card"
-></app-card>
-
+<app-filter-bar *ngIf="!(isLoading$ | async)"></app-filter-bar>
 <div
-  *ngIf="(invoices$ | async)?.length === 0 && !(isLoading$ | async)"
-  class="empty-logo-container"
+  class="content-container"
+  [ngClass]="{
+    desktop: ($bp | async) === 'desktop',
+    tablet: ($bp | async) === 'tablet'
+  }"
 >
-  <img
-    class="empty-logo"
-    src="../../assets/illustration-empty.svg"
-    alt="empty image"
-  />
-  <div class="messages">
-    <p class="nothing-msg">There is nothing here</p>
-    <p>
-      Create an invoice by clicking the
-      <strong>New {{ ($bp | async) !== "mobile" ? "Invoice" : "" }}</strong>
-      button and get started
-    </p>
+  <app-loading></app-loading>
+  <div class="cards" *ngIf="!(isLoading$ | async)">
+    <app-card
+      *ngFor="let invoice of invoices$ | async"
+      [showLargeCard]="($bp | async) !== 'mobile'"
+      [cardData]="{
+        id: invoice.id,
+        paymentDue: invoice.paymentDue,
+        clientName: invoice.clientName,
+        total: invoice.total,
+        status: invoice.status
+      }"
+      class="card"
+    ></app-card>
   </div>
+
+  <div
+    *ngIf="(invoices$ | async)?.length === 0 && !(isLoading$ | async)"
+    class="empty-logo-container"
+  >
+    <img
+      class="empty-logo"
+      src="../../assets/illustration-empty.svg"
+      alt="empty image"
+    />
+    <div class="messages">
+      <p class="nothing-msg">There is nothing here</p>
+      <p>
+        Create an invoice by clicking the
+        <strong>New {{ ($bp | async) !== "mobile" ? "Invoice" : "" }}</strong>
+        button and get started
+      </p>
+    </div>
+  </div>
+  <footer *ngIf="!(isLoading$ | async)"></footer>
 </div>

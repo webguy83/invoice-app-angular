@@ -27,3 +27,23 @@
   margin-top: 1.6rem;
   display: block;
 }
+
+.content-container {
+  min-height: calc(100vh - 80px - 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 730px;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.tablet.content-container {
+  min-height: calc(100vh - 80px - 72px);
+}
+
+:host {
+  width: 100%;
+  max-width: 73rem;
+}

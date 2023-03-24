@@ -1,4 +1,4 @@
-import { tap, map } from 'rxjs';
+import { map } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   Firestore,
