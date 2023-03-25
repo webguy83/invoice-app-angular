@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Status } from '../utils/interfaces';
+import { Status } from '../../utils/interfaces';
 
 interface CardData {
   id: string;

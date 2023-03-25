@@ -1,9 +1,9 @@
-import { InvoicesStore } from './../services/invoices.store';
-import { Invoice } from './../utils/interfaces';
+import { InvoicesStore } from '../../services/invoices.store';
+import { Invoice } from '../../utils/interfaces';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { BreakpointsService } from '../services/breakpoint.service';
+import { BreakpointsService } from '../../services/breakpoint.service';
 
 @Component({
   selector: 'app-filter-bar',

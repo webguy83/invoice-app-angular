@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BreakpointsService } from '../services/breakpoint.service';
-import { InvoicesStore } from '../services/invoices.store';
-import { LoadingService } from '../shared/loading/loading.service';
+import { BreakpointsService } from '../../services/breakpoint.service';
+import { InvoicesStore } from '../../services/invoices.store';
+import { LoadingService } from '../../shared/loading/loading.service';
 
 @Component({
   selector: 'app-home',
