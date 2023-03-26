@@ -29,29 +29,17 @@
       }}</mat-icon></label
     >
 
-    <mat-menu #filterMenu="matMenu" class="status-group" [formGroup]="status">
-      <p>
+    <mat-menu
+      #filterMenu="matMenu"
+      class="status-group"
+      [formGroup]="statusFormGroup"
+    >
+      <p *ngFor="let status of statuses">
         <app-custom-checkbox
-          formControlName="draft"
+          formControlName="{{ status }}"
           (click)="$event.stopPropagation()"
         >
-          <span> Draft </span>
-        </app-custom-checkbox>
-      </p>
-      <p>
-        <app-custom-checkbox
-          formControlName="pending"
-          (click)="$event.stopPropagation()"
-        >
-          <span> Pending </span>
-        </app-custom-checkbox>
-      </p>
-      <p>
-        <app-custom-checkbox
-          formControlName="paid"
-          (click)="$event.stopPropagation()"
-        >
-          <span class="text"> Paid </span>
+          <span> {{ status | titlecase }} </span>
         </app-custom-checkbox>
       </p>
     </mat-menu>

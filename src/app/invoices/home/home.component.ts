@@ -16,10 +16,13 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private invoiceStore: InvoicesStore,
-    private loadingService: LoadingService,
+    public loadingService: LoadingService,
     private breakpointService: BreakpointsService
   ) {}
   ngOnInit(): void {
     this.$bp = this.breakpointService.breakpoint$;
+    this.loadingService
+      .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
+      .subscribe();
   }
 }

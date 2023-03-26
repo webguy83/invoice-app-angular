@@ -5,13 +5,14 @@
 @use "./typography/config" as typography;
 @use "./custom/directive-styles";
 @use "../app/header/header.theme" as headerTheme;
-@use "../app/home/home.theme" as homeTheme;
-@use "../app/filter-bar/filter-bar.theme" as filterBarTheme;
-@use "../app/card/card.theme" as cardTheme;
+@use "../app/invoices/home/home.theme" as homeTheme;
+@use "../app/invoices/filter-bar/filter-bar.theme" as filterBarTheme;
+@use "../app/invoices/card/card.theme" as cardTheme;
 @use "../app/status/status.theme" as statusTheme;
 @use "../app/app.theme" as appTheme;
 @use "./themes/palette";
-@use "../app/custom-checkbox/custom-checkbox-theme" as customCheckboxTheme;
+@use "../app/invoices/custom-checkbox/custom-checkbox-theme" as
+  customCheckboxTheme;
 
 @include mat.core();
 @include mat.typography-hierarchy(typography.$main-typography);
@@ -34,7 +35,6 @@
   @include appTheme.theme(light.$invoice-light-theme);
   @include customCheckboxTheme.theme(light.$invoice-light-theme);
   color: palette.$fourth-colour-light-hover;
-  transition: all 0.2s;
 }
 
 .dark-theme {
@@ -55,7 +55,6 @@
   @include appTheme.theme(dark.$invoice-dark-theme);
   @include customCheckboxTheme.theme(dark.$invoice-dark-theme);
   color: palette.$white;
-  transition: all 0.2s;
 }
 
 html,

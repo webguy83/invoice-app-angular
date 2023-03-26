@@ -1,4 +1,4 @@
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   Firestore,
@@ -16,7 +16,7 @@ export class InvoiceService {
 
   constructor(private readonly firestore: Firestore) {}
 
-  getInvoices() {
+  getInvoices(): Observable<Invoice[]> {
     const col = collection(
       this.firestore,
       this._dbName

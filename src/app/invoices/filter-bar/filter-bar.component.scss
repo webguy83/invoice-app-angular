@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "../../styles/themes/palette";
+@use "../../../styles/themes/palette";
 $palette: mat.define-palette(palette.$md-custom-primary);
 $color: map.get($palette, 500);
 

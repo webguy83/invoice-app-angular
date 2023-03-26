@@ -1,6 +1,6 @@
 @use "sass:map";
 @use "@angular/material" as mat;
-@use "../../styles/themes/palette";
+@use "../../../styles/themes/palette";
 
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
@@ -13,8 +13,10 @@
     background-color: mat.get-color-from-palette($bg-palette, check-box-bg);
   }
 
-  .checkbox-container:hover input ~ .checkmark {
-    box-shadow: inset 0px 0px 0px 1px $primaryColor;
+  @media (hover: hover) and (pointer: fine) {
+    .checkbox-container:hover input ~ .checkmark {
+      box-shadow: inset 0px 0px 0px 1px $primaryColor;
+    }
   }
 
   .checkbox-container input:checked ~ .checkmark {

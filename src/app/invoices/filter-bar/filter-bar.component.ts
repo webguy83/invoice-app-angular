@@ -1,3 +1,4 @@
+import { Status } from './../../utils/interfaces';
 import { InvoicesStore } from '../../services/invoices.store';
 import { Invoice } from '../../utils/interfaces';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,9 @@ export class FilterBarComponent implements OnInit {
   bp$!: Observable<string>;
   invoices$!: Observable<Invoice[]>;
 
-  status = this._formBuilder.group({
+  statuses: Status[] = ['draft', 'paid', 'pending'];
+
+  statusFormGroup = this._formBuilder.group({
     draft: false,
     pending: false,
     paid: false,
@@ -47,5 +50,6 @@ export class FilterBarComponent implements OnInit {
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
     this.invoices$ = this.invoicesStore.invoices$;
+    this.statusFormGroup.valueChanges.subscribe(console.log);
   }
 }

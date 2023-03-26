@@ -12,21 +12,23 @@ import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { LoadingService } from './shared/loading/loading.service';
 import { SharedModule } from './shared/shared.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
     BrowserModule,
     AppRoutingModule,
+    MatProgressSpinnerModule,
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
     InvoicesModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
     SharedModule,
   ],
-  providers: [LoadingService],
   bootstrap: [AppComponent],
+  providers: [LoadingService],
 })
 export class AppModule {}
