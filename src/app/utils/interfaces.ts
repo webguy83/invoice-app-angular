@@ -27,3 +27,9 @@ interface Address {
   postCode: string;
   stress: string;
 }
+
+export interface StatusParams {
+  pending: boolean | null;
+  paid: boolean | null;
+  draft: boolean | null;
+}

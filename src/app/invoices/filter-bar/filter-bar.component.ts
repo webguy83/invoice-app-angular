@@ -1,10 +1,12 @@
-import { Status } from './../../utils/interfaces';
+import { Status, StatusParams } from './../../utils/interfaces';
 import { InvoicesStore } from '../../services/invoices.store';
 import { Invoice } from '../../utils/interfaces';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { BreakpointsService } from '../../services/breakpoint.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { modifyQueryParams } from 'src/app/utils';
 
 @Component({
   selector: 'app-filter-bar',
@@ -44,12 +46,34 @@ export class FilterBarComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private breakpointService: BreakpointsService,
-    private invoicesStore: InvoicesStore
+    private invoicesStore: InvoicesStore,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
-    this.invoices$ = this.invoicesStore.invoices$;
-    this.statusFormGroup.valueChanges.subscribe(console.log);
+    this.invoices$ = this.invoicesStore.filteredInvoices$;
+
+    modifyQueryParams(this.route.queryParams)
+      .pipe(
+        tap((params) => {
+          if (Object.entries(params).length) {
+            this.statusFormGroup.setValue({ ...params });
+          }
+        })
+      )
+      .subscribe();
+    this.statusFormGroup.valueChanges
+      .pipe(
+        tap((formData: Partial<StatusParams>) => {
+          this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: formData,
+            queryParamsHandling: 'merge',
+          });
+        })
+      )
+      .subscribe();
   }
 }
