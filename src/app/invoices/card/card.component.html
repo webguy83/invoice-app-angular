@@ -1,5 +1,7 @@
 <div *ngIf="cardData && showLargeCard" class="inv-card">
-  <span class="id"> <span class="hashTag">#</span>{{ cardData.id }} </span>
+  <span class="id">
+    <span class="hashTag">#</span>{{ cutId(cardData.id) }}
+  </span>
   <span class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</span>
   <span class="clientName">{{ cardData.clientName }}</span>
   <span class="total">{{ cardData.total | currency : "GBP" }}</span>
@@ -7,10 +9,18 @@
     <app-status [status]="cardData.status"></app-status
     ><mat-icon fontIcon="keyboard_arrow_right" color="primary"></mat-icon>
   </span>
+  <a
+    class="link"
+    title="Invoice"
+    [routerLink]="['detail']"
+    [queryParams]="{ id: cardData.id }"
+  ></a>
 </div>
 
 <div *ngIf="cardData && !showLargeCard" class="inv-card-small">
-  <span class="id"> <span class="hashTag">#</span>{{ cardData.id }} </span>
+  <span class="id">
+    <span class="hashTag">#</span>{{ cutId(cardData.id) }}
+  </span>
   <span class="clientName">{{ cardData.clientName }}</span>
   <div class="date-total">
     <p class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</p>
@@ -20,4 +30,10 @@
   <span class="status-block">
     <app-status [status]="cardData.status"></app-status>
   </span>
+  <a
+    class="link"
+    title="Invoice"
+    [routerLink]="['detail']"
+    [queryParams]="{ id: cardData.id }"
+  ></a>
 </div>

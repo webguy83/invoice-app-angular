@@ -1,5 +1,5 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostBinding, OnDestroy, OnInit } from '@angular/core';
 import { Observable, tap, switchMap, Subscription, map } from 'rxjs';
 import { BreakpointsService } from '../../services/breakpoint.service';
 import { InvoicesStore } from '../../services/invoices.store';
@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isLoading$ = this.loadingService.loading$;
   $bp!: Observable<string>;
   private queryParamSubscription = new Subscription();
+  @HostBinding('class.loading') hostLoadingClass: boolean = false;
 
   constructor(
     private invoiceStore: InvoicesStore,
@@ -30,6 +31,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   ngOnInit(): void {
     this.$bp = this.breakpointService.breakpoint$;
+    this.isLoading$
+      .pipe(
+        tap((isLoading) => {
+          if (isLoading) {
+            this.hostLoadingClass = true;
+          } else {
+            this.hostLoadingClass = false;
+          }
+        })
+      )
+      .subscribe();
     this.loadingService
       .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
       .subscribe();

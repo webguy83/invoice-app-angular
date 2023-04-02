@@ -9,6 +9,12 @@ const routes: Routes = [
       import('./invoices/invoices.module').then((m) => m.InvoicesModule),
   },
   {
+    path: 'detail',
+    pathMatch: 'full',
+    loadChildren: () =>
+      import('./detail/detail.module').then((m) => m.DetailModule),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

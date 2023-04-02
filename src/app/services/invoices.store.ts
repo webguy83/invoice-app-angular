@@ -19,9 +19,11 @@ export class InvoicesStore {
   }
 
   loadingInvoices() {
-    const loadInvoices$ = this.invoiceService
-      .getInvoices()
-      .pipe(tap((invoices) => this.mainInvoiceSubject.next(invoices)));
+    const loadInvoices$ = this.invoiceService.getInvoices().pipe(
+      tap((invoices) => {
+        this.mainInvoiceSubject.next(invoices);
+      })
+    );
     return loadInvoices$;
   }
 

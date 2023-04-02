@@ -1,3 +1,4 @@
+import { LoadingService } from './shared/loading/loading.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointsService } from './services/breakpoint.service';
@@ -9,7 +10,11 @@ import { BreakpointsService } from './services/breakpoint.service';
 })
 export class AppComponent implements OnInit {
   $bp!: Observable<string>;
-  constructor(private breakpointService: BreakpointsService) {}
+  isLoading$ = this.loadingService.loading$;
+  constructor(
+    private breakpointService: BreakpointsService,
+    private loadingService: LoadingService
+  ) {}
 
   ngOnInit(): void {
     this.$bp = this.breakpointService.breakpoint$;

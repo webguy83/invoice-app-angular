@@ -1,12 +1,19 @@
-.desktop {
+.container {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  &.desktop {
+    flex-direction: row;
+  }
 }
 
 main {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   padding: 0 2.4rem;
 }

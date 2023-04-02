@@ -18,5 +18,9 @@ export class CardComponent {
   @Input() cardData: CardData | null = null;
   @Input() showLargeCard = true;
 
+  cutId(id: string) {
+    return id.slice(0, 6);
+  }
+
   constructor() {}
 }

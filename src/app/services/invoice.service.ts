@@ -1,10 +1,12 @@
-import { map, Observable } from 'rxjs';
+import { from, map, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   Firestore,
   collectionData,
   collection,
   CollectionReference,
+  doc,
+  getDoc,
 } from '@angular/fire/firestore';
 import { Invoice } from '../utils/interfaces';
 
@@ -28,10 +30,16 @@ export class InvoiceService {
         return invoices.map((invoice) => {
           return {
             ...invoice,
-            id: invoice.id.slice(0, 6),
           };
         });
       })
     );
+  }
+
+  getInvoice(id: string) {
+    const docRef = doc(this.firestore, this._dbName, id);
+    return from(getDoc(docRef)).pipe(
+      map((newDoc) => newDoc.data())
+    ) as Observable<Invoice>;
   }
 }
