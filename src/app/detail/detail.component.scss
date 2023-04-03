@@ -1,0 +1,91 @@
+:host {
+  width: 100%;
+}
+
+.detail-view {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  line-height: 15px;
+  word-wrap: break-word;
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 500;
+  }
+  &-header,
+  .invoice-output {
+    padding: 2.4rem;
+    background-color: white;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  }
+}
+
+.invoice-address {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+  line-height: 20px;
+}
+
+.back-btn {
+  align-self: flex-start;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  & > span {
+    padding-top: 5px;
+  }
+}
+
+.id {
+  text-transform: uppercase;
+}
+
+.id-container {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  justify-content: space-between;
+  margin-bottom: 4rem;
+}
+
+.main-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.dates {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sent-to {
+  width: 100%;
+}
+
+.important-text {
+  font-size: 1.5rem;
+  line-height: 20px;
+  font-weight: 700;
+}

@@ -39,7 +39,9 @@ export class InvoiceService {
   getInvoice(id: string) {
     const docRef = doc(this.firestore, this._dbName, id);
     return from(getDoc(docRef)).pipe(
-      map((newDoc) => newDoc.data())
+      map((newDoc) => {
+        return { ...newDoc.data(), id: newDoc.id };
+      })
     ) as Observable<Invoice>;
   }
 }

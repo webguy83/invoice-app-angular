@@ -25,7 +25,7 @@ interface Address {
   city: string;
   country: string;
   postCode: string;
-  stress: string;
+  street: string;
 }
 
 export interface StatusParams {

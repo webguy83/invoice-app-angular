@@ -11,7 +11,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { CustomCheckboxComponent } from './custom-checkbox/custom-checkbox.component';
-import { StatusComponent } from '../status/status.component';
 import { InvoiceRoutingModule } from './invoice-routing.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
@@ -21,7 +20,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FilterBarComponent,
     CustomCheckboxComponent,
     CardComponent,
-    StatusComponent,
   ],
   imports: [
     CommonModule,

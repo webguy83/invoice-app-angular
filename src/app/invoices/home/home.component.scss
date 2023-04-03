@@ -29,7 +29,6 @@
 }
 
 .content-container {
-  //min-height: calc(100vh - 80px - 128px);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -37,10 +36,6 @@
   max-width: 730px;
   gap: 2rem;
   margin: 0 auto;
-}
-
-.tablet.content-container {
-  // min-height: calc(100vh - 80px - 72px);
 }
 
 :host {
@@ -54,4 +49,8 @@
   &.loading {
     justify-content: center;
   }
+}
+
+.home-container {
+  //padding: 0 2.4rem;
 }

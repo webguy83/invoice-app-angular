@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { cutId } from 'src/app/utils';
 import { Status } from '../../utils/interfaces';
 
 interface CardData {
@@ -17,10 +18,6 @@ interface CardData {
 export class CardComponent {
   @Input() cardData: CardData | null = null;
   @Input() showLargeCard = true;
-
-  cutId(id: string) {
-    return id.slice(0, 6);
-  }
-
+  cutId = cutId;
   constructor() {}
 }

@@ -1,1 +1,60 @@
-<p>detail works!</p>
+<div class="detail-view">
+  <button class="back-btn">
+    <mat-icon
+      fontIcon="keyboard_arrow_left"
+      class="btn-icon"
+      color="primary"
+    ></mat-icon
+    ><span>Go back</span>
+  </button>
+  <header class="detail-view-header">
+    <span>Status</span>
+    <app-status [status]="invoice.status"></app-status>
+  </header>
+  <div class="invoice-output">
+    <div class="top">
+      <div class="invoice-data">
+        <div class="id-container">
+          #<span class="id">{{ cutId(invoice.id) }}</span>
+        </div>
+        <div>{{ invoice.description }}</div>
+      </div>
+      <ul class="invoice-address">
+        <li>{{ invoice.clientAddress.street }}</li>
+        <li>{{ invoice.clientAddress.country }}</li>
+        <li>{{ invoice.clientAddress.postCode }}</li>
+        <li>{{ invoice.clientAddress.city }}</li>
+      </ul>
+    </div>
+    <div class="main-info">
+      <div class="dates">
+        <div class="invoice-date">
+          <div class="inv-label">Invoice Date</div>
+          <div class="important-text">
+            {{ invoice.createdAt | date : "dd MMM y" }}
+          </div>
+        </div>
+        <div class="payment-date">
+          <div class="inv-label">Payment Due</div>
+          <div class="important-text">
+            {{ invoice.paymentDue | date : "dd MMM y" }}
+          </div>
+        </div>
+      </div>
+      <div class="bill-to">
+        <div class="inv-label">Bill To</div>
+        <div class="important-text">{{ invoice.clientName }}</div>
+        <ul class="invoice-address">
+          <li>{{ invoice.senderAddress.street }}</li>
+          <li>{{ invoice.senderAddress.country }}</li>
+          <li>{{ invoice.senderAddress.postCode }}</li>
+          <li>{{ invoice.senderAddress.city }}</li>
+        </ul>
+      </div>
+      <div class="sent-to">
+        <div class="inv-label">Sent to</div>
+        <div class="important-text">{{ invoice.clientEmail }}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -24,3 +24,7 @@ export function modifyQueryParams(queryParams: Observable<Params>) {
     })
   );
 }
+
+export function cutId(id: string) {
+  return id.slice(0, 6);
+}
