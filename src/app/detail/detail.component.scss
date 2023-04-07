@@ -32,6 +32,10 @@
   line-height: 20px;
 }
 
+.inv-label {
+  margin-bottom: 12px;
+}
+
 .back-btn {
   align-self: flex-start;
   border: none;
@@ -78,6 +82,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 20px;
 }
 
 .sent-to {
@@ -88,4 +93,61 @@
   font-size: 1.5rem;
   line-height: 20px;
   font-weight: 700;
+}
+
+.bill-to .important-text {
+  margin-bottom: 8px;
+}
+
+.payday {
+  font-weight: 700;
+  width: 100%;
+  border-radius: 8px;
+  background-color: lightblue;
+}
+
+.row {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+  border-radius: 8px 8px 0 0;
+
+  &:not(:last-child) {
+    margin-bottom: 2.4rem;
+  }
+}
+
+.row-area {
+  padding: 2.4rem;
+}
+
+.total-price,
+.grand-total {
+  justify-self: end;
+}
+
+.item {
+  line-height: 25px;
+}
+
+.item,
+.total-price {
+  padding-top: 3px;
+}
+
+.grand-total {
+  font-size: 2rem;
+
+  &-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  &-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 3.1rem 2.4rem;
+    background-color: lightpink;
+    border-radius: 0 0 8px 8px;
+  }
 }

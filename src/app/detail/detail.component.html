@@ -55,6 +55,28 @@
         <div class="inv-label">Sent to</div>
         <div class="important-text">{{ invoice.clientEmail }}</div>
       </div>
+      <div class="payday">
+        <div class="row-area">
+          <div class="row" *ngFor="let item of invoice.items">
+            <div class="item">
+              <div class="name">{{ item.name }}</div>
+              <div class="info">
+                <span class="quantity">{{ item.quantity }}</span>
+                x
+                <span class="price">{{ item.price | currency : "GBP" }}</span>
+              </div>
+            </div>
+            <div class="total-price">{{ item.total | currency : "GBP" }}</div>
+          </div>
+        </div>
+
+        <div class="grand-total-area">
+          <span class="grand-total-label">Grand Total</span>
+          <span class="grand-total">{{
+            invoice.total | currency : "GBP"
+          }}</span>
+        </div>
+      </div>
     </div>
   </div>
 </div>
