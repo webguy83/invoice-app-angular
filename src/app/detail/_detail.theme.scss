@@ -6,39 +6,15 @@ $palette: mat.define-palette(palette.$md-custom-primary);
 $color: map.get($palette, 500);
 $light-color: map.get($palette, 400);
 
-header {
-  .logo-container {
-    background-color: $color;
-    margin-right: auto;
-
-    .lower-half {
-      background-color: $light-color;
-    }
-  }
-}
-
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
   $bg-palette: map.get($color-config, "background");
 
-  .main-header {
-    background-color: mat.get-color-from-palette($bg-palette, app-bar);
-  }
-
-  .header-container {
-    background-color: mat.get-color-from-palette($bg-palette, background);
-  }
-
-  .theme-btn {
-    color: mat.get-color-from-palette($bg-palette, theme-mode-icon) !important;
-    transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-    &:hover {
-      color: mat.get-color-from-palette(
-        $bg-palette,
-        theme-mode-icon-hover
-      ) !important;
-    }
+  .detail-view-header,
+  .invoice-output,
+  .detail-view-footer {
+    background-color: mat.get-color-from-palette($bg-palette, inv-card);
   }
 }
 

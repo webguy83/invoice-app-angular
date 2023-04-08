@@ -53,4 +53,8 @@
 
 .home-container {
   padding: 2.4rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

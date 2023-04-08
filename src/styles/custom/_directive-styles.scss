@@ -36,4 +36,21 @@ $bg-color-hover: map.get($palette, 400);
   & .text {
     padding-top: 3px;
   }
+
+  &.modify {
+    background-color: palette.$modify;
+    color: palette.$theme-mode-colour;
+
+    &:hover {
+      background-color: palette.$light-accent-hover;
+    }
+  }
+
+  &.danger {
+    background-color: palette.$warn;
+
+    &:hover {
+      background-color: palette.$warn-hover;
+    }
+  }
 }

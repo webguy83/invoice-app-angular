@@ -10,6 +10,7 @@
 @use "../app/invoices/card/card.theme" as cardTheme;
 @use "../app/status/status.theme" as statusTheme;
 @use "../app/app.theme" as appTheme;
+@use "../app/detail//detail.theme" as detailTheme;
 @use "./themes/palette";
 @use "../app/invoices/custom-checkbox/custom-checkbox-theme" as
   customCheckboxTheme;
@@ -28,6 +29,7 @@
   @include mat.progress-spinner-theme(light.$invoice-light-theme);
   @include mat.icon-theme(light.$invoice-light-theme);
   @include headerTheme.theme(light.$invoice-light-theme);
+  @include detailTheme.theme(light.$invoice-light-theme);
   @include homeTheme.theme(light.$invoice-light-theme);
   @include filterBarTheme.theme(light.$invoice-light-theme);
   @include cardTheme.theme(light.$invoice-light-theme);
@@ -48,6 +50,7 @@
   @include mat.progress-spinner-theme(dark.$invoice-dark-theme);
   @include mat.icon-theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
+  @include detailTheme.theme(dark.$invoice-dark-theme);
   @include homeTheme.theme(dark.$invoice-dark-theme);
   @include filterBarTheme.theme(dark.$invoice-dark-theme);
   @include cardTheme.theme(dark.$invoice-dark-theme);
