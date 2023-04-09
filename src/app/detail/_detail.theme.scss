@@ -16,6 +16,29 @@ $light-color: map.get($palette, 400);
   .detail-view-footer {
     background-color: mat.get-color-from-palette($bg-palette, inv-card);
   }
+
+  .status-label,
+  .invoice-desc,
+  .invoice-address,
+  .inv-label {
+    color: mat.get-color-from-palette($fg-palette, card-date);
+  }
+
+  .payday .info {
+    color: mat.get-color-from-palette($fg-palette, special-text);
+  }
+
+  .payday .name {
+    color: mat.get-color-from-palette($fg-palette, payday-item-text);
+  }
+
+  .payday .row-area {
+    background-color: mat.get-color-from-palette($bg-palette, payday-rows);
+  }
+
+  .grand-total-area {
+    background-color: mat.get-color-from-palette($bg-palette, grand-total-area);
+  }
 }
 
 @mixin theme($theme) {

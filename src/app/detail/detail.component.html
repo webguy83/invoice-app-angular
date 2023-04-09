@@ -8,16 +8,17 @@
     ><span>Go back</span>
   </button>
   <header class="detail-view-header">
-    <span>Status</span>
+    <span class="status-label">Status</span>
     <app-status [status]="invoice.status"></app-status>
   </header>
   <div class="invoice-output">
     <div class="top">
       <div class="invoice-data">
         <div class="id-container">
-          #<span class="id">{{ cutId(invoice.id) }}</span>
+          <span class="hashTag">#</span
+          ><span class="id">{{ invoice.id | slice : 0 : 6 }}</span>
         </div>
-        <div>{{ invoice.description }}</div>
+        <div class="invoice-desc">{{ invoice.description }}</div>
       </div>
       <ul class="invoice-address">
         <li>{{ invoice.clientAddress.street }}</li>

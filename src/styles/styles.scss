@@ -3,8 +3,8 @@
 @use "./themes/light";
 @use "./themes/dark";
 @use "./typography/config" as typography;
-@use "./custom/directive-styles";
 @use "../app/header/header.theme" as headerTheme;
+@use "../styles/custom/directive-styles.theme" as directiveTheme;
 @use "../app/invoices/home/home.theme" as homeTheme;
 @use "../app/invoices/filter-bar/filter-bar.theme" as filterBarTheme;
 @use "../app/invoices/card/card.theme" as cardTheme;
@@ -14,6 +14,7 @@
 @use "./themes/palette";
 @use "../app/invoices/custom-checkbox/custom-checkbox-theme" as
   customCheckboxTheme;
+@use "./custom/directive-styles";
 
 @include mat.core();
 @include mat.typography-hierarchy(typography.$main-typography);
@@ -29,6 +30,7 @@
   @include mat.progress-spinner-theme(light.$invoice-light-theme);
   @include mat.icon-theme(light.$invoice-light-theme);
   @include headerTheme.theme(light.$invoice-light-theme);
+  @include directiveTheme.theme(light.$invoice-light-theme);
   @include detailTheme.theme(light.$invoice-light-theme);
   @include homeTheme.theme(light.$invoice-light-theme);
   @include filterBarTheme.theme(light.$invoice-light-theme);
@@ -50,6 +52,7 @@
   @include mat.progress-spinner-theme(dark.$invoice-dark-theme);
   @include mat.icon-theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
+  @include directiveTheme.theme(dark.$invoice-dark-theme);
   @include detailTheme.theme(dark.$invoice-dark-theme);
   @include homeTheme.theme(dark.$invoice-dark-theme);
   @include filterBarTheme.theme(dark.$invoice-dark-theme);

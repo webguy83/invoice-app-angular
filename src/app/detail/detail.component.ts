@@ -1,7 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
 import { Invoice } from 'src/app/utils/interfaces';
 import { Component, OnInit } from '@angular/core';
-import { cutId } from '../utils';
 
 @Component({
   selector: 'app-detail',
@@ -10,7 +9,6 @@ import { cutId } from '../utils';
 })
 export class DetailComponent implements OnInit {
   invoice!: Invoice;
-  cutId = cutId;
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {

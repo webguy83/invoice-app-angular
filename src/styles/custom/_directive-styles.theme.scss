@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../themes/palette";
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
+  $bg-palette: map.get($color-config, "background");
+
+  .button-bg.modify {
+    color: mat.get-color-from-palette($fg-palette, modify-btn);
+    background-color: mat.get-color-from-palette($bg-palette, modify-btn);
+
+    &:hover {
+      background-color: mat.get-color-from-palette(
+        $bg-palette,
+        modify-btn-hover
+      );
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

@@ -6,7 +6,7 @@ $palette: mat.define-palette(palette.$md-custom-primary);
 $color: map.get($palette, 500);
 $light-color: map.get($palette, 400);
 
-header {
+.main-header {
   .logo-container {
     background-color: $color;
     margin-right: auto;

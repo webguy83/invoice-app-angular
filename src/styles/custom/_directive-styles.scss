@@ -38,11 +38,8 @@ $bg-color-hover: map.get($palette, 400);
   }
 
   &.modify {
-    background-color: palette.$modify;
-    color: palette.$theme-mode-colour;
-
     &:hover {
-      background-color: palette.$light-accent-hover;
+      color: palette.$theme-mode-colour !important;
     }
   }
 
