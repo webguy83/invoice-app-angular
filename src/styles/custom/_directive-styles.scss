@@ -6,6 +6,25 @@ $palette: mat.define-palette(palette.$md-custom-primary);
 $bg-color: map.get($palette, 500);
 $bg-color-hover: map.get($palette, 400);
 
+.back-btn {
+  align-self: flex-start;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 700;
+  transition: 0.3s;
+
+  & > span {
+    padding-top: 5px;
+  }
+}
+
 .button-bg {
   display: inline-flex;
   justify-content: center;

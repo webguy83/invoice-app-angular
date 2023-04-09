@@ -7,6 +7,14 @@
   $fg-palette: map.get($color-config, "foreground");
   $bg-palette: map.get($color-config, "background");
 
+  .back-btn {
+    color: mat.get-color-from-palette($fg-palette, base);
+
+    &:hover {
+      color: mat.get-color-from-palette($fg-palette, back-btn-hover);
+    }
+  }
+
   .button-bg.modify {
     color: mat.get-color-from-palette($fg-palette, modify-btn);
     background-color: mat.get-color-from-palette($bg-palette, modify-btn);

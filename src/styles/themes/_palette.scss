@@ -242,7 +242,7 @@ $dark-theme-background-palette: (
 
 $light-theme-foreground-palette: (
   base: $fourth-colour-light-hover,
-  //   company-button: map.get($md-custom-primary-light, 500),
+  back-btn-hover: $theme-mode-colour,
   divider: $fourth-colour-light-hover,
   dividers: $fourth-colour-light-hover,
   disabled: $fourth-colour-light-hover,
@@ -267,6 +267,7 @@ $light-theme-foreground-palette: (
 
 $dark-theme-foreground-palette: (
   base: $white,
+  back-btn-hover: $medgrey,
   divider: $white,
   dividers: $white,
   disabled: $white,

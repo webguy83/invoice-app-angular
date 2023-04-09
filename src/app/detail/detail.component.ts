@@ -13,6 +13,5 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.invoice = this.route.snapshot.data['invoice'];
-    console.log(this.invoice);
   }
 }
