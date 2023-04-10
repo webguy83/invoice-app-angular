@@ -12,13 +12,16 @@
   gap: 2rem;
   line-height: 15px;
   word-wrap: break-word;
-  margin: 2.4rem;
+  max-width: 73rem;
+  margin: 2.4rem auto;
+  padding: 0 2.4rem;
 
   &-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 500;
+    gap: 1.5rem;
   }
   &-header,
   .invoice-output {
@@ -26,6 +29,15 @@
     border-radius: 8px;
     font-size: 1.2rem;
     box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
+  }
+
+  &.mobile {
+    .top {
+      flex-direction: column;
+    }
+    .sent-to {
+      width: 100%;
+    }
   }
 }
 
@@ -52,7 +64,7 @@
 
 .top {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 4rem;
   justify-content: space-between;
   margin-bottom: 4rem;
@@ -70,10 +82,6 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-}
-
-.sent-to {
-  width: 100%;
 }
 
 .important-text {
@@ -141,6 +149,10 @@
 
 .hashTag {
   color: palette.$theme-mode-colour;
+}
+
+.detail-view-header .modify {
+  margin-left: auto;
 }
 
 footer {

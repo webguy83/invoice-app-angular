@@ -1,4 +1,9 @@
-<div class="detail-view">
+<div
+  class="detail-view"
+  [ngClass]="{
+    mobile: ($bp | async) === 'mobile'
+  }"
+>
   <button class="back-btn">
     <mat-icon
       fontIcon="keyboard_arrow_left"
@@ -10,6 +15,9 @@
   <header class="detail-view-header">
     <span class="status-label">Status</span>
     <app-status [status]="invoice.status"></app-status>
+    <ng-container *ngIf="($bp | async) !== 'mobile'">
+      <ng-container *ngTemplateOutlet="buttons"></ng-container>
+    </ng-container>
   </header>
   <div class="invoice-output">
     <div class="top">
@@ -81,8 +89,12 @@
     </div>
   </div>
 </div>
-<footer class="detail-view-footer">
+<footer *ngIf="($bp | async) === 'mobile'" class="detail-view-footer">
+  <ng-container *ngTemplateOutlet="buttons"></ng-container>
+</footer>
+
+<ng-template #buttons>
   <button pillButton="modify">Edit</button>
   <button pillButton="danger">Delete</button>
   <button pillButton="default">Mark as Paid</button>
-</footer>
+</ng-template>
