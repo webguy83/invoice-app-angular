@@ -65,7 +65,7 @@
         <div class="important-text">{{ invoice.clientEmail }}</div>
       </div>
       <div class="payday">
-        <div class="row-area">
+        <div *ngIf="($bp | async) === 'mobile'; else table" class="row-area">
           <div class="row" *ngFor="let item of invoice.items">
             <div class="item">
               <div class="name">{{ item.name }}</div>
@@ -78,7 +78,6 @@
             <div class="total-price">{{ item.total | currency : "GBP" }}</div>
           </div>
         </div>
-
         <div class="grand-total-area">
           <span class="grand-total-label">Grand Total</span>
           <span class="grand-total">{{
@@ -97,4 +96,21 @@
   <button pillButton="modify">Edit</button>
   <button pillButton="danger">Delete</button>
   <button pillButton="default">Mark as Paid</button>
+</ng-template>
+
+<ng-template #table>
+  <table class="payday-table">
+    <tr>
+      <th class="item-name-header">Item Name</th>
+      <th>QTY.</th>
+      <th class="price-header">Price</th>
+      <th class="total-header">Total</th>
+    </tr>
+    <tr *ngFor="let item of invoice.items">
+      <td>{{ item.name }}</td>
+      <td class="qty-cell">{{ item.quantity }}</td>
+      <td class="price-cell">{{ item.price | currency : "GBP" }}</td>
+      <td class="total-cell">{{ item.total | currency : "GBP" }}</td>
+    </tr>
+  </table>
 </ng-template>

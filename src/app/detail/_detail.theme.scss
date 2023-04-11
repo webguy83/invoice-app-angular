@@ -32,8 +32,15 @@ $light-color: map.get($palette, 400);
     color: mat.get-color-from-palette($fg-palette, payday-item-text);
   }
 
-  .payday .row-area {
+  .payday .row-area,
+  .payday-table {
     background-color: mat.get-color-from-palette($bg-palette, payday-rows);
+  }
+
+  .payday-table th,
+  .qty-cell,
+  .price-cell {
+    color: mat.get-color-from-palette($fg-palette, modify-btn);
   }
 
   .grand-total-area {

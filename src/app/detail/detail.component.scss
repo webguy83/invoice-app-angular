@@ -18,6 +18,7 @@
 
   &-header {
     display: flex;
+    padding: 2.4rem;
     justify-content: space-between;
     align-items: center;
     font-weight: 500;
@@ -25,7 +26,6 @@
   }
   &-header,
   .invoice-output {
-    padding: 2.4rem;
     border-radius: 8px;
     font-size: 1.2rem;
     box-shadow: 0px 10px 10px -10px rgba(72, 84, 159, 0.100397);
@@ -38,7 +38,20 @@
     .sent-to {
       width: 100%;
     }
+    .grand-total {
+      font-size: 2rem;
+    }
+    .id-container {
+      font-size: 1.2rem;
+    }
+    .invoice-output {
+      padding: 2.4rem;
+    }
   }
+}
+
+.invoice-output {
+  padding: 4.8rem;
 }
 
 .invoice-address {
@@ -60,6 +73,7 @@
 .id-container {
   margin-bottom: 8px;
   font-weight: 700;
+  font-size: 1.6rem;
 }
 
 .top {
@@ -97,6 +111,38 @@
 .payday {
   font-weight: 700;
   width: 100%;
+
+  &-table {
+    width: 100%;
+    padding: 3.2rem 3.2rem 1.2rem;
+    border-radius: 8px 8px 0 0;
+
+    th {
+      font-weight: 500;
+      font-size: 1.1rem;
+    }
+
+    th,
+    td {
+      padding-bottom: 2rem;
+    }
+  }
+}
+
+.item-name-header {
+  text-align: left;
+  width: 50%;
+}
+
+.qty-cell {
+  text-align: center;
+}
+
+.price-header,
+.total-header,
+.price-cell,
+.total-cell {
+  text-align: right;
 }
 
 .row {
@@ -130,7 +176,7 @@
 }
 
 .grand-total {
-  font-size: 2rem;
+  font-size: 2.4rem;
   color: palette.$white;
 
   &-label {
