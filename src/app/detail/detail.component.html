@@ -4,7 +4,7 @@
     mobile: ($bp | async) === 'mobile'
   }"
 >
-  <button class="back-btn">
+  <button class="back-btn" (click)="onBackBtnClick()">
     <mat-icon
       fontIcon="keyboard_arrow_left"
       class="btn-icon"
@@ -95,7 +95,9 @@
 <ng-template #buttons>
   <button pillButton="modify">Edit</button>
   <button pillButton="danger">Delete</button>
-  <button pillButton="default">Mark as Paid</button>
+  <button *ngIf="invoice.status === 'pending'" pillButton="default">
+    Mark as Paid
+  </button>
 </ng-template>
 
 <ng-template #table>

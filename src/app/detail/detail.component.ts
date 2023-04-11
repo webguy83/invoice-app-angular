@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from 'src/app/utils/interfaces';
 import { Component, OnInit } from '@angular/core';
 import { BreakpointsService } from '../services/breakpoint.service';
@@ -14,11 +14,16 @@ export class DetailComponent implements OnInit {
   invoice!: Invoice;
   constructor(
     private route: ActivatedRoute,
-    private breakpointService: BreakpointsService
+    private breakpointService: BreakpointsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.invoice = this.route.snapshot.data['invoice'];
     this.$bp = this.breakpointService.breakpoint$;
+  }
+
+  onBackBtnClick() {
+    this.router.navigate(['/']);
   }
 }
