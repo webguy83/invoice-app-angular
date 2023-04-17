@@ -9,14 +9,10 @@ import {
   combineLatest,
   Subscription,
   filter,
-  concat,
   concatMap,
 } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import {
-  ConfirmDialogComponent,
-  openConfirmDialog,
-} from './confirm-dialog/confirm-dialog.component';
+import { openConfirmDialog } from './confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-detail',
