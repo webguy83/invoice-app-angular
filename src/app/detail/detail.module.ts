@@ -5,9 +5,17 @@ import { CommonModule } from '@angular/common';
 
 import { DetailRoutingModule } from './detail-routing.module';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
-  declarations: [DetailComponent],
-  imports: [SharedModule, CommonModule, DetailRoutingModule, MatIconModule],
+  declarations: [DetailComponent, ConfirmDialogComponent],
+  imports: [
+    SharedModule,
+    CommonModule,
+    DetailRoutingModule,
+    MatIconModule,
+    MatDialogModule,
+  ],
 })
 export class DetailModule {}

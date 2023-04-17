@@ -8,6 +8,6 @@
   <app-header></app-header>
   <main>
     <app-loading [detectRoutingOngoing]="true"></app-loading>
-    <router-outlet *ngIf="!(isLoading$ | async)"></router-outlet>
+    <router-outlet></router-outlet>
   </main>
 </div>

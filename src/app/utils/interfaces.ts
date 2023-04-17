@@ -10,6 +10,7 @@ export interface Invoice {
   senderAddress: Address;
   status: Status;
   total: number;
+  paymentTerms: number;
 }
 
 export type Status = 'paid' | 'pending' | 'draft';

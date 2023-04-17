@@ -1,10 +1,11 @@
 <div
+  *ngIf="!(isLoading$ | async)"
   class="detail-view"
   [ngClass]="{
     mobile: ($bp | async) === 'mobile'
   }"
 >
-  <button class="back-btn" (click)="onBackBtnClick()">
+  <button routerLink="/" class="back-btn">
     <mat-icon
       fontIcon="keyboard_arrow_left"
       class="btn-icon"
@@ -24,7 +25,7 @@
       <div class="invoice-data">
         <div class="id-container">
           <span class="hashTag">#</span
-          ><span class="id">{{ invoice.id | slice : 0 : 6 }}</span>
+          ><span class="id">{{ invoice.id | sortchars }}</span>
         </div>
         <div class="invoice-desc">{{ invoice.description }}</div>
       </div>
@@ -93,9 +94,13 @@
 </footer>
 
 <ng-template #buttons>
-  <button pillButton="modify">Edit</button>
-  <button pillButton="danger">Delete</button>
-  <button *ngIf="invoice.status === 'pending'" pillButton="default">
+  <button pill-button="modify" (click)="onEditClick()">Edit</button>
+  <button pill-button="danger" (click)="onDeleteBtnClick()">Delete</button>
+  <button
+    *ngIf="invoice.status === 'pending'"
+    pill-button="default"
+    (click)="onMarkAsPaidClick()"
+  >
     Mark as Paid
   </button>
 </ng-template>

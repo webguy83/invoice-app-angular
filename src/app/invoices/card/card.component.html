@@ -1,6 +1,6 @@
 <div *ngIf="cardData && showLargeCard" class="inv-card">
   <span class="id">
-    <span class="hashTag">#</span>{{ cardData.id | slice : 0 : 6 }}
+    <span class="hashTag">#</span>{{ cardData.id | sortchars }}
   </span>
   <span class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</span>
   <span class="clientName">{{ cardData.clientName }}</span>
@@ -12,14 +12,14 @@
   <a
     class="link"
     title="Invoice"
-    [routerLink]="['detail']"
+    routerLink="detail"
     [queryParams]="{ id: cardData.id }"
   ></a>
 </div>
 
 <div *ngIf="cardData && !showLargeCard" class="inv-card-small">
   <span class="id">
-    <span class="hashTag">#</span>{{ cardData.id | slice : 0 : 6 }}
+    <span class="hashTag">#</span>{{ cardData.id | sortchars }}
   </span>
   <span class="clientName">{{ cardData.clientName }}</span>
   <div class="date-total">

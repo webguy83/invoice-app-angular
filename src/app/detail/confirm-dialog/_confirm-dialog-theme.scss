@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
+
+  .delete-confirm-container p {
+    color: mat.get-color-from-palette($fg-palette, special-text);
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

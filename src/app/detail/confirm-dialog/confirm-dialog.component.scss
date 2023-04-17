@@ -1,0 +1,29 @@
+.delete-confirm-container {
+  padding: 4.8rem;
+
+  h2 {
+    font-family: inherit;
+    font-size: 2.4rem;
+    font-weight: 700;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 2.2rem;
+  }
+
+  &.mobile {
+    padding: 3.2rem;
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
+}
+
+.btns {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

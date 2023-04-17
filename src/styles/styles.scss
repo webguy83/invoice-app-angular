@@ -15,6 +15,7 @@
 @use "../app/invoices/custom-checkbox/custom-checkbox-theme" as
   customCheckboxTheme;
 @use "./custom/directive-styles";
+@use "../app/detail/confirm-dialog/confirm-dialog-theme" as confirmDialogTheme;
 
 @include mat.core();
 @include mat.typography-hierarchy(typography.$main-typography);
@@ -29,6 +30,7 @@
   @include mat.checkbox-theme(light.$invoice-light-theme);
   @include mat.progress-spinner-theme(light.$invoice-light-theme);
   @include mat.icon-theme(light.$invoice-light-theme);
+  @include mat.dialog-theme(light.$invoice-light-theme);
   @include headerTheme.theme(light.$invoice-light-theme);
   @include directiveTheme.theme(light.$invoice-light-theme);
   @include detailTheme.theme(light.$invoice-light-theme);
@@ -38,6 +40,7 @@
   @include statusTheme.theme(light.$invoice-light-theme);
   @include appTheme.theme(light.$invoice-light-theme);
   @include customCheckboxTheme.theme(light.$invoice-light-theme);
+  @include confirmDialogTheme.theme(light.$invoice-light-theme);
   color: palette.$fourth-colour-light-hover;
 }
 
@@ -51,6 +54,7 @@
   @include mat.checkbox-theme(dark.$invoice-dark-theme);
   @include mat.progress-spinner-theme(dark.$invoice-dark-theme);
   @include mat.icon-theme(dark.$invoice-dark-theme);
+  @include mat.dialog-theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
   @include directiveTheme.theme(dark.$invoice-dark-theme);
   @include detailTheme.theme(dark.$invoice-dark-theme);
@@ -60,6 +64,7 @@
   @include statusTheme.theme(dark.$invoice-dark-theme);
   @include appTheme.theme(dark.$invoice-dark-theme);
   @include customCheckboxTheme.theme(dark.$invoice-dark-theme);
+  @include confirmDialogTheme.theme(dark.$invoice-dark-theme);
   color: palette.$white;
 }
 
@@ -78,4 +83,15 @@ body {
 
 .status-group {
   padding: 18px 72px 0 18px !important;
+}
+
+.dialog-popup {
+  &-backdrop {
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .mat-mdc-dialog-surface {
+    padding: 0;
+    box-shadow: none !important;
+  }
 }

@@ -21,7 +21,9 @@ export class LoadingService {
       tap(() => this.loadingOn()),
       concatMap(() => obs$),
       first(),
-      finalize(() => this.loadingOff())
+      finalize(() => {
+        this.loadingOff();
+      })
     );
   }
 

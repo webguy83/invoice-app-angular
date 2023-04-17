@@ -10,10 +10,10 @@ import {
 type Mode = 'default' | 'danger' | 'modify';
 
 @Directive({
-  selector: '[pillButton]',
+  selector: '[pill-button]',
 })
 export class StyledButtonDirective implements OnInit {
-  @Input('pillButton') mode: Mode = 'default';
+  @Input('pill-button') mode: Mode = 'default';
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   ngOnInit(): void {

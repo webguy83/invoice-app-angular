@@ -1,0 +1,25 @@
+<div
+  class="delete-confirm-container"
+  [ngClass]="{
+    mobile: ($bp | async) === 'mobile'
+  }"
+>
+  <h2 class="heading">Confirm Deletion</h2>
+  <p class="content">
+    Are you sure you want to delete invoice #{{ id | sortchars }}? This action
+    cannot be undone.
+  </p>
+  <div class="btns">
+    <button pill-button="modify" mat-dialog-close (click)="onClose()">
+      Cancel
+    </button>
+    <button
+      pill-button="danger"
+      mat-dialog-close
+      cdkFocusInitial
+      (click)="onDeleteInvoice()"
+    >
+      Delete
+    </button>
+  </div>
+</div>
