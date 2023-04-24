@@ -32,9 +32,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.$bp = this.breakpointService.breakpoint$;
 
-    this.loadingService
-      .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
-      .subscribe();
     this.queryParamSubscription = modifyQueryParams(this.route.queryParams)
       .pipe(
         switchMap((params) => {
@@ -49,14 +46,18 @@ export class HomeComponent implements OnInit, OnDestroy {
               queryParamsHandling: 'merge',
             });
           }
-          return this.invoiceStore.invoices$.pipe(
-            tap((invoices) => {
-              const filteredInvoicesFromParams = invoices.filter((invoice) => {
-                return invoice.status ? params[invoice.status] : false;
-              });
-              this.invoiceStore.filterInvoices(filteredInvoicesFromParams);
-            })
-          );
+          return this.loadingService
+            .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
+            .pipe(
+              tap((invoices) => {
+                const filteredInvoicesFromParams = invoices.filter(
+                  (invoice) => {
+                    return invoice.status ? params[invoice.status] : false;
+                  }
+                );
+                this.invoiceStore.filterInvoices(filteredInvoicesFromParams);
+              })
+            );
         })
       )
       .subscribe();
