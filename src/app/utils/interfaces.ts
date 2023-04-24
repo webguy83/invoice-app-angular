@@ -1,16 +1,16 @@
 export interface Invoice {
   id: string;
-  clientEmail: string;
-  paymentDue: string;
-  clientName: string;
-  clientAddress: Address;
-  createdAt: string;
-  description: string;
-  items: Item[];
-  senderAddress: Address;
-  status: Status;
-  total: number;
-  paymentTerms: number;
+  clientEmail: string | undefined;
+  paymentDue: string | undefined;
+  clientName: string | undefined;
+  clientAddress: Address | undefined;
+  createdAt: string | undefined;
+  description: string | undefined;
+  items: Item[] | undefined;
+  senderAddress: Address | undefined;
+  status: Status | undefined;
+  total: number | undefined;
+  paymentTerms: number | undefined;
 }
 
 export type Status = 'paid' | 'pending' | 'draft';

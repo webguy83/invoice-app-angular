@@ -1,3 +1,4 @@
+import { LoadingService } from './shared/loading/loading.service';
 import { MatButtonModule } from '@angular/material/button';
 import { InvoicesModule } from './invoices/invoices.module';
 import { NgModule } from '@angular/core';
@@ -10,7 +11,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { LoadingService } from './shared/loading/loading.service';
 import { SharedModule } from './shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 

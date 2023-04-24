@@ -1,6 +1,4 @@
-<div *ngIf="isLoading$ | async" class="loading-container">
-  <app-loading></app-loading>
-</div>
+<app-loading></app-loading>
 <div class="home-container" *ngIf="!(isLoading$ | async)">
   <ng-container>
     <app-filter-bar></app-filter-bar>
@@ -17,10 +15,10 @@
           [showLargeCard]="($bp | async) !== 'mobile'"
           [cardData]="{
             id: invoice.id,
-            paymentDue: invoice.paymentDue,
-            clientName: invoice.clientName,
-            total: invoice.total,
-            status: invoice.status
+            paymentDue: invoice.paymentDue ? invoice.paymentDue : '',
+            clientName: invoice.clientName ? invoice.clientName : '',
+            total: invoice.total ? invoice.total : 0,
+            status: invoice.status ? invoice.status : 'draft'
           }"
           class="card"
         ></app-card>

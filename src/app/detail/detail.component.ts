@@ -1,6 +1,7 @@
+import { NavigationService } from './../services/navigation.service';
 import { LoadingService } from './../shared/loading/loading.service';
 import { InvoiceService } from './../services/invoice.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Invoice } from 'src/app/utils/interfaces';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BreakpointsService } from '../services/breakpoint.service';
@@ -18,6 +19,7 @@ import { openConfirmDialog } from './confirm-dialog/confirm-dialog.component';
   selector: 'app-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
+  providers: [LoadingService],
 })
 export class DetailComponent implements OnInit, OnDestroy {
   $bp!: Observable<string>;
@@ -31,7 +33,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     private dialog: MatDialog,
     private invoiceService: InvoiceService,
     private loadingService: LoadingService,
-    private router: Router
+    private navigationService: NavigationService
   ) {}
   ngOnDestroy(): void {}
 
@@ -47,7 +49,7 @@ export class DetailComponent implements OnInit, OnDestroy {
         concatMap((id) => this.invoiceService.deleteInvoice(id))
       )
       .subscribe(() => {
-        this.router.navigate(['/']);
+        this.navigationService.back();
       });
   }
 

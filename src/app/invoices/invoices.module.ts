@@ -5,7 +5,6 @@ import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
-import { LoadingService } from '../shared/loading/loading.service';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -33,6 +32,5 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     FormsModule,
   ],
-  providers: [LoadingService],
 })
 export class InvoicesModule {}

@@ -1,3 +1,4 @@
+<app-loading></app-loading>
 <div
   *ngIf="!(isLoading$ | async)"
   class="detail-view"
@@ -15,7 +16,7 @@
   </button>
   <header class="detail-view-header">
     <span class="status-label">Status</span>
-    <app-status [status]="invoice.status"></app-status>
+    <app-status *ngIf="invoice.status" [status]="invoice.status"></app-status>
     <ng-container *ngIf="($bp | async) !== 'mobile'">
       <ng-container *ngTemplateOutlet="buttons"></ng-container>
     </ng-container>
@@ -29,7 +30,7 @@
         </div>
         <div class="invoice-desc">{{ invoice.description }}</div>
       </div>
-      <ul class="invoice-address">
+      <ul *ngIf="invoice.clientAddress" class="invoice-address">
         <li>{{ invoice.clientAddress.street }}</li>
         <li>{{ invoice.clientAddress.country }}</li>
         <li>{{ invoice.clientAddress.postCode }}</li>
@@ -54,7 +55,7 @@
       <div class="bill-to">
         <div class="inv-label">Bill To</div>
         <div class="important-text">{{ invoice.clientName }}</div>
-        <ul class="invoice-address">
+        <ul *ngIf="invoice.senderAddress" class="invoice-address">
           <li>{{ invoice.senderAddress.street }}</li>
           <li>{{ invoice.senderAddress.country }}</li>
           <li>{{ invoice.senderAddress.postCode }}</li>

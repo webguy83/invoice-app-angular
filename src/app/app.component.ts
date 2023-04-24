@@ -10,11 +10,8 @@ import { BreakpointsService } from './services/breakpoint.service';
 })
 export class AppComponent implements OnInit {
   $bp!: Observable<string>;
-  isLoading$ = this.loadingService.loading$;
-  constructor(
-    private breakpointService: BreakpointsService,
-    private loadingService: LoadingService
-  ) {}
+
+  constructor(private breakpointService: BreakpointsService) {}
 
   ngOnInit(): void {
     this.$bp = this.breakpointService.breakpoint$;
