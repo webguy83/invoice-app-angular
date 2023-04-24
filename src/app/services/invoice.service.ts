@@ -1,4 +1,4 @@
-import { from, map, Observable } from 'rxjs';
+import { from, map, Observable, shareReplay } from 'rxjs';
 import { Injectable } from '@angular/core';
 import {
   Firestore,
@@ -10,7 +10,6 @@ import {
   deleteDoc,
   updateDoc,
   addDoc,
-  setDoc,
 } from '@angular/fire/firestore';
 import { Invoice } from '../utils/interfaces';
 
@@ -36,13 +35,15 @@ export class InvoiceService {
             ...invoice,
           };
         });
-      })
+      }),
+      shareReplay()
     );
   }
 
   getInvoice(id: string) {
     const docRef = doc(this.firestore, this._dbName, id);
     return from(getDoc(docRef)).pipe(
+      shareReplay(),
       map((newDoc) => {
         if (newDoc.data()) {
           return { ...newDoc.data(), id: newDoc.id };

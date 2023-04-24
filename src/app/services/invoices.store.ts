@@ -11,6 +11,7 @@ export class InvoicesStore {
   private filteredInvoicesSubject = new BehaviorSubject<Invoice[]>([]);
 
   invoices$: Observable<Invoice[]> = this.mainInvoiceSubject.asObservable();
+
   filteredInvoices$: Observable<Invoice[]> =
     this.filteredInvoicesSubject.asObservable();
 

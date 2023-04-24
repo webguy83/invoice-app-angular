@@ -1,4 +1,3 @@
-import { LoadingService } from './shared/loading/loading.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointsService } from './services/breakpoint.service';
