@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 100vh;
 
   &.desktop {
     flex-direction: row;
@@ -10,10 +9,14 @@
 }
 
 main {
-  flex: 1;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // padding: 0 2.4rem;
+}
+
+.sidenav-container {
+  width: 100%;
+  height: 100%;
 }

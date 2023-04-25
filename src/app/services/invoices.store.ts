@@ -9,7 +9,9 @@ import { InvoiceService } from './invoice.service';
 export class InvoicesStore {
   private mainInvoiceSubject = new BehaviorSubject<Invoice[]>([]);
   private filteredInvoicesSubject = new BehaviorSubject<Invoice[]>([]);
+  private sideNavOpenedSubject = new BehaviorSubject(false);
 
+  sideNavOpened$ = this.sideNavOpenedSubject.asObservable();
   invoices$: Observable<Invoice[]> = this.mainInvoiceSubject.asObservable();
 
   filteredInvoices$: Observable<Invoice[]> =
@@ -26,6 +28,14 @@ export class InvoicesStore {
       })
     );
     return loadInvoices$;
+  }
+
+  openSideNav() {
+    this.sideNavOpenedSubject.next(true);
+  }
+
+  closeSideNav() {
+    this.sideNavOpenedSubject.next(false);
   }
 
   filterInvoices(invoices: Invoice[]) {

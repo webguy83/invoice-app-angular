@@ -76,4 +76,8 @@ export class FilterBarComponent implements OnInit {
       )
       .subscribe();
   }
+
+  onNewInvoiceClick() {
+    this.invoicesStore.openSideNav();
+  }
 }
