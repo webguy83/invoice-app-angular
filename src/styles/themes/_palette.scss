@@ -210,6 +210,7 @@ $light-theme-background-palette: (
   unselected-chip: map.get($grey-palette, 300),
   disabled-list-option: map.get($grey-palette, 200),
   tooltip: map.get($grey-palette, 700),
+  side-nav: $white,
 );
 
 $dark-theme-background-palette: (
@@ -238,6 +239,7 @@ $dark-theme-background-palette: (
   unselected-chip: map.get($grey-palette, 700),
   disabled-list-option: rgba($white, 0.12),
   tooltip: map.get($grey-palette, 700),
+  side-nav: $darkBg,
 );
 
 $light-theme-foreground-palette: (
