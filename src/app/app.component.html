@@ -2,7 +2,8 @@
   class="container"
   [ngClass]="{
     desktop: (bp$ | async) === 'desktop',
-    tablet: (bp$ | async) === 'tablet'
+    tablet: (bp$ | async) === 'tablet',
+    mobile: (bp$ | async) === 'mobile'
   }"
 >
   <app-header></app-header>
@@ -14,8 +15,9 @@
       mode="over"
       (closed)="closeSideNav()"
       [opened]="sideNavOpened$ | async"
-      >I'm a drawer</mat-drawer
     >
+      <app-invoice-form></app-invoice-form>
+    </mat-drawer>
     <mat-drawer-content>
       <main>
         <app-loading [detectRoutingOngoing]="true"></app-loading>

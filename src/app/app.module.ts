@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { LoadingService } from './shared/loading/loading.service';
 import { MatButtonModule } from '@angular/material/button';
 import { InvoicesModule } from './invoices/invoices.module';
@@ -14,9 +15,11 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { SharedModule } from './shared/shared.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { InvoiceFormComponent } from './form/invoice-form/invoice-form.component';
+import { BillFromFormComponent } from './form/sub-forms/bill-from-form/bill-from-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent],
+  declarations: [AppComponent, HeaderComponent, InvoiceFormComponent, BillFromFormComponent],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
@@ -29,6 +32,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     InvoicesModule,
     SharedModule,
     MatSidenavModule,
+    ReactiveFormsModule,
   ],
   bootstrap: [AppComponent],
   providers: [LoadingService],
