@@ -17,9 +17,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { InvoiceFormComponent } from './form/invoice-form/invoice-form.component';
 import { BillFromFormComponent } from './form/sub-forms/bill-from-form/bill-from-form.component';
+import { BillToFormComponent } from './form/sub-forms/bill-to-form/bill-to-form.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, InvoiceFormComponent, BillFromFormComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    InvoiceFormComponent,
+    BillFromFormComponent,
+    BillToFormComponent,
+  ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),

@@ -34,8 +34,6 @@
   justify-content: space-around;
   width: 100%;
   max-width: 730px;
-  gap: 2rem;
-  margin: 0 auto;
 }
 
 :host {
@@ -48,10 +46,19 @@
 }
 
 .home-container {
-  padding: 2.4rem;
+  padding: 0 2.4rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 6.5rem;
+  min-height: 100vh;
+}
+
+.tablet.home-container {
+  min-height: calc(100vh - 80px);
+}
+
+.mobile.home-container {
+  min-height: calc(100vh - 72px);
 }

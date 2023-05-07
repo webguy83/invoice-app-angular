@@ -6,6 +6,7 @@ import { StyledButtonDirective } from './directives/styled-button.directive';
 import { LoadingComponent } from './loading/loading.component';
 import { SortcharsPipe } from './pipes/sortchars.pipe';
 import { BackButtonDirective } from './directives/back-button.directive';
+import { StyledInputDirective } from './directives/styled-input.directive';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { BackButtonDirective } from './directives/back-button.directive';
     StatusComponent,
     SortcharsPipe,
     BackButtonDirective,
+    StyledInputDirective,
   ],
   imports: [CommonModule, MatProgressSpinnerModule],
   exports: [
@@ -22,6 +24,7 @@ import { BackButtonDirective } from './directives/back-button.directive';
     StatusComponent,
     SortcharsPipe,
     BackButtonDirective,
+    StyledInputDirective,
   ],
 })
 export class SharedModule {}

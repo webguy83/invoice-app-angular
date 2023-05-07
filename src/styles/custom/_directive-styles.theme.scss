@@ -26,6 +26,16 @@
       );
     }
   }
+
+  .styled-input {
+    color: mat.get-color-from-palette($fg-palette, modify-btn);
+
+    input {
+      border-color: mat.get-color-from-palette($fg-palette, input-outline);
+      background-color: mat.get-color-from-palette($bg-palette, dialog);
+      color: mat.get-color-from-palette($fg-palette, base);
+    }
+  }
 }
 
 @mixin theme($theme) {

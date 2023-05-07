@@ -1,14 +1,16 @@
 <app-loading></app-loading>
-<div class="home-container" *ngIf="!(isLoading$ | async)">
+<div
+  class="home-container"
+  *ngIf="!(isLoading$ | async)"
+  [ngClass]="{
+    desktop: ($bp | async) === 'desktop',
+    tablet: ($bp | async) === 'tablet',
+    mobile: ($bp | async) === 'mobile'
+  }"
+>
   <ng-container>
     <app-filter-bar></app-filter-bar>
-    <div
-      class="content-container"
-      [ngClass]="{
-        desktop: ($bp | async) === 'desktop',
-        tablet: ($bp | async) === 'tablet'
-      }"
-    >
+    <div class="content-container">
       <div class="cards">
         <app-card
           *ngFor="let invoice of invoices$ | async"

@@ -17,6 +17,8 @@ $color: map.get($palette, 500);
   display: grid;
   grid-template-areas:
     "heading heading heading"
+    "clientName clientName clientName"
+    "clientEmail clientEmail clientEmail"
     "streetAddress streetAddress streetAddress"
     "city postCode country";
   gap: 2rem;
@@ -37,4 +39,12 @@ $color: map.get($palette, 500);
 
 .country {
   grid-area: country;
+}
+
+.name {
+  grid-area: clientName;
+}
+
+.email {
+  grid-area: clientEmail;
 }

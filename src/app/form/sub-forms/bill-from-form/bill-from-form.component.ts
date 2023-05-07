@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-bill-from-form',
@@ -7,8 +7,17 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./bill-from-form.component.scss'],
 })
 export class BillFromFormComponent implements OnInit {
-  form = this.fb.group({});
+  billFromForm = this.fb.group({
+    senderStreetAddress: ['', [Validators.required]],
+    senderCity: ['', [Validators.required]],
+    senderPostCode: ['', [Validators.required]],
+    senderCountry: ['', [Validators.required]],
+  });
 
   constructor(private fb: FormBuilder) {}
   ngOnInit(): void {}
+
+  onSubmit(form: FormGroup) {
+    console.log(form.value);
+  }
 }
