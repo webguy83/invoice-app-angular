@@ -1,0 +1,6 @@
+<div class="invoiceDate" styledInput>
+  <label for="invoiceDate">Invoice Date</label>
+  <input type="text" size="5" id="invoiceDate" [matDatepicker]="picker" />
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</div>

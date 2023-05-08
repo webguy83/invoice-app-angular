@@ -18,6 +18,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { InvoiceFormComponent } from './form/invoice-form/invoice-form.component';
 import { BillFromFormComponent } from './form/sub-forms/bill-from-form/bill-from-form.component';
 import { BillToFormComponent } from './form/sub-forms/bill-to-form/bill-to-form.component';
+import { MiscInfoFormComponent } from './form/sub-forms/misc-info-form/misc-info-form.component';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { BillToFormComponent } from './form/sub-forms/bill-to-form/bill-to-form.
     InvoiceFormComponent,
     BillFromFormComponent,
     BillToFormComponent,
+    MiscInfoFormComponent,
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -40,6 +44,8 @@ import { BillToFormComponent } from './form/sub-forms/bill-to-form/bill-to-form.
     SharedModule,
     MatSidenavModule,
     ReactiveFormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   bootstrap: [AppComponent],
   providers: [LoadingService],

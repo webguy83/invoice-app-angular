@@ -1,4 +1,4 @@
-<form class="form" [formGroup]="billFromForm" (submit)="onSubmit(billFromForm)">
+<form class="form" [formGroup]="billFromForm">
   <h3 class="heading">Bill From</h3>
   <div class="streetAddress" styledInput>
     <label for="senderStreetAddress">Street Address</label>
@@ -7,11 +7,18 @@
       size="5"
       id="senderStreetAddress"
       formControlName="senderStreetAddress"
+      (blur)="onTouched()"
     />
   </div>
   <div class="city" styledInput>
     <label for="senderCity">City</label>
-    <input type="text" size="5" id="senderCity" formControlName="senderCity" />
+    <input
+      type="text"
+      size="5"
+      id="senderCity"
+      formControlName="senderCity"
+      (blur)="onTouched()"
+    />
   </div>
   <div class="postCode" styledInput>
     <label for="senderPostCode">Post Code</label>
@@ -20,6 +27,7 @@
       size="5"
       id="senderPostCode"
       formControlName="senderPostCode"
+      (blur)="onTouched()"
     />
   </div>
   <div class="country" styledInput>
@@ -29,6 +37,7 @@
       size="5"
       id="senderCountry"
       formControlName="senderCountry"
+      (blur)="onTouched()"
     />
   </div>
 </form>

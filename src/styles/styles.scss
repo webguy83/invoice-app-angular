@@ -32,6 +32,7 @@
   @include mat.icon-theme(light.$invoice-light-theme);
   @include mat.dialog-theme(light.$invoice-light-theme);
   @include mat.sidenav-theme(light.$invoice-light-theme);
+  @include mat.datepicker-theme(light.$invoice-light-theme);
   @include headerTheme.theme(light.$invoice-light-theme);
   @include directiveTheme.theme(light.$invoice-light-theme);
   @include detailTheme.theme(light.$invoice-light-theme);
@@ -57,6 +58,7 @@
   @include mat.icon-theme(dark.$invoice-dark-theme);
   @include mat.dialog-theme(dark.$invoice-dark-theme);
   @include mat.sidenav-theme(dark.$invoice-dark-theme);
+  @include mat.datepicker-theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
   @include directiveTheme.theme(dark.$invoice-dark-theme);
   @include detailTheme.theme(dark.$invoice-dark-theme);

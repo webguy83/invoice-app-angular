@@ -1,8 +1,14 @@
-<form class="form" [formGroup]="billToForm" (submit)="onSubmit(billToForm)">
+<form class="form" [formGroup]="billToForm">
   <h3 class="heading">Bill To</h3>
   <div class="name" styledInput>
     <label for="clientName">Client's Name</label>
-    <input type="text" size="5" id="clientName" formControlName="clientName" />
+    <input
+      type="text"
+      size="5"
+      id="clientName"
+      formControlName="clientName"
+      (blur)="onTouched()"
+    />
   </div>
   <div class="email" styledInput>
     <label for="clientEmail">Client's Email</label>
@@ -12,6 +18,7 @@
       id="clientEmail"
       placeholder="e.g. email@example.com"
       formControlName="clientEmail"
+      (blur)="onTouched()"
     />
   </div>
   <div class="streetAddress" styledInput>
@@ -21,11 +28,18 @@
       size="5"
       id="clientStreetAddress"
       formControlName="clientStreetAddress"
+      (blur)="onTouched()"
     />
   </div>
   <div class="city" styledInput>
     <label for="clientCity">City</label>
-    <input type="text" size="5" id="clientCity" formControlName="clientCity" />
+    <input
+      type="text"
+      size="5"
+      id="clientCity"
+      formControlName="clientCity"
+      (blur)="onTouched()"
+    />
   </div>
   <div class="postCode" styledInput>
     <label for="clientPostCode">Post Code</label>
@@ -34,6 +48,7 @@
       size="5"
       id="clientPostCode"
       formControlName="clientPostCode"
+      (blur)="onTouched()"
     />
   </div>
   <div class="country" styledInput>
@@ -43,6 +58,7 @@
       size="5"
       id="clientCountry"
       formControlName="clientCountry"
+      (blur)="onTouched()"
     />
   </div>
 </form>

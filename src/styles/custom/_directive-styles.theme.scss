@@ -34,6 +34,10 @@
       border-color: mat.get-color-from-palette($fg-palette, input-outline);
       background-color: mat.get-color-from-palette($bg-palette, dialog);
       color: mat.get-color-from-palette($fg-palette, base);
+
+      &::placeholder {
+        color: mat.get-color-from-palette($fg-palette, input-placeholder);
+      }
     }
   }
 }

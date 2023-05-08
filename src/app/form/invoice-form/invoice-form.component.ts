@@ -7,7 +7,15 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./invoice-form.component.scss'],
 })
 export class InvoiceFormComponent implements OnInit {
-  form = this.fb.group({});
+  form = this.fb.group({
+    billFromForm: [],
+    billToForm: [],
+  });
+
   constructor(private fb: FormBuilder) {}
   ngOnInit(): void {}
+
+  onSubmit() {
+    console.log(this.form.value);
+  }
 }
