@@ -1,0 +1,32 @@
+<div class="paymentTerms" styledInput>
+  <label for="paymentTerms">Payment Terms</label>
+  <div class="select-box">
+    <div class="options-container" [ngClass]="{ active: selectRegionIsOpen }">
+      <div class="option">
+        <label>
+          All
+          <input
+            type="radio"
+            class="radio"
+            name="region"
+            value="All"
+            (change)="onRegionChange($event)"
+          />
+        </label>
+      </div>
+      <div class="option" *ngFor="let region of regions">
+        <label>
+          {{ region }}
+          <input
+            type="radio"
+            class="radio"
+            name="region"
+            value="{{ region }}"
+            (change)="onRegionChange($event)"
+          />
+        </label>
+      </div>
+    </div>
+    <div (click)="onRegionClick()" class="selected">{{ selectedRegion }}</div>
+  </div>
+</div>

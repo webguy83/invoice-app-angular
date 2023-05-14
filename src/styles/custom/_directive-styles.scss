@@ -92,6 +92,7 @@ $bg-color-hover: map.get($palette, 400);
     border-width: 1px;
     border-style: solid;
     caret-color: $bg-color;
+    box-sizing: border-box;
 
     &:focus-visible {
       outline-width: 1px;

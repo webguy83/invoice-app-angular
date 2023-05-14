@@ -1,6 +1,15 @@
-<div class="invoiceDate" styledInput>
-  <label for="invoiceDate">Invoice Date</label>
-  <input type="text" size="5" id="invoiceDate" [matDatepicker]="picker" />
-  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</div>
+<form class="form">
+  <div class="invoiceDate" styledInput>
+    <label for="invoiceDate">Invoice Date</label>
+    <div class="input-container-date">
+      <input type="text" size="5" id="invoiceDate" [matDatepicker]="picker" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        class="date-picker-toggle"
+        [for]="picker"
+      ></mat-datepicker-toggle>
+    </div>
+    <mat-datepicker #picker></mat-datepicker>
+  </div>
+  <app-select-payment-terms></app-select-payment-terms>
+</form>

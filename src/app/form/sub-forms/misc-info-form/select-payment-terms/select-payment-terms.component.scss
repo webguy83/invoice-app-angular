@@ -1,0 +1,76 @@
+.select-box {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-width: 14rem;
+  box-shadow: var(--main-drop-shadow);
+
+  .option .radio {
+    display: none;
+  }
+
+  .option,
+  label {
+    cursor: pointer;
+  }
+
+  label {
+    display: block;
+    padding: 0.5em 2em 0.5em;
+  }
+}
+
+.options-container {
+  max-height: 0;
+  width: 100%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 8px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 99;
+  top: 3rem;
+  order: 1;
+  box-shadow: var(--main-drop-shadow);
+
+  $scollBarBorderRadius: 0 8px 8px 0;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+    border-radius: $scollBarBorderRadius;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: $scollBarBorderRadius;
+  }
+
+  &.active {
+    max-height: 15rem;
+    opacity: 1;
+    overflow-y: scroll;
+    margin-top: 0.6rem;
+    padding-top: 1em;
+
+    & + .selected::after {
+      content: "\e5cf";
+    }
+  }
+}
+
+.selected {
+  cursor: pointer;
+  position: relative;
+  border-radius: var(--main-border-radius);
+  padding: 1.2em 6em 1.2em 2em;
+  order: 0;
+
+  &::after {
+    position: absolute;
+    right: 0.7em;
+    font-size: 1.6em;
+    font-family: "Material Icons";
+    content: "\e5ce";
+    pointer-events: none;
+    transition: all 0.4s;
+  }
+}
