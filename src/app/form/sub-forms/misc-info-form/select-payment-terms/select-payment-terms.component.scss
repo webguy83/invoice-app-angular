@@ -3,7 +3,8 @@
   flex-direction: column;
   position: relative;
   min-width: 14rem;
-  box-shadow: var(--main-drop-shadow);
+  border-radius: 4px;
+  font-weight: 700;
 
   .option .radio {
     display: none;
@@ -11,13 +12,18 @@
 
   .option,
   label {
+    font-weight: 700;
     cursor: pointer;
   }
 
   label {
     display: block;
-    padding: 0.5em 2em 0.5em;
+    padding: 1.8rem 1.6rem;
   }
+}
+
+.option div {
+  padding-top: 3px;
 }
 
 .options-container {
@@ -31,7 +37,7 @@
   z-index: 99;
   top: 3rem;
   order: 1;
-  box-shadow: var(--main-drop-shadow);
+  box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
 
   $scollBarBorderRadius: 0 8px 8px 0;
 
@@ -45,11 +51,10 @@
   }
 
   &.active {
-    max-height: 15rem;
+    max-height: 20rem;
     opacity: 1;
-    overflow-y: scroll;
-    margin-top: 0.6rem;
-    padding-top: 1em;
+    // overflow-y: scroll;
+    margin-top: 2.6rem;
 
     & + .selected::after {
       content: "\e5cf";
@@ -60,8 +65,9 @@
 .selected {
   cursor: pointer;
   position: relative;
-  border-radius: var(--main-border-radius);
-  padding: 1.2em 6em 1.2em 2em;
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
   order: 0;
 
   &::after {

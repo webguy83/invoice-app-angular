@@ -10,6 +10,7 @@ export class InvoiceFormComponent implements OnInit {
   form = this.fb.group({
     billFromForm: [],
     billToForm: [],
+    miscInfoForm: [],
   });
 
   constructor(private fb: FormBuilder) {}

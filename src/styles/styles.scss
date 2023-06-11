@@ -9,6 +9,8 @@
 @use "../app/invoices/filter-bar/filter-bar.theme" as filterBarTheme;
 @use "../app/invoices/card/card.theme" as cardTheme;
 @use "../app/status/status.theme" as statusTheme;
+@use "../app//form/sub-forms/misc-info-form/select-payment-terms/select-payment-terms.theme"
+  as paymentTermsTheme;
 @use "../app/app.theme" as appTheme;
 @use "../app/detail//detail.theme" as detailTheme;
 @use "./themes/palette";
@@ -40,6 +42,7 @@
   @include filterBarTheme.theme(light.$invoice-light-theme);
   @include cardTheme.theme(light.$invoice-light-theme);
   @include statusTheme.theme(light.$invoice-light-theme);
+  @include paymentTermsTheme.theme(light.$invoice-light-theme);
   @include appTheme.theme(light.$invoice-light-theme);
   @include customCheckboxTheme.theme(light.$invoice-light-theme);
   @include confirmDialogTheme.theme(light.$invoice-light-theme);
@@ -66,6 +69,7 @@
   @include filterBarTheme.theme(dark.$invoice-dark-theme);
   @include cardTheme.theme(dark.$invoice-dark-theme);
   @include statusTheme.theme(dark.$invoice-dark-theme);
+  @include paymentTermsTheme.theme(dark.$invoice-dark-theme);
   @include appTheme.theme(dark.$invoice-dark-theme);
   @include customCheckboxTheme.theme(dark.$invoice-dark-theme);
   @include confirmDialogTheme.theme(dark.$invoice-dark-theme);

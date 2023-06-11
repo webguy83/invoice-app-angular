@@ -244,6 +244,8 @@ $dark-theme-background-palette: (
 
 $light-theme-foreground-palette: (
   base: $fourth-colour-light-hover,
+  drop-down: $fourth-colour-light-hover,
+  drop-down-border: $light-accent-hover,
   back-btn-hover: $theme-mode-colour,
   divider: $fourth-colour-light-hover,
   dividers: $fourth-colour-light-hover,
@@ -271,6 +273,8 @@ $light-theme-foreground-palette: (
 
 $dark-theme-foreground-palette: (
   base: $white,
+  drop-down: $light-accent-hover,
+  drop-down-border: $fourth-colour-dark-hover,
   back-btn-hover: $medgrey,
   divider: $white,
   dividers: $white,

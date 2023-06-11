@@ -1,0 +1,55 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../../../../../styles/themes/palette";
+
+$palette: mat.define-palette(palette.$md-custom-primary);
+$color: map.get($palette, 500);
+$light-color: map.get($palette, 400);
+
+.options-container.active + .selected {
+  outline: 1px solid $color;
+  border-radius: 4px;
+}
+
+.selected::after {
+  color: $color;
+}
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
+  $bg-palette: map.get($color-config, "background");
+
+  .option:hover {
+    color: $color;
+  }
+
+  .options-container {
+    background-color: mat.get-color-from-palette($bg-palette, card);
+  }
+
+  .select-box {
+    border: 1px solid mat.get-color-from-palette($fg-palette, drop-down-border);
+    background-color: mat.get-color-from-palette($bg-palette, dialog);
+  }
+
+  .select-box,
+  .option {
+    color: mat.get-color-from-palette($fg-palette, drop-down);
+  }
+
+  .option {
+    &:not(:first-child) {
+      border-top: 1px solid
+        mat.get-color-from-palette($fg-palette, drop-down-border);
+    }
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

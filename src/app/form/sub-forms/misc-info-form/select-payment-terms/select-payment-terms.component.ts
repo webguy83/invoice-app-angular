@@ -1,10 +1,9 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+
+interface Term {
+  label: string;
+  value: number;
+}
 
 @Component({
   selector: 'app-select-payment-terms',
@@ -14,18 +13,21 @@ import {
 export class SelectPaymentTermsComponent {
   selectRegionIsOpen: boolean = false;
 
-  regions: string[] = ['test', 'oger'];
+  terms: Term[] = [
+    { label: 'Net 1 Day', value: 1 },
+    { label: 'Net 7 Days', value: 7 },
+    { label: 'Net 14 Days', value: 14 },
+    { label: 'Net 30 Days', value: 30 },
+  ];
+  regions = ['Net 1 Day', 'Net 7 Days', 'Net 14 Days', 'Net 30 Days'];
   @Output() selectedRegionChange = new EventEmitter<string>();
 
-  selectedRegion = 'Filter By Region';
-  constructor(private eRef: ElementRef) {}
+  selectedRegion = this.terms[this.terms.length - 1].label;
+  constructor() {}
   ngOnInit() {
     this.selectedRegionChange.subscribe((region) => {
       this.selectedRegion = region;
     });
-    // this.utilitiesService.documentClickedTarget.subscribe((target) =>
-    //   this.documentClickListener(target)
-    // );
   }
 
   onRegionClick() {
@@ -39,12 +41,5 @@ export class SelectPaymentTermsComponent {
   onRegionChange(evt: Event) {
     const region = (evt.target as HTMLInputElement).value;
     this.selectedRegionChange.emit(region);
-    this.selectRegionIsOpen = false;
-  }
-
-  documentClickListener(target: HTMLElement): void {
-    if (!this.eRef.nativeElement.contains(target)) {
-      this.selectRegionIsOpen = false;
-    }
   }
 }

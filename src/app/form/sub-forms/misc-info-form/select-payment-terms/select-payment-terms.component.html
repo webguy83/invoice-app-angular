@@ -2,26 +2,16 @@
   <label for="paymentTerms">Payment Terms</label>
   <div class="select-box">
     <div class="options-container" [ngClass]="{ active: selectRegionIsOpen }">
-      <div class="option">
+      <div class="option" *ngFor="let term of terms">
         <label>
-          All
+          <div>{{ term.label }}</div>
           <input
             type="radio"
             class="radio"
-            name="region"
-            value="All"
-            (change)="onRegionChange($event)"
-          />
-        </label>
-      </div>
-      <div class="option" *ngFor="let region of regions">
-        <label>
-          {{ region }}
-          <input
-            type="radio"
-            class="radio"
-            name="region"
-            value="{{ region }}"
+            name="term"
+            id="{{ term.label }}"
+            value="{{ term.label }}"
+            (click)="onRegionClick()"
             (change)="onRegionChange($event)"
           />
         </label>
