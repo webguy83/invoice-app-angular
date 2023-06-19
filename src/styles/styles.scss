@@ -18,6 +18,8 @@
   customCheckboxTheme;
 @use "./custom/directive-styles";
 @use "../app/detail/confirm-dialog/confirm-dialog-theme" as confirmDialogTheme;
+@use "../app/form/sub-forms/item-list-form/item-list-form.theme" as
+  itemListFormTheme;
 
 @include mat.core();
 @include mat.typography-hierarchy(typography.$main-typography);
@@ -35,6 +37,7 @@
   @include mat.dialog-theme(light.$invoice-light-theme);
   @include mat.sidenav-theme(light.$invoice-light-theme);
   @include mat.datepicker-theme(light.$invoice-light-theme);
+  @include itemListFormTheme.theme(light.$invoice-light-theme);
   @include headerTheme.theme(light.$invoice-light-theme);
   @include directiveTheme.theme(light.$invoice-light-theme);
   @include detailTheme.theme(light.$invoice-light-theme);
@@ -62,6 +65,7 @@
   @include mat.dialog-theme(dark.$invoice-dark-theme);
   @include mat.sidenav-theme(dark.$invoice-dark-theme);
   @include mat.datepicker-theme(dark.$invoice-dark-theme);
+  @include itemListFormTheme.theme(dark.$invoice-dark-theme);
   @include headerTheme.theme(dark.$invoice-dark-theme);
   @include directiveTheme.theme(dark.$invoice-dark-theme);
   @include detailTheme.theme(dark.$invoice-dark-theme);

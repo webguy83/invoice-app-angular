@@ -11,6 +11,7 @@ export class InvoiceFormComponent implements OnInit {
     billFromForm: [],
     billToForm: [],
     miscInfoForm: [],
+    itemListForm: [],
   });
 
   constructor(private fb: FormBuilder) {}

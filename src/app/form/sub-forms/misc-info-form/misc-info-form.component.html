@@ -3,6 +3,7 @@
     <label for="invoiceDate">Invoice Date</label>
     <div class="input-container-date">
       <input
+        [readonly]="true"
         type="text"
         size="5"
         id="invoiceDate"
@@ -18,7 +19,10 @@
     </div>
     <mat-datepicker #picker></mat-datepicker>
   </div>
-  <app-select-payment-terms class="paymentTerms"></app-select-payment-terms>
+  <app-select-payment-terms
+    formControlName="paymentTerms"
+    class="paymentTerms"
+  ></app-select-payment-terms>
   <div class="projectDescription" styledInput>
     <label for="projectDescription">Project Description</label>
     <input

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AfterViewInit, Component, forwardRef, OnInit } from '@angular/core';
 
 interface Term {
   label: string;
@@ -9,9 +10,21 @@ interface Term {
   selector: 'app-select-payment-terms',
   templateUrl: './select-payment-terms.component.html',
   styleUrls: ['./select-payment-terms.component.scss'],
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SelectPaymentTermsComponent),
+      multi: true,
+    },
+  ],
 })
-export class SelectPaymentTermsComponent {
+export class SelectPaymentTermsComponent
+  implements ControlValueAccessor, AfterViewInit
+{
   selectRegionIsOpen: boolean = false;
+
+  onTouched = () => {};
+  onChange = (val: number) => {};
 
   terms: Term[] = [
     { label: 'Net 1 Day', value: 1 },
@@ -20,14 +33,25 @@ export class SelectPaymentTermsComponent {
     { label: 'Net 30 Days', value: 30 },
   ];
   regions = ['Net 1 Day', 'Net 7 Days', 'Net 14 Days', 'Net 30 Days'];
-  @Output() selectedRegionChange = new EventEmitter<string>();
 
   selectedRegion = this.terms[this.terms.length - 1].label;
   constructor() {}
-  ngOnInit() {
-    this.selectedRegionChange.subscribe((region) => {
-      this.selectedRegion = region;
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.onChange(this.terms[this.terms.length - 1].value);
     });
+  }
+
+  writeValue(val: number): void {
+    if (val) {
+      this.onChange(val);
+    }
+  }
+  registerOnChange(fn: (val: number) => void): void {
+    this.onChange = fn;
+  }
+  registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   onRegionClick() {
@@ -39,7 +63,12 @@ export class SelectPaymentTermsComponent {
   }
 
   onRegionChange(evt: Event) {
-    const region = (evt.target as HTMLInputElement).value;
-    this.selectedRegionChange.emit(region);
+    const region = +(evt.target as HTMLInputElement).value;
+    this.writeValue(region);
+    const foundTerm = this.terms.find((term) => term.value === region);
+    if (foundTerm) {
+      this.selectedRegion = foundTerm.label;
+    }
+    this.onTouched();
   }
 }

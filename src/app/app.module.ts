@@ -22,6 +22,7 @@ import { MiscInfoFormComponent } from './form/sub-forms/misc-info-form/misc-info
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SelectPaymentTermsComponent } from './form/sub-forms/misc-info-form/select-payment-terms/select-payment-terms.component';
+import { ItemListFormComponent } from './form/sub-forms/item-list-form/item-list-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { SelectPaymentTermsComponent } from './form/sub-forms/misc-info-form/sel
     BillToFormComponent,
     MiscInfoFormComponent,
     SelectPaymentTermsComponent,
+    ItemListFormComponent,
   ],
   imports: [
     provideFirebaseApp(() => initializeApp(environment.firebase)),

@@ -1,0 +1,31 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../../../../styles/themes/palette";
+
+$custom-warning: mat.define-palette(palette.$md-custom-warning);
+$color: map.get($custom-warning, 500);
+
+.total-cell .btn:hover {
+  color: $color;
+}
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
+
+  .table-item-list th {
+    color: mat.get-color-from-palette($fg-palette, modify-btn);
+  }
+
+  .total {
+    color: mat.get-color-from-palette($fg-palette, special-text);
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

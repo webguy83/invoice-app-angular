@@ -1,0 +1,76 @@
+.form {
+  gap: 2rem;
+  margin: 4.8rem 0;
+
+  h3 {
+    color: #777f98;
+    font-size: 18px;
+  }
+}
+
+.table-item-list {
+  width: 100%;
+  border-spacing: 0;
+
+  input {
+    width: 100%;
+  }
+
+  th {
+    padding: 1.6rem 0;
+    text-align: left;
+    font-weight: 500;
+    font-size: 12px;
+  }
+
+  th:not(:first-child),
+  td:not(:first-child) {
+    padding-left: 1.6rem;
+  }
+
+  label {
+    display: none;
+  }
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn {
+  padding: 0;
+  width: auto;
+  transition: all 0.1s;
+
+  &:hover {
+    transition: all 0.1s;
+  }
+}
+
+.icon {
+  width: auto;
+}
+
+.item-name {
+  width: 35%;
+}
+
+.qty {
+  width: 15%;
+
+  input {
+    padding-right: 0.8rem;
+    text-align: center;
+  }
+}
+
+.price {
+  width: 25%;
+}
+
+.total-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+}

@@ -51,7 +51,7 @@ export class MiscInfoFormComponent
   }
 
   miscInfoForm = this.fb.group({
-    invoiceDate: ['', [Validators.required]],
+    invoiceDate: [new Date(), [Validators.required]],
     paymentTerms: ['', [Validators.required]],
     projectDescription: ['', [Validators.required]],
   });
