@@ -1,4 +1,4 @@
-import { Component, OnDestroy, forwardRef } from '@angular/core';
+import { Component, OnDestroy, forwardRef, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -8,7 +8,8 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { BreakpointsService } from 'src/app/services/breakpoint.service';
 
 @Component({
   selector: 'app-bill-to-form',
@@ -28,10 +29,11 @@ import { Subscription } from 'rxjs';
   ],
 })
 export class BillToFormComponent
-  implements ControlValueAccessor, OnDestroy, Validator
+  implements ControlValueAccessor, OnDestroy, Validator, OnInit
 {
   onTouched = () => {};
   onChangeSub: Subscription = new Subscription();
+  bp$!: Observable<string>;
 
   billToForm = this.fb.group({
     clientName: ['', [Validators.required]],
@@ -42,7 +44,13 @@ export class BillToFormComponent
     clientCountry: ['', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private breakpointService: BreakpointsService
+  ) {}
+  ngOnInit(): void {
+    this.bp$ = this.breakpointService.breakpoint$;
+  }
 
   ngOnDestroy(): void {
     this.onChangeSub.unsubscribe();

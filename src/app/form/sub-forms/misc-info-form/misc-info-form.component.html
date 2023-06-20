@@ -1,4 +1,10 @@
-<form class="form" [formGroup]="miscInfoForm">
+<form
+  class="form"
+  [formGroup]="miscInfoForm"
+  [ngClass]="{
+    mobile: (bp$ | async) === 'mobile'
+  }"
+>
   <div class="invoiceDate" styledInput>
     <label for="invoiceDate">Invoice Date</label>
     <div class="input-container-date">

@@ -1,4 +1,10 @@
-<form class="form" [formGroup]="billToForm">
+<form
+  class="form"
+  [formGroup]="billToForm"
+  [ngClass]="{
+    mobile: (bp$ | async) === 'mobile'
+  }"
+>
   <h3 class="heading">Bill To</h3>
   <div class="name" styledInput>
     <label for="clientName">Client's Name</label>

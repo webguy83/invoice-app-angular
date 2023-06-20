@@ -1,7 +1,10 @@
 <form class="form" [formGroup]="itemListForm">
   <h3>Item List</h3>
   <div class="content">
-    <table class="table-item-list">
+    <table
+      class="table-item-list"
+      *ngIf="(bp$ | async) !== 'mobile'; else grid"
+    >
       <thead>
         <tr>
           <th>Item Name</th>
@@ -65,5 +68,54 @@
         </tr>
       </tbody>
     </table>
+    <button class="add-new-item-btn">+ Add New Item</button>
   </div>
 </form>
+
+<ng-template #grid>
+  <div class="grid">
+    <div class="item-name">
+      <div styledInput>
+        <label for="item-name">Item Name</label>
+        <input
+          type="text"
+          title="item-name"
+          id="item-name"
+          size="5"
+          (blur)="onTouched()"
+        />
+      </div>
+    </div>
+    <div class="qty">
+      <div styledInput>
+        <label for="qty">Qty</label>
+        <input
+          min="1"
+          type="number"
+          title="qty"
+          id="qty"
+          value="1"
+          (blur)="onTouched()"
+        />
+      </div>
+    </div>
+    <div class="price">
+      <div styledInput>
+        <label for="price">Price</label>
+        <input type="number" title="price" id="price" (blur)="onTouched()" />
+      </div>
+    </div>
+    <div class="total">
+      <span class="total-price">696.69</span>
+      <button
+        type="button"
+        class="btn"
+        mat-icon-button
+        disableRipple
+        aria-label="Delete"
+      >
+        <mat-icon class="icon">delete</mat-icon>
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnDestroy } from '@angular/core';
+import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -8,7 +8,8 @@ import {
   Validator,
   Validators,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { BreakpointsService } from 'src/app/services/breakpoint.service';
 
 @Component({
   selector: 'app-misc-info-form',
@@ -28,12 +29,19 @@ import { Subscription } from 'rxjs';
   ],
 })
 export class MiscInfoFormComponent
-  implements ControlValueAccessor, OnDestroy, Validator
+  implements ControlValueAccessor, OnDestroy, Validator, OnInit
 {
   onTouched = () => {};
   onChangeSub: Subscription = new Subscription();
+  bp$!: Observable<string>;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private breakpointService: BreakpointsService
+  ) {}
+  ngOnInit(): void {
+    this.bp$ = this.breakpointService.breakpoint$;
+  }
 
   validate(): ValidationErrors | null {
     return this.miscInfoForm.valid

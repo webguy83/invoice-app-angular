@@ -1,4 +1,4 @@
-import { Component, OnDestroy, forwardRef } from '@angular/core';
+import { Component, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import {
   ControlValueAccessor,
   FormBuilder,
@@ -6,9 +6,9 @@ import {
   NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validator,
-  Validators,
 } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { BreakpointsService } from 'src/app/services/breakpoint.service';
 
 @Component({
   selector: 'app-item-list-form',
@@ -28,12 +28,19 @@ import { Subscription } from 'rxjs';
   ],
 })
 export class ItemListFormComponent
-  implements ControlValueAccessor, OnDestroy, Validator
+  implements ControlValueAccessor, OnDestroy, Validator, OnInit
 {
   onTouched = () => {};
   onChangeSub: Subscription = new Subscription();
+  bp$!: Observable<string>;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private breakpointService: BreakpointsService
+  ) {}
+  ngOnInit(): void {
+    this.bp$ = this.breakpointService.breakpoint$;
+  }
 
   itemListForm = this.fb.group({});
 

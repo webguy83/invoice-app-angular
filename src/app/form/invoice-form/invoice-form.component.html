@@ -1,8 +1,15 @@
-<h2 class="heading">New Invoice</h2>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <app-bill-from-form formControlName="billFromForm"></app-bill-from-form>
-  <app-bill-to-form formControlName="billToForm"></app-bill-to-form>
-  <app-misc-info-form formControlName="miscInfoForm"></app-misc-info-form>
-  <app-item-list-form formControlName="itemListForm"></app-item-list-form>
-  <button type="submit" [disabled]="form.invalid">Submit</button>
-</form>
+<div
+  class="invoice-form"
+  [ngClass]="{
+    mobile: (bp$ | async) === 'mobile'
+  }"
+>
+  <h2 class="heading">New Invoice</h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <app-bill-from-form formControlName="billFromForm"></app-bill-from-form>
+    <app-bill-to-form formControlName="billToForm"></app-bill-to-form>
+    <app-misc-info-form formControlName="miscInfoForm"></app-misc-info-form>
+    <app-item-list-form formControlName="itemListForm"></app-item-list-form>
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  </form>
+</div>

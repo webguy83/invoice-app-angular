@@ -1,4 +1,8 @@
-:host {
+.invoice-form {
   display: block;
   padding: 5.6rem;
+
+  &.mobile {
+    padding: 2.4rem;
+  }
 }

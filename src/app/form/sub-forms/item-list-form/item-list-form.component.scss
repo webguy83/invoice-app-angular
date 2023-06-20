@@ -31,6 +31,18 @@
   label {
     display: none;
   }
+
+  .item-name {
+    width: 35%;
+  }
+
+  .qty {
+    width: 15%;
+  }
+
+  .price {
+    width: 25%;
+  }
 }
 
 .total {
@@ -42,10 +54,10 @@
 .btn {
   padding: 0;
   width: auto;
-  transition: all 0.1s;
+  transition: 0.3s;
 
   &:hover {
-    transition: all 0.1s;
+    transition: 0.3s;
   }
 }
 
@@ -53,24 +65,54 @@
   width: auto;
 }
 
-.item-name {
-  width: 35%;
-}
-
 .qty {
-  width: 15%;
-
   input {
     padding-right: 0.8rem;
     text-align: center;
   }
 }
 
-.price {
-  width: 25%;
-}
-
 .total-price {
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+.add-new-item-btn {
+  border: none;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 1.6rem;
+  padding: 1.6rem;
+  border-radius: 2.4rem;
+  font-family: inherit;
+  transition: 0.3s;
+}
+
+.grid {
+  display: grid;
+  grid-template-areas:
+    "itemName itemName itemName"
+    "qty price total";
+  grid-template-columns: 25% 35% 1fr;
+  gap: 2rem;
+  margin: 4.8rem 0;
+
+  .item-name {
+    grid-area: itemName;
+  }
+
+  .qty {
+    grid-area: qty;
+  }
+
+  .price {
+    grid-area: price;
+  }
+
+  .total {
+    grid-area: total;
+    padding-top: 2.5rem;
+  }
 }
