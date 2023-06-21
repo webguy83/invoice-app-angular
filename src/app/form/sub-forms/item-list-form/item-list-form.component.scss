@@ -43,12 +43,12 @@
   .price {
     width: 25%;
   }
-}
 
-.total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  .total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .btn {
@@ -95,7 +95,7 @@
   grid-template-areas:
     "itemName itemName itemName"
     "qty price total";
-  grid-template-columns: 25% 35% 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
   gap: 2rem;
   margin: 4.8rem 0;
 
@@ -113,6 +113,26 @@
 
   .total {
     grid-area: total;
-    padding-top: 2.5rem;
+
+    input {
+      border: none;
+      background-color: transparent;
+      padding-left: 0;
+      color: inherit;
+    }
   }
+
+  input {
+    width: 100%;
+  }
+
+  .icon {
+    margin-top: 20px;
+  }
+}
+
+.total-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }

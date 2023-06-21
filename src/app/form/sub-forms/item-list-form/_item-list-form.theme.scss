@@ -5,7 +5,8 @@
 $custom-warning: mat.define-palette(palette.$md-custom-warning);
 $color: map.get($custom-warning, 500);
 
-.total-cell .btn:hover {
+.total-cell .btn:hover,
+.grid .btn:hover {
   color: $color;
 }
 

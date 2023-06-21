@@ -106,16 +106,28 @@
       </div>
     </div>
     <div class="total">
-      <span class="total-price">696.69</span>
-      <button
-        type="button"
-        class="btn"
-        mat-icon-button
-        disableRipple
-        aria-label="Delete"
-      >
-        <mat-icon class="icon">delete</mat-icon>
-      </button>
+      <div class="total-container">
+        <div styledInput>
+          <label for="total">Total</label>
+          <input
+            disabled
+            value="696.69"
+            type="number"
+            title="total"
+            id="total"
+            (blur)="onTouched()"
+          />
+        </div>
+        <button
+          type="button"
+          class="btn"
+          mat-icon-button
+          disableRipple
+          aria-label="Delete"
+        >
+          <mat-icon class="icon">delete</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </ng-template>
