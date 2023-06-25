@@ -1,10 +1,10 @@
 export interface Invoice {
   id: string;
   clientEmail: string | undefined;
-  paymentDue: string | undefined;
+  paymentDue: any;
   clientName: string | undefined;
   clientAddress: Address | undefined;
-  createdAt: string | undefined;
+  createdAt: any;
   description: string | undefined;
   items: Item[] | undefined;
   senderAddress: Address | undefined;

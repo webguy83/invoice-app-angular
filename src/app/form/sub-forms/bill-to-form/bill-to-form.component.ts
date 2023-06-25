@@ -52,6 +52,8 @@ export class BillToFormComponent
     this.bp$ = this.breakpointService.breakpoint$;
   }
 
+  errMsg = '';
+
   ngOnDestroy(): void {
     this.onChangeSub.unsubscribe();
   }
@@ -75,6 +77,11 @@ export class BillToFormComponent
   }
 
   validate(): ValidationErrors | null {
+    if (this.billToForm.get('clientEmail')?.hasError('required')) {
+      this.errMsg = "can't be empty";
+    } else if (this.billToForm.get('clientEmail')?.hasError('email')) {
+      this.errMsg = 'invalid email';
+    }
     return this.billToForm.valid
       ? null
       : {

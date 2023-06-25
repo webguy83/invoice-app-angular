@@ -2,6 +2,9 @@
 @use "@angular/material" as mat;
 @use "../themes/palette";
 
+$custom-warning: mat.define-palette(palette.$md-custom-warning);
+$warning-color: map.get($custom-warning, 500);
+
 @mixin color($theme) {
   $color-config: mat.get-color-config($theme);
   $fg-palette: map.get($color-config, "foreground");
@@ -30,10 +33,19 @@
   .styled-input {
     color: mat.get-color-from-palette($fg-palette, modify-btn);
 
+    .input-error {
+      color: $warning-color;
+    }
+
     input {
       border-color: mat.get-color-from-palette($fg-palette, input-outline);
       background-color: mat.get-color-from-palette($bg-palette, dialog);
       color: mat.get-color-from-palette($fg-palette, base);
+
+      &.ng-invalid.ng-dirty {
+        outline-color: transparent;
+        border-color: $warning-color;
+      }
 
       &::placeholder {
         color: mat.get-color-from-palette($fg-palette, input-placeholder);

@@ -30,7 +30,19 @@
     class="paymentTerms"
   ></app-select-payment-terms>
   <div class="projectDescription" styledInput>
-    <label for="projectDescription">Project Description</label>
+    <div class="label-container">
+      <label for="projectDescription">Project Description</label>
+      <span
+        class="input-error"
+        *ngIf="
+          !miscInfoForm.get('projectDescription')?.valid &&
+          miscInfoForm.get('projectDescription')?.dirty
+        "
+      >
+        can't be empty
+      </span>
+    </div>
+
     <input
       type="text"
       size="5"

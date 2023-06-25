@@ -7,7 +7,18 @@
 >
   <h3 class="heading">Bill From</h3>
   <div class="streetAddress" styledInput>
-    <label for="senderStreetAddress">Street Address</label>
+    <div class="label-container">
+      <label for="senderStreetAddress">Street Address</label>
+      <span
+        class="input-error"
+        *ngIf="
+          !billFromForm.get('senderStreetAddress')?.valid &&
+          billFromForm.get('senderStreetAddress')?.dirty
+        "
+      >
+        can't be empty
+      </span>
+    </div>
     <input
       type="text"
       size="5"
@@ -25,6 +36,19 @@
       formControlName="senderCity"
       (blur)="onTouched()"
     />
+    <span
+      class="input-error"
+      *ngIf="
+        !billFromForm.get('senderCity')?.valid &&
+        billFromForm.get('senderCity')?.dirty
+      "
+    >
+      {{
+        billFromForm.get("senderCity")?.hasError("required")
+          ? "can't be empty"
+          : billFromForm.get("senderCity")?.getError("invalid")
+      }}
+    </span>
   </div>
   <div class="postCode" styledInput>
     <label for="senderPostCode">Post Code</label>
@@ -35,9 +59,29 @@
       formControlName="senderPostCode"
       (blur)="onTouched()"
     />
+    <span
+      class="input-error"
+      *ngIf="
+        !billFromForm.get('senderPostCode')?.valid &&
+        billFromForm.get('senderPostCode')?.dirty
+      "
+    >
+      can't be empty
+    </span>
   </div>
   <div class="country" styledInput>
-    <label for="senderCountry">Country</label>
+    <div class="label-container">
+      <label for="senderCountry">Country</label>
+      <span
+        class="input-error"
+        *ngIf="
+          !billFromForm.get('senderCountry')?.valid &&
+          billFromForm.get('senderCountry')?.dirty
+        "
+      >
+        can't be empty
+      </span>
+    </div>
     <input
       type="text"
       size="5"

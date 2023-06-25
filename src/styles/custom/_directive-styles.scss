@@ -76,9 +76,19 @@ $bg-color-hover: map.get($palette, 400);
   flex-direction: column;
   gap: 1.3rem;
 
+  .label-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
   label {
     font-size: 1.2rem;
     font-weight: 500;
+  }
+
+  .input-error {
+    font-weight: 600;
+    font-size: 1rem;
   }
 
   input {

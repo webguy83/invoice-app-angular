@@ -31,8 +31,12 @@ export class InvoiceService {
     }).pipe(
       map((invoices) => {
         return invoices.map((invoice) => {
+          const paymentDue = invoice.paymentDue?.toDate();
+          const createdAt = invoice.createdAt?.toDate();
           return {
             ...invoice,
+            paymentDue,
+            createdAt,
           };
         });
       }),
@@ -45,8 +49,11 @@ export class InvoiceService {
     return from(getDoc(docRef)).pipe(
       shareReplay(),
       map((newDoc) => {
-        if (newDoc.data()) {
-          return { ...newDoc.data(), id: newDoc.id };
+        const invoice: Invoice = { ...newDoc.data() } as Invoice;
+        if (invoice) {
+          const paymentDue = invoice.paymentDue?.toDate();
+          const createdAt = invoice.createdAt?.toDate();
+          return { ...invoice, id: newDoc.id, paymentDue, createdAt };
         }
         return null;
       })

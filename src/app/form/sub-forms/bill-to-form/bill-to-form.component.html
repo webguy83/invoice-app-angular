@@ -7,7 +7,19 @@
 >
   <h3 class="heading">Bill To</h3>
   <div class="name" styledInput>
-    <label for="clientName">Client's Name</label>
+    <div class="label-container">
+      <label for="clientName">Client's Name</label>
+      <span
+        class="input-error"
+        *ngIf="
+          !billToForm.get('clientName')?.valid &&
+          billToForm.get('clientName')?.dirty
+        "
+      >
+        can't be empty
+      </span>
+    </div>
+
     <input
       type="text"
       size="5"
@@ -17,7 +29,19 @@
     />
   </div>
   <div class="email" styledInput>
-    <label for="clientEmail">Client's Email</label>
+    <div class="label-container">
+      <label for="clientEmail">Client's Email</label>
+      <span
+        class="input-error"
+        *ngIf="
+          !billToForm.get('clientEmail')?.valid &&
+          billToForm.get('clientEmail')?.dirty
+        "
+      >
+        {{ errMsg }}
+      </span>
+    </div>
+
     <input
       type="text"
       size="5"
@@ -28,7 +52,18 @@
     />
   </div>
   <div class="streetAddress" styledInput>
-    <label for="clientStreetAddress">Street Address</label>
+    <div class="label-container">
+      <label for="clientStreetAddress">Street Address</label>
+      <span
+        class="input-error"
+        *ngIf="
+          !billToForm.get('clientStreetAddress')?.valid &&
+          billToForm.get('clientStreetAddress')?.dirty
+        "
+      >
+        can't be empty
+      </span>
+    </div>
     <input
       type="text"
       size="5"
@@ -46,6 +81,15 @@
       formControlName="clientCity"
       (blur)="onTouched()"
     />
+    <span
+      class="input-error"
+      *ngIf="
+        !billToForm.get('clientCity')?.valid &&
+        billToForm.get('clientCity')?.dirty
+      "
+    >
+      can't be empty
+    </span>
   </div>
   <div class="postCode" styledInput>
     <label for="clientPostCode">Post Code</label>
@@ -56,6 +100,15 @@
       formControlName="clientPostCode"
       (blur)="onTouched()"
     />
+    <span
+      class="input-error"
+      *ngIf="
+        !billToForm.get('clientPostCode')?.valid &&
+        billToForm.get('clientPostCode')?.dirty
+      "
+    >
+      can't be empty
+    </span>
   </div>
   <div class="country" styledInput>
     <label for="clientCountry">Country</label>
@@ -66,5 +119,14 @@
       formControlName="clientCountry"
       (blur)="onTouched()"
     />
+    <span
+      class="input-error"
+      *ngIf="
+        !billToForm.get('clientCountry')?.valid &&
+        billToForm.get('clientCountry')?.dirty
+      "
+    >
+      can't be empty
+    </span>
   </div>
 </form>
