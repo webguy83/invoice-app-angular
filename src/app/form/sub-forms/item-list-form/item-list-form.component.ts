@@ -103,10 +103,12 @@ export class ItemListFormComponent
         message: 'An item must be added',
       };
     }
-    return this.itemListForm.valid
-      ? null
-      : {
-          message: 'All fields must be added',
-        };
+    if (this.itemListForm.valid) {
+      return null;
+    } else {
+      return {
+        message: 'All fields must be added',
+      };
+    }
   }
 }
