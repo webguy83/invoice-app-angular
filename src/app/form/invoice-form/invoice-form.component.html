@@ -10,6 +10,11 @@
     <app-bill-to-form formControlName="billToForm"></app-bill-to-form>
     <app-misc-info-form formControlName="miscInfoForm"></app-misc-info-form>
     <app-item-list-form formControlName="itemListForm"></app-item-list-form>
-    <button type="submit" [disabled]="form.invalid">Submit</button>
+    <ul class="error-block">
+      <li *ngFor="let error of errors">- {{ error }}</li>
+    </ul>
+    <button style="margin-top: 30px" type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
   </form>
 </div>

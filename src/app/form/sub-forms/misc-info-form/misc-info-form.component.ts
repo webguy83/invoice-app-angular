@@ -47,10 +47,7 @@ export class MiscInfoFormComponent
     return this.miscInfoForm.valid
       ? null
       : {
-          invalidForm: {
-            valid: false,
-            message: 'Fields are invalid',
-          },
+          message: 'All fields must be added',
         };
   }
 

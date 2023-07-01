@@ -1,3 +1,10 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+@use "../../../styles/themes/palette";
+
+$custom-warning: mat.define-palette(palette.$md-custom-warning);
+$color: map.get($custom-warning, 500);
+
 .invoice-form {
   display: block;
   padding: 5.6rem;
@@ -5,4 +12,14 @@
   &.mobile {
     padding: 2.4rem;
   }
+}
+
+.error-block {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  color: $color;
 }

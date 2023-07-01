@@ -1,11 +1,15 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import {
+  AbstractControl,
   ControlValueAccessor,
+  FormArray,
   FormBuilder,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
   Validator,
+  Validators,
 } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
@@ -25,6 +29,7 @@ import { BreakpointsService } from 'src/app/services/breakpoint.service';
       useExisting: forwardRef(() => ItemListFormComponent),
       multi: true,
     },
+    CurrencyPipe,
   ],
 })
 export class ItemListFormComponent
@@ -36,13 +41,46 @@ export class ItemListFormComponent
 
   constructor(
     private fb: FormBuilder,
-    private breakpointService: BreakpointsService
+    private breakpointService: BreakpointsService,
+    private currencyPipe: CurrencyPipe
   ) {}
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
   }
 
-  itemListForm = this.fb.group({});
+  itemListForm = this.fb.group({
+    cap_values: this.fb.array([this.makeItem()]),
+  });
+
+  makeItem() {
+    return this.fb.group({
+      itemName: ['', Validators.required],
+      qty: [1, Validators.required],
+      price: [0, Validators.required],
+      total: [{ value: 0, disabled: true }],
+    });
+  }
+
+  calculate(control: AbstractControl) {
+    const currencyPipe = this.currencyPipe.transform(
+      control.get('qty')?.value * control.get('price')?.value,
+      'GBP'
+    );
+    control.get('total')?.setValue(currencyPipe);
+  }
+
+  addNewItemClick() {
+    const itemForm = this.makeItem();
+    this.capValues.push(itemForm);
+  }
+
+  removeItem(i: number) {
+    this.capValues.removeAt(i);
+  }
+
+  get capValues() {
+    return this.itemListForm.get('cap_values') as FormArray;
+  }
 
   writeValue(val: any): void {
     if (val) {
@@ -55,20 +93,20 @@ export class ItemListFormComponent
   registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
-  setDisabledState?(isDisabled: boolean): void {
-    isDisabled ? this.itemListForm.disable() : this.itemListForm.enable();
-  }
+
   ngOnDestroy(): void {
     this.onChangeSub.unsubscribe();
   }
   validate(): ValidationErrors | null {
+    if (this.capValues.length < 1) {
+      return {
+        message: 'An item must be added',
+      };
+    }
     return this.itemListForm.valid
       ? null
       : {
-          invalidForm: {
-            valid: false,
-            message: 'Fields are invalid',
-          },
+          message: 'All fields must be added',
         };
   }
 }

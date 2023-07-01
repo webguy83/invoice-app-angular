@@ -76,10 +76,7 @@ export class BillFromFormComponent
     return this.billFromForm.valid
       ? null
       : {
-          invalidForm: {
-            valid: false,
-            message: 'Fields are invalid',
-          },
+          message: 'All fields must be added',
         };
   }
 }
