@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { Status } from '../../utils/interfaces';
+import { Item, Status } from '../../utils/interfaces';
 
 interface CardData {
   id: string;
-  paymentDue: string;
+  createdAt: Date;
+  paymentTerms: number;
   clientName: string;
-  total: number;
+  items: Item[];
   status: Status;
 }
 

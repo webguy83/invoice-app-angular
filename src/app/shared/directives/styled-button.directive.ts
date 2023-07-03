@@ -7,7 +7,7 @@ import {
   ElementRef,
 } from '@angular/core';
 
-type Mode = 'default' | 'danger' | 'modify';
+type Mode = 'default' | 'danger' | 'modify' | 'draft';
 
 @Directive({
   selector: '[pill-button]',

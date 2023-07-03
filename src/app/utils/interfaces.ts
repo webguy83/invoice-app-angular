@@ -1,21 +1,34 @@
+import { Timestamp } from '@angular/fire/firestore';
+
+export interface InvoiceResponse {
+  id: string;
+  clientEmail: string;
+  clientName: string;
+  clientAddress: Address;
+  createdAt: Timestamp;
+  description: string;
+  items: Item[];
+  senderAddress: Address;
+  status: Status;
+  paymentTerms: number;
+}
+
 export interface Invoice {
   id: string;
-  clientEmail: string | undefined;
-  paymentDue: any;
-  clientName: string | undefined;
-  clientAddress: Address | undefined;
-  createdAt: any;
-  description: string | undefined;
-  items: Item[] | undefined;
-  senderAddress: Address | undefined;
-  status: Status | undefined;
-  total: number | undefined;
-  paymentTerms: number | undefined;
+  clientEmail: string;
+  clientName: string;
+  clientAddress: Address;
+  createdAt: Date;
+  description: string;
+  items: Item[];
+  senderAddress: Address;
+  status: Status;
+  paymentTerms: number;
 }
 
 export type Status = 'paid' | 'pending' | 'draft';
 
-interface Item {
+export interface Item {
   name: string;
   total: number;
   price: number;

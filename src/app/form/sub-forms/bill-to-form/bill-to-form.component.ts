@@ -1,7 +1,7 @@
-import { Component, OnDestroy, forwardRef, OnInit } from '@angular/core';
+import { Component, OnDestroy, forwardRef, OnInit, Input } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormBuilder,
+  NonNullableFormBuilder,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -34,6 +34,8 @@ export class BillToFormComponent
   onTouched = () => {};
   onChangeSub: Subscription = new Subscription();
   bp$!: Observable<string>;
+  @Input() reset: Observable<boolean> | undefined;
+  resetSub = new Subscription();
 
   billToForm = this.fb.group({
     clientName: ['', [Validators.required]],
@@ -45,17 +47,26 @@ export class BillToFormComponent
   });
 
   constructor(
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     private breakpointService: BreakpointsService
   ) {}
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
+
+    if (this.reset) {
+      this.resetSub = this.reset.subscribe((reset) => {
+        if (reset) {
+          this.billToForm.reset();
+        }
+      });
+    }
   }
 
   errMsg = '';
 
   ngOnDestroy(): void {
     this.onChangeSub.unsubscribe();
+    this.resetSub.unsubscribe();
   }
 
   writeValue(val: any): void {

@@ -1,8 +1,8 @@
 import { Observable, Subscription } from 'rxjs';
-import { Component, OnDestroy, forwardRef, OnInit } from '@angular/core';
+import { Component, OnDestroy, forwardRef, OnInit, Input } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormBuilder,
+  NonNullableFormBuilder,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -34,6 +34,8 @@ export class BillFromFormComponent
   onTouched = () => {};
   onChangeSub: Subscription = new Subscription();
   bp$!: Observable<string>;
+  @Input() reset: Observable<boolean> | undefined;
+  resetSub = new Subscription();
 
   billFromForm = this.fb.group({
     senderStreetAddress: ['', [Validators.required]],
@@ -43,15 +45,24 @@ export class BillFromFormComponent
   });
 
   constructor(
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     private breakpointService: BreakpointsService
   ) {}
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
+
+    if (this.reset) {
+      this.resetSub = this.reset.subscribe((reset) => {
+        if (reset) {
+          this.billFromForm.reset();
+        }
+      });
+    }
   }
 
   ngOnDestroy(): void {
     this.onChangeSub.unsubscribe();
+    this.resetSub.unsubscribe();
   }
 
   writeValue(val: any): void {

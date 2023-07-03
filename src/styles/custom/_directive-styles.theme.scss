@@ -18,6 +18,16 @@ $warning-color: map.get($custom-warning, 500);
     }
   }
 
+  .button-bg.draft {
+    color: mat.get-color-from-palette($fg-palette, special-text);
+    &:hover {
+      background-color: mat.get-color-from-palette(
+        $bg-palette,
+        draft-btn-hover
+      );
+    }
+  }
+
   .button-bg.modify {
     color: mat.get-color-from-palette($fg-palette, modify-btn);
     background-color: mat.get-color-from-palette($bg-palette, modify-btn);

@@ -1,7 +1,7 @@
-import { Component, forwardRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnDestroy, OnInit } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormBuilder,
+  NonNullableFormBuilder,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -34,13 +34,23 @@ export class MiscInfoFormComponent
   onTouched = () => {};
   onChangeSub: Subscription = new Subscription();
   bp$!: Observable<string>;
+  @Input() reset: Observable<boolean> | undefined;
+  resetSub = new Subscription();
 
   constructor(
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     private breakpointService: BreakpointsService
   ) {}
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
+
+    if (this.reset) {
+      this.resetSub = this.reset.subscribe((reset) => {
+        if (reset) {
+          this.miscInfoForm.reset();
+        }
+      });
+    }
   }
 
   validate(): ValidationErrors | null {
@@ -53,6 +63,7 @@ export class MiscInfoFormComponent
 
   ngOnDestroy(): void {
     this.onChangeSub.unsubscribe();
+    this.resetSub.unsubscribe();
   }
 
   miscInfoForm = this.fb.group({

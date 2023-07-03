@@ -1,20 +1,43 @@
-<div
-  class="invoice-form"
-  [ngClass]="{
-    mobile: (bp$ | async) === 'mobile'
-  }"
->
-  <h2 class="heading">New Invoice</h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <app-bill-from-form formControlName="billFromForm"></app-bill-from-form>
-    <app-bill-to-form formControlName="billToForm"></app-bill-to-form>
-    <app-misc-info-form formControlName="miscInfoForm"></app-misc-info-form>
-    <app-item-list-form formControlName="itemListForm"></app-item-list-form>
-    <ul class="error-block">
-      <li *ngFor="let error of errors">- {{ error }}</li>
-    </ul>
-    <button style="margin-top: 30px" type="submit" [disabled]="form.invalid">
-      Submit
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div
+    class="invoice-form"
+    [ngClass]="{
+      mobile: (bp$ | async) === 'mobile'
+    }"
+  >
+    <h2 class="heading">New Invoice</h2>
+    <div>
+      <app-bill-from-form
+        formControlName="billFromForm"
+        [reset]="reset$"
+      ></app-bill-from-form>
+      <app-bill-to-form
+        formControlName="billToForm"
+        [reset]="reset$"
+      ></app-bill-to-form>
+      <app-misc-info-form
+        formControlName="miscInfoForm"
+        [reset]="reset$"
+      ></app-misc-info-form>
+      <app-item-list-form
+        formControlName="itemListForm"
+        [reset]="reset$"
+      ></app-item-list-form>
+      <ul class="error-block">
+        <li *ngFor="let error of errors">- {{ error }}</li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="buttons"
+    [ngClass]="{
+      mobile: (bp$ | async) === 'mobile'
+    }"
+  >
+    <button pill-button="modify" (click)="onDiscardClick()">Discard</button>
+    <button pill-button="draft">Save as Draft</button>
+    <button pill-button="default" type="submit" [disabled]="form.invalid">
+      Save & Send
     </button>
-  </form>
-</div>
+  </div>
+</form>

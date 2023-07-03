@@ -5,9 +5,10 @@
 $custom-warning: mat.define-palette(palette.$md-custom-warning);
 $color: map.get($custom-warning, 500);
 
-.invoice-form {
+.invoice-form,
+.buttons {
   display: block;
-  padding: 5.6rem;
+  padding: 5.6rem 5.6rem 0;
 
   &.mobile {
     padding: 2.4rem;
@@ -22,4 +23,21 @@ $color: map.get($custom-warning, 500);
   font-weight: 600;
   line-height: 1.5rem;
   color: $color;
+}
+
+.buttons {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 0;
+  margin: 30px 0;
+
+  button:first-child {
+    margin-right: auto;
+  }
+
+  button {
+    padding: 13px;
+  }
 }

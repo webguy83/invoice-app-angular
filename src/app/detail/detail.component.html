@@ -42,13 +42,21 @@
         <div class="invoice-date">
           <div class="inv-label">Invoice Date</div>
           <div class="important-text">
-            {{ invoice.createdAt | date : "dd MMM y" }}
+            {{
+              invoice.createdAt
+                | adddays : invoice.paymentTerms
+                | date : "dd MMM y"
+            }}
           </div>
         </div>
         <div class="payment-date">
           <div class="inv-label">Payment Due</div>
           <div class="important-text">
-            {{ invoice.paymentDue | date : "dd MMM y" }}
+            {{
+              invoice.createdAt
+                | adddays : invoice.paymentTerms
+                | date : "dd MMM y"
+            }}
           </div>
         </div>
       </div>
@@ -83,7 +91,7 @@
         <div class="grand-total-area">
           <span class="grand-total-label">Grand Total</span>
           <span class="grand-total">{{
-            invoice.total | currency : "GBP"
+            invoice.items | convertItems | addnums | currency : "GBP"
           }}</span>
         </div>
       </div>

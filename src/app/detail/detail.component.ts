@@ -54,7 +54,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   onEditClick() {
-    this.invoiceService.addInvoice();
+    // this.invoiceService.addInvoice();
   }
 
   onMarkAsPaidClick() {

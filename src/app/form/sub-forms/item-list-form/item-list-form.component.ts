@@ -1,10 +1,10 @@
 import { CurrencyPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, forwardRef } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import {
   AbstractControl,
   ControlValueAccessor,
   FormArray,
-  FormBuilder,
+  NonNullableFormBuilder,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -38,14 +38,25 @@ export class ItemListFormComponent
   onTouched = () => {};
   onChangeSub: Subscription = new Subscription();
   bp$!: Observable<string>;
+  @Input() reset: Observable<boolean> | undefined;
+  resetSub = new Subscription();
 
   constructor(
-    private fb: FormBuilder,
+    private fb: NonNullableFormBuilder,
     private breakpointService: BreakpointsService,
     private currencyPipe: CurrencyPipe
   ) {}
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
+
+    if (this.reset) {
+      this.resetSub = this.reset.subscribe((reset) => {
+        if (reset) {
+          this.capValues.reset([this.makeItem()]);
+          this.itemListForm.reset();
+        }
+      });
+    }
   }
 
   itemListForm = this.fb.group({
@@ -53,11 +64,12 @@ export class ItemListFormComponent
   });
 
   makeItem() {
+    const defaultVal = this.currencyPipe.transform(0, 'GBP');
     return this.fb.group({
       itemName: ['', Validators.required],
       qty: [1, Validators.required],
       price: [0, Validators.required],
-      total: [{ value: 0, disabled: true }],
+      total: [{ value: defaultVal, disabled: true }],
     });
   }
 
@@ -79,7 +91,7 @@ export class ItemListFormComponent
   }
 
   get capValues() {
-    return this.itemListForm.get('cap_values') as FormArray;
+    return <FormArray>this.itemListForm.get('cap_values');
   }
 
   writeValue(val: any): void {
@@ -96,6 +108,7 @@ export class ItemListFormComponent
 
   ngOnDestroy(): void {
     this.onChangeSub.unsubscribe();
+    this.resetSub.unsubscribe();
   }
   validate(): ValidationErrors | null {
     if (this.capValues.length < 1) {

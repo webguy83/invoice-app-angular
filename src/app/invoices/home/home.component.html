@@ -17,10 +17,11 @@
           [showLargeCard]="($bp | async) !== 'mobile'"
           [cardData]="{
             id: invoice.id,
-            paymentDue: invoice.paymentDue ? invoice.paymentDue : '',
-            clientName: invoice.clientName ? invoice.clientName : '',
-            total: invoice.total ? invoice.total : 0,
-            status: invoice.status ? invoice.status : 'draft'
+            createdAt: invoice.createdAt,
+            clientName: invoice.clientName,
+            paymentTerms: invoice.paymentTerms,
+            items: invoice.items,
+            status: invoice.status
           }"
           class="card"
         ></app-card>

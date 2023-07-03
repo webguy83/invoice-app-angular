@@ -10,8 +10,10 @@ import {
   deleteDoc,
   updateDoc,
   addDoc,
+  query,
+  orderBy,
 } from '@angular/fire/firestore';
-import { Invoice } from '../utils/interfaces';
+import { Invoice, InvoiceResponse } from '../utils/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -25,17 +27,16 @@ export class InvoiceService {
     const col = collection(
       this.firestore,
       this._dbName
-    ) as CollectionReference<Invoice>;
-    return collectionData(col, {
+    ) as CollectionReference<InvoiceResponse>;
+    const q = query(col, orderBy('createdAt', 'desc'));
+    return collectionData(q, {
       idField: 'id',
     }).pipe(
       map((invoices) => {
         return invoices.map((invoice) => {
-          const paymentDue = invoice.paymentDue?.toDate();
-          const createdAt = invoice.createdAt?.toDate();
+          const createdAt = invoice.createdAt.toDate();
           return {
             ...invoice,
-            paymentDue,
             createdAt,
           };
         });
@@ -49,11 +50,12 @@ export class InvoiceService {
     return from(getDoc(docRef)).pipe(
       shareReplay(),
       map((newDoc) => {
-        const invoice: Invoice = { ...newDoc.data() } as Invoice;
+        const invoice: InvoiceResponse = {
+          ...newDoc.data(),
+        } as InvoiceResponse;
         if (invoice) {
-          const paymentDue = invoice.paymentDue?.toDate();
-          const createdAt = invoice.createdAt?.toDate();
-          return { ...invoice, id: newDoc.id, paymentDue, createdAt };
+          const createdAt = invoice.createdAt.toDate();
+          return { ...invoice, id: newDoc.id, createdAt };
         }
         return null;
       })
@@ -70,7 +72,7 @@ export class InvoiceService {
     return from(updateDoc(docRef, data));
   }
 
-  addInvoice() {
+  addInvoice(invoice: Invoice) {
     return from(
       addDoc(collection(this.firestore, this._dbName), {
         createdAt: '2021-10-01',

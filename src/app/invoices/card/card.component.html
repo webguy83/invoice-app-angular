@@ -2,9 +2,16 @@
   <span class="id">
     <span class="hashTag">#</span>{{ cardData.id | sortchars }}
   </span>
-  <span class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</span>
+  <span class="dueDate"
+    >Due
+    {{
+      cardData.createdAt | adddays : cardData.paymentTerms | date : "dd MMM y"
+    }}</span
+  >
   <span class="clientName">{{ cardData.clientName }}</span>
-  <span class="total">{{ cardData.total | currency : "GBP" }}</span>
+  <span class="total">{{
+    cardData.items | convertItems | addnums | currency : "GBP"
+  }}</span>
   <span class="status-block">
     <app-status [status]="cardData.status"></app-status
     ><mat-icon fontIcon="keyboard_arrow_right" color="primary"></mat-icon>
@@ -23,8 +30,15 @@
   </span>
   <span class="clientName">{{ cardData.clientName }}</span>
   <div class="date-total">
-    <p class="dueDate">Due {{ cardData.paymentDue | date : "dd MMM y" }}</p>
-    <p class="total">{{ cardData.total | currency : "GBP" }}</p>
+    <p class="dueDate">
+      Due
+      {{
+        cardData.createdAt | adddays : cardData.paymentTerms | date : "dd MMM y"
+      }}
+    </p>
+    <p class="total">
+      {{ cardData.items | convertItems | addnums | currency : "GBP" }}
+    </p>
   </div>
 
   <span class="status-block">
