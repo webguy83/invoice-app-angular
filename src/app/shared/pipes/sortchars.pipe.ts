@@ -15,6 +15,11 @@ export class SortcharsPipe implements PipeTransform {
     const numbers = chars.filter((char) => {
       return char.charCodeAt(0) >= 48 && char.charCodeAt(0) <= 57;
     });
+    numbers.forEach((_, i) => {
+      if (i < 2) {
+        numbers.push('0');
+      }
+    });
 
     const output = [...numbers.slice(0, 2), ...letters.slice(0, 4)]
       .join('')

@@ -42,11 +42,7 @@
         <div class="invoice-date">
           <div class="inv-label">Invoice Date</div>
           <div class="important-text">
-            {{
-              invoice.createdAt
-                | adddays : invoice.paymentTerms
-                | date : "dd MMM y"
-            }}
+            {{ invoice.createdAt | date : "dd MMM y" }}
           </div>
         </div>
         <div class="payment-date">
