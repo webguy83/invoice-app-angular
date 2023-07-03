@@ -6,6 +6,6 @@ import { Item } from 'src/app/utils/interfaces';
 })
 export class ConvertItemsPipe implements PipeTransform {
   transform(items: Item[]): number[] {
-    return items.map((item) => item.total);
+    return items.map((item) => item.price * item.quantity);
   }
 }

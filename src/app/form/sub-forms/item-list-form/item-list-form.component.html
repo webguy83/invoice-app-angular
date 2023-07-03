@@ -36,7 +36,6 @@
               <div styledInput>
                 <label for="{{ 'qty' + i }}">Qty</label>
                 <input
-                  (input)="calculate(itemForm)"
                   min="1"
                   type="number"
                   formControlName="qty"
@@ -51,7 +50,6 @@
               <div styledInput>
                 <label for="{{ 'price' + i }}">Price</label>
                 <input
-                  (input)="calculate(itemForm)"
                   type="number"
                   formControlName="price"
                   min="0.00"
@@ -65,7 +63,8 @@
             <td class="total-cell">
               <div class="total">
                 <span class="total-price">{{
-                  itemForm.get("total")?.value
+                  itemForm.get("price")?.value * itemForm.get("qty")?.value
+                    | currency : "GBP"
                 }}</span>
                 <button
                   type="button"
@@ -115,7 +114,6 @@
           <div styledInput>
             <label for="{{ 'qty' + i }}">Qty</label>
             <input
-              (input)="calculate(itemForm)"
               min="1"
               type="number"
               formControlName="qty"
@@ -130,7 +128,6 @@
           <div styledInput>
             <label for="{{ 'price +i' }}">Price</label>
             <input
-              (input)="calculate(itemForm)"
               type="number"
               formControlName="price"
               title="price"
@@ -144,7 +141,8 @@
             <div styledInput>
               <label for="{{ 'total' + i }}">Total</label>
               <input
-                formControlName="total"
+                [value]="calculate(itemForm) | currency : 'GBP'"
+                disabled
                 type="text"
                 title="total"
                 id="{{ 'total' + i }}"

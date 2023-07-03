@@ -1,7 +1,5 @@
-import { CurrencyPipe } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
 import {
-  AbstractControl,
   ControlValueAccessor,
   FormArray,
   NonNullableFormBuilder,
@@ -10,6 +8,7 @@ import {
   ValidationErrors,
   Validator,
   Validators,
+  AbstractControl,
 } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
@@ -29,7 +28,6 @@ import { BreakpointsService } from 'src/app/services/breakpoint.service';
       useExisting: forwardRef(() => ItemListFormComponent),
       multi: true,
     },
-    CurrencyPipe,
   ],
 })
 export class ItemListFormComponent
@@ -43,8 +41,7 @@ export class ItemListFormComponent
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private breakpointService: BreakpointsService,
-    private currencyPipe: CurrencyPipe
+    private breakpointService: BreakpointsService
   ) {}
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
@@ -64,21 +61,15 @@ export class ItemListFormComponent
   });
 
   makeItem() {
-    const defaultVal = this.currencyPipe.transform(0, 'GBP');
     return this.fb.group({
       itemName: ['', Validators.required],
       qty: [1, Validators.required],
       price: [0, Validators.required],
-      total: [{ value: defaultVal, disabled: true }],
     });
   }
 
   calculate(control: AbstractControl) {
-    const currencyPipe = this.currencyPipe.transform(
-      control.get('qty')?.value * control.get('price')?.value,
-      'GBP'
-    );
-    control.get('total')?.setValue(currencyPipe);
+    return control.get('qty')?.value * control.get('price')?.value;
   }
 
   addNewItemClick() {

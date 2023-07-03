@@ -30,7 +30,6 @@ export type Status = 'paid' | 'pending' | 'draft';
 
 export interface Item {
   name: string;
-  total: number;
   price: number;
   quantity: number;
 }
