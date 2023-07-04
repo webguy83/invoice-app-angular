@@ -9,7 +9,7 @@ import { InvoiceService } from './invoice.service';
 export class InvoicesStore {
   private mainInvoiceSubject = new BehaviorSubject<Invoice[]>([]);
   private filteredInvoicesSubject = new BehaviorSubject<Invoice[]>([]);
-  private sideNavOpenedSubject = new BehaviorSubject(true);
+  private sideNavOpenedSubject = new BehaviorSubject(false);
 
   sideNavOpened$ = this.sideNavOpenedSubject.asObservable();
   invoices$: Observable<Invoice[]> = this.mainInvoiceSubject.asObservable();

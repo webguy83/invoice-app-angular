@@ -1,3 +1,4 @@
+import { InvoicesStore } from './../../services/invoices.store';
 import { AdddaysPipe } from './../../shared/pipes/adddays.pipe';
 import { InvoiceService } from './../../services/invoice.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -60,7 +61,7 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
 
   form = this.fb.group<GroupForm>({
     billFromForm: {
-      senderCity: '',
+      senderCity: 'shitsville',
       senderCountry: '',
       senderPostCode: '',
       senderStreetAddress: '',
@@ -93,6 +94,7 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
     private fb: NonNullableFormBuilder,
     private breakpointService: BreakpointsService,
     private invoiceService: InvoiceService,
+    private invoicesStore: InvoicesStore,
     private adddaysPipe: AdddaysPipe
   ) {}
 
@@ -136,6 +138,10 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  onGoBackClick() {
+    this.invoicesStore.closeSideNav();
+  }
+
   onSubmit() {
     const { billFromForm, billToForm, itemListForm, miscInfoForm } =
       this.form.value;
@@ -165,6 +171,7 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
         paymentTerms: miscInfoForm.paymentTerms,
       };
       this.invoiceService.addInvoice(invoice);
+      this.invoicesStore.closeSideNav();
     }
   }
 }

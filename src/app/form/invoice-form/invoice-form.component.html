@@ -5,6 +5,14 @@
       mobile: (bp$ | async) === 'mobile'
     }"
   >
+    <button backButton class="back-btn" (click)="onGoBackClick()">
+      <mat-icon
+        fontIcon="keyboard_arrow_left"
+        class="btn-icon"
+        color="primary"
+      ></mat-icon
+      ><span>Go back</span>
+    </button>
     <h2 class="heading">New Invoice</h2>
     <div>
       <app-bill-from-form
