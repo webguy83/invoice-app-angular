@@ -4,7 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
-import { Invoice } from 'src/app/utils/interfaces';
+import { Invoice, Item } from 'src/app/utils/interfaces';
 
 interface BillFromForm {
   senderCity: string;
@@ -126,11 +126,20 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
     this.resetSubject.next(true);
   }
 
+  convertItems(capVals: CapVal[]): Item[] {
+    return capVals.map((capVal) => {
+      return {
+        name: capVal.itemName,
+        price: capVal.price,
+        quantity: capVal.qty,
+      };
+    });
+  }
+
   onSubmit() {
     const { billFromForm, billToForm, itemListForm, miscInfoForm } =
       this.form.value;
     if (billFromForm && billToForm && itemListForm && miscInfoForm) {
-      const items = itemListForm.cap_values;
       const invoice: Partial<Invoice> = {
         clientEmail: billToForm.clientEmail,
         clientName: billToForm.clientName,
@@ -145,7 +154,7 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
           miscInfoForm.paymentTerms
         ),
         description: miscInfoForm.projectDescription,
-        items: [],
+        items: this.convertItems(itemListForm.cap_values),
         senderAddress: {
           city: billFromForm.senderCity,
           country: billFromForm.senderCountry,
@@ -155,7 +164,7 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
         status: 'pending',
         paymentTerms: miscInfoForm.paymentTerms,
       };
-      console.log(this.form.value);
+      this.invoiceService.addInvoice(invoice);
     }
   }
 }
