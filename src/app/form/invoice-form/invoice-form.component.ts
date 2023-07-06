@@ -1,11 +1,11 @@
+import { SortcharsPipe } from './../../shared/pipes/sortchars.pipe';
 import { InvoicesStore } from './../../services/invoices.store';
-import { AdddaysPipe } from './../../shared/pipes/adddays.pipe';
 import { InvoiceService } from './../../services/invoice.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
-import { Invoice, Item } from 'src/app/utils/interfaces';
+import { Invoice, Item, Status } from 'src/app/utils/interfaces';
 
 interface BillFromForm {
   senderCity: string;
@@ -50,18 +50,21 @@ interface GroupForm {
   selector: 'app-invoice-form',
   templateUrl: './invoice-form.component.html',
   styleUrls: ['./invoice-form.component.scss'],
-  providers: [AdddaysPipe],
+  providers: [SortcharsPipe],
 })
 export class InvoiceFormComponent implements OnInit, OnDestroy {
   bp$!: Observable<string>;
   sub = new Subscription();
+  invoiceBeingEditedSub = new Subscription();
   errors: string[] = [];
   resetSubject: Subject<boolean> = new Subject();
   reset$: Observable<boolean> = this.resetSubject.asObservable();
+  currentEditedInvoice: null | Invoice = null;
+  headerTxt = 'New Invoice';
 
   form = this.fb.group<GroupForm>({
     billFromForm: {
-      senderCity: 'shitsville',
+      senderCity: '',
       senderCountry: '',
       senderPostCode: '',
       senderStreetAddress: '',
@@ -95,14 +98,25 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
     private breakpointService: BreakpointsService,
     private invoiceService: InvoiceService,
     private invoicesStore: InvoicesStore,
-    private adddaysPipe: AdddaysPipe
+    private sortCharsPipe: SortcharsPipe
   ) {}
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
+    this.invoiceBeingEditedSub.unsubscribe();
   }
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
+    this.invoiceBeingEditedSub =
+      this.invoicesStore.invoiceBeingEdited$.subscribe((invoice) => {
+        this.currentEditedInvoice = invoice;
+        if (invoice) {
+          this.headerTxt = this.sortCharsPipe.transform(invoice.id);
+          this.form.patchValue(this.applyDefaultData(invoice));
+        } else {
+          this.headerTxt = 'New Invoice';
+        }
+      });
 
     this.sub = this.form.valueChanges.subscribe(() => {
       const errors: string[] = [
@@ -123,9 +137,44 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
     });
   }
 
+  applyDefaultData(invoice: Invoice): GroupForm {
+    const cap_values: CapVal[] = invoice.items.map((item) => {
+      return {
+        itemName: item.name,
+        price: item.price,
+        qty: item.quantity,
+      };
+    });
+    return {
+      billFromForm: {
+        senderCity: invoice.senderAddress.city,
+        senderCountry: invoice.senderAddress.country,
+        senderPostCode: invoice.senderAddress.postCode,
+        senderStreetAddress: invoice.senderAddress.street,
+      },
+      billToForm: {
+        clientCity: invoice.clientAddress.city,
+        clientCountry: invoice.clientAddress.country,
+        clientEmail: invoice.clientEmail,
+        clientName: invoice.clientName,
+        clientPostCode: invoice.clientAddress.postCode,
+        clientStreetAddress: invoice.clientAddress.street,
+      },
+      miscInfoForm: {
+        invoiceDate: invoice.invoiceDate,
+        paymentTerms: invoice.paymentTerms,
+        projectDescription: invoice.description,
+      },
+      itemListForm: {
+        cap_values,
+      },
+    };
+  }
+
   onDiscardClick() {
     this.form.reset();
     this.resetSubject.next(true);
+    this.invoicesStore.closeSideNav();
   }
 
   convertItems(capVals: CapVal[]): Item[] {
@@ -143,6 +192,14 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.sendDataToBackend('pending');
+  }
+
+  onSaveAsDraftClick() {
+    this.sendDataToBackend('draft');
+  }
+
+  sendDataToBackend(status: Status) {
     const { billFromForm, billToForm, itemListForm, miscInfoForm } =
       this.form.value;
     if (billFromForm && billToForm && itemListForm && miscInfoForm) {
@@ -155,10 +212,7 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
           postCode: billToForm.clientPostCode,
           street: billToForm.clientStreetAddress,
         },
-        createdAt: this.adddaysPipe.transform(
-          miscInfoForm.invoiceDate,
-          miscInfoForm.paymentTerms
-        ),
+        invoiceDate: miscInfoForm.invoiceDate,
         description: miscInfoForm.projectDescription,
         items: this.convertItems(itemListForm.cap_values),
         senderAddress: {
@@ -167,10 +221,16 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
           postCode: billFromForm.senderPostCode,
           street: billFromForm.senderStreetAddress,
         },
-        status: 'pending',
+        status,
         paymentTerms: miscInfoForm.paymentTerms,
+        createdAt: new Date(),
       };
-      this.invoiceService.addInvoice(invoice);
+      if (this.currentEditedInvoice) {
+        this.invoiceService.editInvoice(this.currentEditedInvoice.id, invoice);
+      } else {
+        this.invoiceService.addInvoice(invoice);
+      }
+
       this.invoicesStore.closeSideNav();
     }
   }

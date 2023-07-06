@@ -3,7 +3,7 @@ import { Item, Status } from '../../utils/interfaces';
 
 interface CardData {
   id: string;
-  createdAt: Date;
+  invoiceDate: Date;
   paymentTerms: number;
   clientName: string;
   items: Item[];

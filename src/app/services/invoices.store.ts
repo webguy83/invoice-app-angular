@@ -10,9 +10,12 @@ export class InvoicesStore {
   private mainInvoiceSubject = new BehaviorSubject<Invoice[]>([]);
   private filteredInvoicesSubject = new BehaviorSubject<Invoice[]>([]);
   private sideNavOpenedSubject = new BehaviorSubject(false);
+  private invoiceEditingSubject = new BehaviorSubject<null | Invoice>(null);
 
   sideNavOpened$ = this.sideNavOpenedSubject.asObservable();
   invoices$: Observable<Invoice[]> = this.mainInvoiceSubject.asObservable();
+  invoiceBeingEdited$: Observable<Invoice | null> =
+    this.invoiceEditingSubject.asObservable();
 
   filteredInvoices$: Observable<Invoice[]> =
     this.filteredInvoicesSubject.asObservable();
@@ -32,6 +35,16 @@ export class InvoicesStore {
 
   openSideNav() {
     this.sideNavOpenedSubject.next(true);
+  }
+
+  addInvoice() {
+    this.invoiceEditingSubject.next(null);
+    this.openSideNav();
+  }
+
+  openSideNavEditing(invoice: Invoice) {
+    this.invoiceEditingSubject.next(invoice);
+    this.openSideNav();
   }
 
   closeSideNav() {

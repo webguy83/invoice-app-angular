@@ -16,7 +16,7 @@
       (closed)="closeSideNav()"
       [opened]="sideNavOpened$ | async"
     >
-      <app-invoice-form></app-invoice-form>
+      <app-invoice-form *ngIf="sideNavOpened$ | async"></app-invoice-form>
     </mat-drawer>
     <mat-drawer-content>
       <main>

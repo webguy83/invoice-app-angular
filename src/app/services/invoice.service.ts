@@ -34,9 +34,11 @@ export class InvoiceService {
     }).pipe(
       map((invoices) => {
         return invoices.map((invoice) => {
+          const invoiceDate = invoice.invoiceDate.toDate();
           const createdAt = invoice.createdAt.toDate();
           return {
             ...invoice,
+            invoiceDate,
             createdAt,
           };
         });
@@ -54,8 +56,9 @@ export class InvoiceService {
           ...newDoc.data(),
         } as InvoiceResponse;
         if (invoice) {
+          const invoiceDate = invoice.invoiceDate.toDate();
           const createdAt = invoice.createdAt.toDate();
-          return { ...invoice, id: newDoc.id, createdAt };
+          return { ...invoice, id: newDoc.id, invoiceDate, createdAt };
         }
         return null;
       })

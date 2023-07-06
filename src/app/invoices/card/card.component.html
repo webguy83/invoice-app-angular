@@ -5,7 +5,7 @@
   <span class="dueDate"
     >Due
     {{
-      cardData.createdAt | adddays : cardData.paymentTerms | date : "dd MMM y"
+      cardData.invoiceDate | adddays : cardData.paymentTerms | date : "dd MMM y"
     }}</span
   >
   <span class="clientName">{{ cardData.clientName }}</span>
@@ -33,7 +33,9 @@
     <p class="dueDate">
       Due
       {{
-        cardData.createdAt | adddays : cardData.paymentTerms | date : "dd MMM y"
+        cardData.invoiceDate
+          | adddays : cardData.paymentTerms
+          | date : "dd MMM y"
       }}
     </p>
     <p class="total">

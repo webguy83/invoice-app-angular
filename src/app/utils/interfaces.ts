@@ -2,10 +2,11 @@ import { Timestamp } from '@angular/fire/firestore';
 
 export interface InvoiceResponse {
   id: string;
+  createdAt: Timestamp;
   clientEmail: string;
   clientName: string;
   clientAddress: Address;
-  createdAt: Timestamp;
+  invoiceDate: Timestamp;
   description: string;
   items: Item[];
   senderAddress: Address;
@@ -15,10 +16,11 @@ export interface InvoiceResponse {
 
 export interface Invoice {
   id: string;
+  createdAt: Date;
   clientEmail: string;
   clientName: string;
   clientAddress: Address;
-  createdAt: Date;
+  invoiceDate: Date;
   description: string;
   items: Item[];
   senderAddress: Address;

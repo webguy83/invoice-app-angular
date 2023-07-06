@@ -17,7 +17,7 @@
           [showLargeCard]="($bp | async) !== 'mobile'"
           [cardData]="{
             id: invoice.id,
-            createdAt: invoice.createdAt,
+            invoiceDate: invoice.invoiceDate,
             clientName: invoice.clientName,
             paymentTerms: invoice.paymentTerms,
             items: invoice.items,

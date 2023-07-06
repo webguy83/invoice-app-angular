@@ -78,6 +78,6 @@ export class FilterBarComponent implements OnInit {
   }
 
   onNewInvoiceClick() {
-    this.invoicesStore.openSideNav();
+    this.invoicesStore.addInvoice();
   }
 }

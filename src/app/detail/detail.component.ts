@@ -1,3 +1,4 @@
+import { InvoicesStore } from 'src/app/services/invoices.store';
 import { NavigationService } from './../services/navigation.service';
 import { LoadingService } from './../shared/loading/loading.service';
 import { InvoiceService } from './../services/invoice.service';
@@ -32,6 +33,7 @@ export class DetailComponent implements OnInit, OnDestroy {
     private breakpointService: BreakpointsService,
     private dialog: MatDialog,
     private invoiceService: InvoiceService,
+    private invoicesStore: InvoicesStore,
     private loadingService: LoadingService,
     private navigationService: NavigationService
   ) {}
@@ -54,7 +56,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   onEditClick() {
-    // this.invoiceService.addInvoice();
+    this.invoicesStore.openSideNavEditing(this.invoice);
   }
 
   onMarkAsPaidClick() {

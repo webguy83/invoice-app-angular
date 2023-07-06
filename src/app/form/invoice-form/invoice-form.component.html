@@ -5,7 +5,7 @@
       mobile: (bp$ | async) === 'mobile'
     }"
   >
-    <button backButton class="back-btn" (click)="onGoBackClick()">
+    <button type="button" backButton class="back-btn" (click)="onGoBackClick()">
       <mat-icon
         fontIcon="keyboard_arrow_left"
         class="btn-icon"
@@ -13,7 +13,9 @@
       ></mat-icon
       ><span>Go back</span>
     </button>
-    <h2 class="heading">New Invoice</h2>
+    <h2 *ngIf="!currentEditedInvoice; else editHeading" class="heading">
+      {{ headerTxt }}
+    </h2>
     <div>
       <app-bill-from-form
         formControlName="billFromForm"
@@ -42,10 +44,38 @@
       mobile: (bp$ | async) === 'mobile'
     }"
   >
-    <button pill-button="modify" (click)="onDiscardClick()">Discard</button>
-    <button pill-button="draft">Save as Draft</button>
-    <button pill-button="default" type="submit" [disabled]="form.invalid">
-      Save & Send
-    </button>
+    <ng-container *ngIf="!currentEditedInvoice; else editButtons">
+      <button type="button" pill-button="modify" (click)="onDiscardClick()">
+        Discard
+      </button>
+      <button type="button" pill-button="draft" (click)="onSaveAsDraftClick()">
+        Save as Draft
+      </button>
+      <button pill-button="default" type="submit" [disabled]="form.invalid">
+        Save & Send
+      </button>
+    </ng-container>
   </div>
 </form>
+
+<ng-template #editHeading>
+  <h2 class="heading">Edit <span class="hashTag">#</span>{{ headerTxt }}</h2>
+</ng-template>
+<ng-template #editButtons>
+  <button
+    class="cancel-btn"
+    type="button"
+    pill-button="modify"
+    (click)="onDiscardClick()"
+  >
+    Cancel
+  </button>
+  <button
+    class="save-changes-btn"
+    pill-button="default"
+    type="submit"
+    [disabled]="form.invalid"
+  >
+    Save Changes
+  </button>
+</ng-template>
