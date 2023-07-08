@@ -12,6 +12,7 @@ import {
   Subscription,
   filter,
   concatMap,
+  of,
 } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { openConfirmDialog } from './confirm-dialog/confirm-dialog.component';
@@ -27,6 +28,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   invoice!: Invoice;
   isLoading$ = this.loadingService.loading$;
   sub = new Subscription();
+  refreshApiSub = new Subscription();
 
   constructor(
     private route: ActivatedRoute,
@@ -37,11 +39,27 @@ export class DetailComponent implements OnInit, OnDestroy {
     private loadingService: LoadingService,
     private navigationService: NavigationService
   ) {}
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.refreshApiSub.unsubscribe();
+  }
 
   ngOnInit(): void {
     this.invoice = this.route.snapshot.data['invoice'];
     this.$bp = this.breakpointService.breakpoint$;
+    this.refreshApiSub = this.invoicesStore.apiRefreshing$
+      .pipe(
+        concatMap((refreshing) => {
+          if (refreshing) {
+            return this.invoiceService.getInvoice(this.invoice.id);
+          }
+          return of(null);
+        })
+      )
+      .subscribe((invoice) => {
+        if (invoice) {
+          this.invoice = invoice;
+        }
+      });
   }
 
   onDeleteBtnClick() {

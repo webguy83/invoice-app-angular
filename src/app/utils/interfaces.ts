@@ -48,3 +48,13 @@ export interface StatusParams {
   paid: boolean | null;
   draft: boolean | null;
 }
+
+export interface ItemListForm {
+  cap_values: CapVal[];
+}
+
+export interface CapVal {
+  itemName: string;
+  price: number;
+  qty: number;
+}

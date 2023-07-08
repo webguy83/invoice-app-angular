@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, tap } from 'rxjs';
 import { Invoice } from '../utils/interfaces';
 import { InvoiceService } from './invoice.service';
 
@@ -11,6 +11,13 @@ export class InvoicesStore {
   private filteredInvoicesSubject = new BehaviorSubject<Invoice[]>([]);
   private sideNavOpenedSubject = new BehaviorSubject(false);
   private invoiceEditingSubject = new BehaviorSubject<null | Invoice>(null);
+  private refreshApiSubject = new Subject<Partial<Invoice>>();
+
+  apiRefreshing$ = this.refreshApiSubject.asObservable();
+
+  refreshApi(invoice: Partial<Invoice>) {
+    this.refreshApiSubject.next(invoice);
+  }
 
   sideNavOpened$ = this.sideNavOpenedSubject.asObservable();
   invoices$: Observable<Invoice[]> = this.mainInvoiceSubject.asObservable();

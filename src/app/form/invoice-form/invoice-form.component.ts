@@ -5,7 +5,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
-import { Invoice, Item, Status } from 'src/app/utils/interfaces';
+import {
+  CapVal,
+  Invoice,
+  Item,
+  ItemListForm,
+  Status,
+} from 'src/app/utils/interfaces';
 
 interface BillFromForm {
   senderCity: string;
@@ -21,16 +27,6 @@ interface BillToForm {
   clientName: string;
   clientPostCode: string;
   clientStreetAddress: string;
-}
-
-interface ItemListForm {
-  cap_values: CapVal[];
-}
-
-interface CapVal {
-  itemName: string;
-  price: number;
-  qty: number;
 }
 
 interface MiscInfoForm {
@@ -226,7 +222,16 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
         createdAt: new Date(),
       };
       if (this.currentEditedInvoice) {
-        this.invoiceService.editInvoice(this.currentEditedInvoice.id, invoice);
+        this.invoiceService
+          .editInvoice(this.currentEditedInvoice.id, invoice)
+          .subscribe(() => {
+            if (this.currentEditedInvoice) {
+              this.invoicesStore.refreshApi({
+                id: this.currentEditedInvoice.id,
+                ...invoice,
+              });
+            }
+          });
       } else {
         this.invoiceService.addInvoice(invoice);
       }

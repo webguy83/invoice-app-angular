@@ -9,9 +9,18 @@ import {
   Validator,
   Validators,
   AbstractControl,
+  FormControl,
+  FormGroup,
 } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
+import { ItemListForm } from 'src/app/utils/interfaces';
+
+interface Item {
+  itemName: FormControl<string>;
+  qty: FormControl<number>;
+  price: FormControl<number>;
+}
 
 @Component({
   selector: 'app-item-list-form',
@@ -60,7 +69,7 @@ export class ItemListFormComponent
     cap_values: this.fb.array([this.makeItem()]),
   });
 
-  makeItem() {
+  makeItem(): FormGroup<Item> {
     return this.fb.group({
       itemName: ['', Validators.required],
       qty: [1, Validators.required],
@@ -85,9 +94,19 @@ export class ItemListFormComponent
     return <FormArray>this.itemListForm.get('cap_values');
   }
 
-  writeValue(val: any): void {
+  writeValue(val: ItemListForm): void {
     if (val) {
-      this.itemListForm.setValue(val, { emitEvent: false });
+      const { cap_values } = val;
+      const items: FormGroup<Item>[] = cap_values.map((value) => {
+        return this.fb.group({
+          itemName: [value.itemName, Validators.required],
+          qty: [value.qty, Validators.required],
+          price: [value.price, Validators.required],
+        });
+      });
+      this.itemListForm = this.fb.group({
+        cap_values: this.fb.array([...items]),
+      });
     }
   }
   registerOnChange(fn: any): void {

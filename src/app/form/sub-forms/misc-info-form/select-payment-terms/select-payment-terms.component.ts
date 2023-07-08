@@ -44,6 +44,10 @@ export class SelectPaymentTermsComponent
 
   writeValue(val: number): void {
     if (val) {
+      const term = this.terms.find((t) => t.value === val);
+      if (term) {
+        this.selectedRegion = term.label;
+      }
       this.onChange(val);
     }
   }
