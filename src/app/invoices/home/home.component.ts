@@ -37,37 +37,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       .pipe(
         concatMap((refreshing) => {
           if (refreshing) {
-            return modifyQueryParams(this.route.queryParams).pipe(
-              switchMap((params) => {
-                if (Object.entries(params).length === 0) {
-                  return this.router.navigate([], {
-                    relativeTo: this.route,
-                    queryParams: {
-                      pending: true,
-                      draft: true,
-                      paid: true,
-                    },
-                    queryParamsHandling: 'merge',
-                  });
-                }
-                return this.loadingService
-                  .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
-                  .pipe(
-                    tap((invoices) => {
-                      const filteredInvoicesFromParams = invoices.filter(
-                        (invoice) => {
-                          return invoice.status
-                            ? params[invoice.status]
-                            : false;
-                        }
-                      );
-                      this.invoiceStore.filterInvoices(
-                        filteredInvoicesFromParams
-                      );
-                    })
-                  );
-              })
-            );
+            return this.getFilterInvoices();
           } else {
             return of(null);
           }
@@ -75,34 +45,34 @@ export class HomeComponent implements OnInit, OnDestroy {
       )
       .subscribe();
 
-    this.queryParamSubscription = modifyQueryParams(this.route.queryParams)
-      .pipe(
-        switchMap((params) => {
-          if (Object.entries(params).length === 0) {
-            return this.router.navigate([], {
-              relativeTo: this.route,
-              queryParams: {
-                pending: true,
-                draft: true,
-                paid: true,
-              },
-              queryParamsHandling: 'merge',
-            });
-          }
-          return this.loadingService
-            .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
-            .pipe(
-              tap((invoices) => {
-                const filteredInvoicesFromParams = invoices.filter(
-                  (invoice) => {
-                    return invoice.status ? params[invoice.status] : false;
-                  }
-                );
-                this.invoiceStore.filterInvoices(filteredInvoicesFromParams);
-              })
-            );
-        })
-      )
-      .subscribe();
+    this.queryParamSubscription = this.getFilterInvoices().subscribe();
+  }
+
+  getFilterInvoices() {
+    return modifyQueryParams(this.route.queryParams).pipe(
+      switchMap((params) => {
+        if (Object.entries(params).length === 0) {
+          return this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: {
+              pending: true,
+              draft: true,
+              paid: true,
+            },
+            queryParamsHandling: 'merge',
+          });
+        }
+        return this.loadingService
+          .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
+          .pipe(
+            tap((invoices) => {
+              const filteredInvoicesFromParams = invoices.filter((invoice) => {
+                return invoice.status ? params[invoice.status] : false;
+              });
+              this.invoiceStore.filterInvoices(filteredInvoicesFromParams);
+            })
+          );
+      })
+    );
   }
 }
