@@ -32,12 +32,12 @@ export class InvoiceService {
     return collectionData(q, {
       idField: 'id',
     }).pipe(
-      map((invoices) => {
-        return invoices.map((invoice) => {
-          const invoiceDate = invoice.invoiceDate.toDate();
-          const createdAt = invoice.createdAt.toDate();
+      map((invoiceResponses) => {
+        return invoiceResponses.map((invoiceResponse) => {
+          const invoiceDate = invoiceResponse.invoiceDate.toDate();
+          const createdAt = invoiceResponse.createdAt.toDate();
           return {
-            ...invoice,
+            ...invoiceResponse,
             invoiceDate,
             createdAt,
           };
@@ -52,13 +52,18 @@ export class InvoiceService {
     return from(getDoc(docRef)).pipe(
       shareReplay(),
       map((newDoc) => {
-        const invoice: InvoiceResponse = {
+        const invoiceResponse: InvoiceResponse = {
           ...newDoc.data(),
         } as InvoiceResponse;
-        if (invoice) {
-          const invoiceDate = invoice.invoiceDate.toDate();
-          const createdAt = invoice.createdAt.toDate();
-          return { ...invoice, id: newDoc.id, invoiceDate, createdAt };
+        if (invoiceResponse) {
+          const invoiceDate = invoiceResponse.invoiceDate.toDate();
+          const createdAt = invoiceResponse.createdAt.toDate();
+          return {
+            ...invoiceResponse,
+            id: newDoc.id,
+            invoiceDate,
+            createdAt,
+          };
         }
         return null;
       })
@@ -70,7 +75,7 @@ export class InvoiceService {
     return from(deleteDoc(docRef));
   }
 
-  editInvoice(id: string, data: any) {
+  editInvoice(id: string, data: Partial<Invoice>) {
     const docRef = doc(this.firestore, this._dbName, id);
     return from(updateDoc(docRef, data));
   }
