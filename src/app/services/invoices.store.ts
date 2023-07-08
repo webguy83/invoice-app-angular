@@ -11,12 +11,18 @@ export class InvoicesStore {
   private filteredInvoicesSubject = new BehaviorSubject<Invoice[]>([]);
   private sideNavOpenedSubject = new BehaviorSubject(false);
   private invoiceEditingSubject = new BehaviorSubject<null | Invoice>(null);
-  private refreshApiSubject = new Subject<Partial<Invoice>>();
+  private refreshInvoiceApiSubject = new Subject<Partial<Invoice>>();
+  private refreshInvoicesApiSubject = new Subject<boolean>();
 
-  apiRefreshing$ = this.refreshApiSubject.asObservable();
+  apiInvoiceRefreshing$ = this.refreshInvoiceApiSubject.asObservable();
+  apiInvoicesRefreshing$ = this.refreshInvoicesApiSubject.asObservable();
 
-  refreshApi(invoice: Partial<Invoice>) {
-    this.refreshApiSubject.next(invoice);
+  refreshInvoiceApi(invoice: Partial<Invoice>) {
+    this.refreshInvoiceApiSubject.next(invoice);
+  }
+
+  refreshInvoicesApi() {
+    this.refreshInvoicesApiSubject.next(true);
   }
 
   sideNavOpened$ = this.sideNavOpenedSubject.asObservable();

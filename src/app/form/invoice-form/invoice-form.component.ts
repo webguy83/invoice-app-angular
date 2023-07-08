@@ -226,14 +226,16 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
           .editInvoice(this.currentEditedInvoice.id, invoice)
           .subscribe(() => {
             if (this.currentEditedInvoice) {
-              this.invoicesStore.refreshApi({
+              this.invoicesStore.refreshInvoiceApi({
                 id: this.currentEditedInvoice.id,
                 ...invoice,
               });
             }
           });
       } else {
-        this.invoiceService.addInvoice(invoice);
+        this.invoiceService.addInvoice(invoice).subscribe(() => {
+          this.invoicesStore.refreshInvoicesApi();
+        });
       }
 
       this.invoicesStore.closeSideNav();

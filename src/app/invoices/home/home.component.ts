@@ -1,6 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Observable, tap, switchMap, Subscription } from 'rxjs';
+import { Observable, tap, switchMap, Subscription, concatMap, of } from 'rxjs';
 import { BreakpointsService } from '../../services/breakpoint.service';
 import { InvoicesStore } from '../../services/invoices.store';
 import { LoadingService } from '../../shared/loading/loading.service';
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   isLoading$ = this.loadingService.loading$;
   $bp!: Observable<string>;
   private queryParamSubscription = new Subscription();
+  private refreshSub = new Subscription();
 
   constructor(
     private invoiceStore: InvoicesStore,
@@ -28,9 +29,51 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.queryParamSubscription.unsubscribe();
+    this.refreshSub.unsubscribe();
   }
   ngOnInit(): void {
     this.$bp = this.breakpointService.breakpoint$;
+    this.refreshSub = this.invoiceStore.apiInvoicesRefreshing$
+      .pipe(
+        concatMap((refreshing) => {
+          if (refreshing) {
+            return modifyQueryParams(this.route.queryParams).pipe(
+              switchMap((params) => {
+                if (Object.entries(params).length === 0) {
+                  return this.router.navigate([], {
+                    relativeTo: this.route,
+                    queryParams: {
+                      pending: true,
+                      draft: true,
+                      paid: true,
+                    },
+                    queryParamsHandling: 'merge',
+                  });
+                }
+                return this.loadingService
+                  .showLoaderUntilCompleted(this.invoiceStore.loadingInvoices())
+                  .pipe(
+                    tap((invoices) => {
+                      const filteredInvoicesFromParams = invoices.filter(
+                        (invoice) => {
+                          return invoice.status
+                            ? params[invoice.status]
+                            : false;
+                        }
+                      );
+                      this.invoiceStore.filterInvoices(
+                        filteredInvoicesFromParams
+                      );
+                    })
+                  );
+              })
+            );
+          } else {
+            return of(null);
+          }
+        })
+      )
+      .subscribe();
 
     this.queryParamSubscription = modifyQueryParams(this.route.queryParams)
       .pipe(

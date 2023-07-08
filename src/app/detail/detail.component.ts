@@ -46,7 +46,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.invoice = this.route.snapshot.data['invoice'];
     this.$bp = this.breakpointService.breakpoint$;
-    this.refreshApiSub = this.invoicesStore.apiRefreshing$
+    this.refreshApiSub = this.invoicesStore.apiInvoiceRefreshing$
       .pipe(
         concatMap((refreshing) => {
           if (refreshing) {
