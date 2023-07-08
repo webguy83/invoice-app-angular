@@ -9,17 +9,16 @@
   <div class="name" styledInput>
     <div class="label-container">
       <label for="clientName">Client's Name</label>
-      <span
-        class="input-error"
-        *ngIf="
-          !billToForm.get('clientName')?.valid &&
-          billToForm.get('clientName')?.dirty
-        "
-      >
-        can't be empty
+      <span class="input-error" aria-describedby="clientName">
+        <span
+          *ngIf="
+            !billToForm.get('clientName')?.valid &&
+            billToForm.get('clientName')?.dirty
+          "
+          >can't be empty</span
+        >
       </span>
     </div>
-
     <input
       type="text"
       size="5"
@@ -31,17 +30,16 @@
   <div class="email" styledInput>
     <div class="label-container">
       <label for="clientEmail">Client's Email</label>
-      <span
-        class="input-error"
-        *ngIf="
-          !billToForm.get('clientEmail')?.valid &&
-          billToForm.get('clientEmail')?.dirty
-        "
-      >
-        {{ errMsg }}
+      <span class="input-error" aria-describedby="clientEmail">
+        <span
+          *ngIf="
+            !billToForm.get('clientEmail')?.valid &&
+            billToForm.get('clientEmail')?.dirty
+          "
+          >{{ errMsg }}</span
+        >
       </span>
     </div>
-
     <input
       type="text"
       size="5"
@@ -54,14 +52,14 @@
   <div class="streetAddress" styledInput>
     <div class="label-container">
       <label for="clientStreetAddress">Street Address</label>
-      <span
-        class="input-error"
-        *ngIf="
-          !billToForm.get('clientStreetAddress')?.valid &&
-          billToForm.get('clientStreetAddress')?.dirty
-        "
-      >
-        can't be empty
+      <span class="input-error" aria-describedby="clientStreetAddress">
+        <span
+          *ngIf="
+            !billToForm.get('clientStreetAddress')?.valid &&
+            billToForm.get('clientStreetAddress')?.dirty
+          "
+          >can't be empty</span
+        >
       </span>
     </div>
     <input
@@ -81,14 +79,14 @@
       formControlName="clientCity"
       (blur)="onTouched()"
     />
-    <span
-      class="input-error"
-      *ngIf="
-        !billToForm.get('clientCity')?.valid &&
-        billToForm.get('clientCity')?.dirty
-      "
-    >
-      can't be empty
+    <span class="input-error" aria-describedby="clientCity">
+      <span
+        *ngIf="
+          !billToForm.get('clientCity')?.valid &&
+          billToForm.get('clientCity')?.dirty
+        "
+        >can't be empty</span
+      >
     </span>
   </div>
   <div class="postCode" styledInput>
@@ -100,14 +98,14 @@
       formControlName="clientPostCode"
       (blur)="onTouched()"
     />
-    <span
-      class="input-error"
-      *ngIf="
-        !billToForm.get('clientPostCode')?.valid &&
-        billToForm.get('clientPostCode')?.dirty
-      "
-    >
-      can't be empty
+    <span class="input-error" aria-describedby="clientPostCode">
+      <span
+        *ngIf="
+          !billToForm.get('clientPostCode')?.valid &&
+          billToForm.get('clientPostCode')?.dirty
+        "
+        >can't be empty</span
+      >
     </span>
   </div>
   <div class="country" styledInput>
@@ -119,14 +117,14 @@
       formControlName="clientCountry"
       (blur)="onTouched()"
     />
-    <span
-      class="input-error"
-      *ngIf="
-        !billToForm.get('clientCountry')?.valid &&
-        billToForm.get('clientCountry')?.dirty
-      "
-    >
-      can't be empty
+    <span class="input-error" aria-describedby="clientCountry">
+      <span
+        *ngIf="
+          !billToForm.get('clientCountry')?.valid &&
+          billToForm.get('clientCountry')?.dirty
+        "
+        >can't be empty</span
+      >
     </span>
   </div>
 </form>

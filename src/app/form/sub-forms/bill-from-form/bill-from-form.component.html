@@ -9,14 +9,14 @@
   <div class="streetAddress" styledInput>
     <div class="label-container">
       <label for="senderStreetAddress">Street Address</label>
-      <span
-        class="input-error"
-        *ngIf="
-          !billFromForm.get('senderStreetAddress')?.valid &&
-          billFromForm.get('senderStreetAddress')?.dirty
-        "
-      >
-        can't be empty
+      <span class="input-error" aria-describedby="senderS">
+        <span
+          *ngIf="
+            !billFromForm.get('senderStreetAddress')?.valid &&
+            billFromForm.get('senderStreetAddress')?.dirty
+          "
+          >can't be empty</span
+        >
       </span>
     </div>
     <input
@@ -36,18 +36,14 @@
       formControlName="senderCity"
       (blur)="onTouched()"
     />
-    <span
-      class="input-error"
-      *ngIf="
-        !billFromForm.get('senderCity')?.valid &&
-        billFromForm.get('senderCity')?.dirty
-      "
-    >
-      {{
-        billFromForm.get("senderCity")?.hasError("required")
-          ? "can't be empty"
-          : billFromForm.get("senderCity")?.getError("invalid")
-      }}
+    <span class="input-error" aria-describedby="senderCity">
+      <span
+        *ngIf="
+          !billFromForm.get('senderCity')?.valid &&
+          billFromForm.get('senderCity')?.dirty
+        "
+        >can't be empty</span
+      >
     </span>
   </div>
   <div class="postCode" styledInput>
@@ -59,27 +55,27 @@
       formControlName="senderPostCode"
       (blur)="onTouched()"
     />
-    <span
-      class="input-error"
-      *ngIf="
-        !billFromForm.get('senderPostCode')?.valid &&
-        billFromForm.get('senderPostCode')?.dirty
-      "
-    >
-      can't be empty
+    <span class="input-error" aria-describedby="senderPostCode">
+      <span
+        *ngIf="
+          !billFromForm.get('senderPostCode')?.valid &&
+          billFromForm.get('senderPostCode')?.dirty
+        "
+        >can't be empty</span
+      >
     </span>
   </div>
   <div class="country" styledInput>
     <div class="label-container">
       <label for="senderCountry">Country</label>
-      <span
-        class="input-error"
-        *ngIf="
-          !billFromForm.get('senderCountry')?.valid &&
-          billFromForm.get('senderCountry')?.dirty
-        "
-      >
-        can't be empty
+      <span class="input-error" aria-describedby="senderCountry">
+        <span
+          *ngIf="
+            !billFromForm.get('senderCountry')?.valid &&
+            billFromForm.get('senderCountry')?.dirty
+          "
+          >can't be empty</span
+        >
       </span>
     </div>
     <input

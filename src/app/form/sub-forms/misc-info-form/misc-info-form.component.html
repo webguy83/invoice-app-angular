@@ -32,14 +32,14 @@
   <div class="projectDescription" styledInput>
     <div class="label-container">
       <label for="projectDescription">Project Description</label>
-      <span
-        class="input-error"
-        *ngIf="
-          !miscInfoForm.get('projectDescription')?.valid &&
-          miscInfoForm.get('projectDescription')?.dirty
-        "
-      >
-        can't be empty
+      <span class="input-error" aria-describedby="projectDescription">
+        <span
+          *ngIf="
+            !miscInfoForm.get('projectDescription')?.valid &&
+            miscInfoForm.get('projectDescription')?.dirty
+          "
+          >can't be empty</span
+        >
       </span>
     </div>
 

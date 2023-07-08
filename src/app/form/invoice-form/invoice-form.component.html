@@ -33,8 +33,8 @@
         formControlName="itemListForm"
         [reset]="reset$"
       ></app-item-list-form>
-      <ul class="error-block">
-        <li *ngFor="let error of errors">- {{ error }}</li>
+      <ul class="error-block" role="list">
+        <li role="listitem" *ngFor="let error of errors">- {{ error }}</li>
       </ul>
     </div>
   </div>
