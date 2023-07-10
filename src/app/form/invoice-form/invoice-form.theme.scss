@@ -1,0 +1,20 @@
+@use "sass:map";
+@use "@angular/material" as mat;
+
+@mixin color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $fg-palette: map.get($color-config, "foreground");
+
+  .shadow {
+    box-shadow: 10px -55px 50px -17px
+      mat.get-color-from-palette($fg-palette, shadow);
+  }
+}
+
+@mixin theme($theme) {
+  $color-config: mat.get-color-config($theme);
+
+  @if $color-config != null {
+    @include color($theme);
+  }
+}

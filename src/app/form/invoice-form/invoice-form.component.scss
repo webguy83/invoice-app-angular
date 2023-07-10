@@ -5,13 +5,33 @@
 $custom-warning: mat.define-palette(palette.$md-custom-warning);
 $color: map.get($custom-warning, 500);
 
+:host {
+  display: block;
+  height: 100%;
+}
+
 .back-btn {
   display: none;
 }
 
+.form-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 2.5rem);
+  &.tablet {
+    height: calc(100vh - 11rem);
+  }
+  &.mobile {
+    height: calc(100vh - 7rem);
+  }
+}
+
+.invoice-form {
+  overflow-y: scroll;
+}
+
 .invoice-form,
 .buttons {
-  display: block;
   padding: 5.6rem 5.6rem 0;
 
   &.mobile {
@@ -44,8 +64,7 @@ $color: map.get($custom-warning, 500);
   gap: 5px;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 0;
-  margin: 3rem 0;
+  padding-top: 3rem;
 
   button:first-child {
     margin-right: auto;
@@ -54,6 +73,10 @@ $color: map.get($custom-warning, 500);
       margin-left: auto;
       margin-right: inherit;
       padding: 2rem;
+
+      &.mobile {
+        margin-left: inherit;
+      }
     }
   }
 

@@ -1,4 +1,12 @@
-import { Component, Input, OnDestroy, OnInit, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  forwardRef,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   FormArray,
@@ -48,10 +56,13 @@ export class ItemListFormComponent
   @Input() reset: Observable<boolean> | undefined;
   resetSub = new Subscription();
 
+  @Output() addItemClicked: EventEmitter<boolean> = new EventEmitter();
+
   constructor(
     private fb: NonNullableFormBuilder,
     private breakpointService: BreakpointsService
   ) {}
+
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
 
@@ -84,6 +95,9 @@ export class ItemListFormComponent
   addNewItemClick() {
     const itemForm = this.makeItem();
     this.capValues.push(itemForm);
+    setTimeout(() => {
+      this.addItemClicked.emit(true);
+    }, 0);
   }
 
   removeItem(i: number) {

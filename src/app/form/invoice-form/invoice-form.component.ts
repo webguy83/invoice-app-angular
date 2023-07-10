@@ -1,7 +1,14 @@
 import { SortcharsPipe } from './../../shared/pipes/sortchars.pipe';
 import { InvoicesStore } from './../../services/invoices.store';
 import { InvoiceService } from './../../services/invoice.service';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { Observable, Subject, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
@@ -58,6 +65,12 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
   currentEditedInvoice: null | Invoice = null;
   headerTxt = 'New Invoice';
 
+  @ViewChild('invoiceForm')
+  invoiceFormElm!: ElementRef<HTMLDivElement>;
+
+  @ViewChild('buttons')
+  buttonsElm!: ElementRef<HTMLDivElement>;
+
   form = this.fb.group<GroupForm>({
     billFromForm: {
       senderCity: '',
@@ -94,15 +107,19 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
     private breakpointService: BreakpointsService,
     private invoiceService: InvoiceService,
     private invoicesStore: InvoicesStore,
-    private sortCharsPipe: SortcharsPipe
+    private sortCharsPipe: SortcharsPipe,
+    private renderer2: Renderer2
   ) {}
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
     this.invoiceBeingEditedSub.unsubscribe();
+    document.body.style.overflow = '';
   }
   ngOnInit(): void {
     this.bp$ = this.breakpointService.breakpoint$;
+    window.scrollTo(0, 0);
+    document.body.style.overflow = 'hidden';
     this.invoiceBeingEditedSub =
       this.invoicesStore.invoiceBeingEdited$.subscribe((invoice) => {
         this.currentEditedInvoice = invoice;
@@ -131,6 +148,18 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
         });
       this.errors = [...new Set(errors)];
     });
+  }
+
+  onScroll() {
+    if (
+      this.invoiceFormElm.nativeElement.offsetHeight +
+        this.invoiceFormElm.nativeElement.scrollTop >=
+      this.invoiceFormElm.nativeElement.scrollHeight
+    ) {
+      this.renderer2.removeClass(this.buttonsElm.nativeElement, 'shadow');
+    } else {
+      this.renderer2.addClass(this.buttonsElm.nativeElement, 'shadow');
+    }
   }
 
   applyDefaultData(invoice: Invoice): GroupForm {
@@ -180,6 +209,14 @@ export class InvoiceFormComponent implements OnInit, OnDestroy {
         price: capVal.price,
         quantity: capVal.qty,
       };
+    });
+  }
+
+  scrollDown() {
+    const maxScroll = this.invoiceFormElm.nativeElement.scrollHeight;
+    this.invoiceFormElm.nativeElement.scrollTo({
+      top: maxScroll,
+      behavior: 'smooth',
     });
   }
 

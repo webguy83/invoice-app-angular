@@ -1,9 +1,20 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form
+  [formGroup]="form"
+  class="form-content"
+  (ngSubmit)="onSubmit()"
+  [ngClass]="{
+    mobile: (bp$ | async) === 'mobile',
+    tablet: (bp$ | async) === 'tablet'
+  }"
+>
   <div
+    #invoiceForm
     class="invoice-form"
     [ngClass]="{
-      mobile: (bp$ | async) === 'mobile'
+      mobile: (bp$ | async) === 'mobile',
+      tablet: (bp$ | async) === 'tablet'
     }"
+    (scroll)="onScroll()"
   >
     <button type="button" backButton class="back-btn" (click)="onGoBackClick()">
       <mat-icon
@@ -31,6 +42,7 @@
       ></app-misc-info-form>
       <app-item-list-form
         formControlName="itemListForm"
+        (addItemClicked)="scrollDown()"
         [reset]="reset$"
       ></app-item-list-form>
       <ul class="error-block" role="list">
@@ -39,7 +51,8 @@
     </div>
   </div>
   <div
-    class="buttons"
+    #buttons
+    class="buttons shadow"
     [ngClass]="{
       mobile: (bp$ | async) === 'mobile'
     }"
@@ -66,6 +79,9 @@
     class="cancel-btn"
     type="button"
     pill-button="modify"
+    [ngClass]="{
+      mobile: (bp$ | async) === 'mobile'
+    }"
     (click)="onDiscardClick()"
   >
     Cancel
