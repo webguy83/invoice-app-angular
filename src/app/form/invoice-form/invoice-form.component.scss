@@ -28,6 +28,7 @@ $color: map.get($custom-warning, 500);
 
 .invoice-form {
   overflow-y: scroll;
+  border-right: 1.5rem solid transparent;
 }
 
 .invoice-form,
@@ -87,4 +88,12 @@ $color: map.get($custom-warning, 500);
   button {
     padding: 1.3rem;
   }
+}
+
+::-webkit-scrollbar {
+  width: 0.8rem;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
 }

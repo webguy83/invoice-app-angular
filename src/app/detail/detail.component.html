@@ -6,7 +6,14 @@
   }"
 >
   <app-loading></app-loading>
-  <div *ngIf="!(isLoading$ | async)" class="detail-view">
+  <div
+    *ngIf="!(isLoading$ | async)"
+    class="detail-view"
+    [ngClass]="{
+      mobile: ($bp | async) === 'mobile',
+      tablet: ($bp | async) === 'tablet'
+    }"
+  >
     <button backButton class="back-btn">
       <mat-icon
         fontIcon="keyboard_arrow_left"
