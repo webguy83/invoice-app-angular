@@ -1,27 +1,66 @@
-# InvoiceApp
+# Frontend Mentor - Invoice app solution
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
+This is a solution to the [Invoice app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/invoice-app-i7KaLTQjl). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-## Development server
+## Table of contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-## Code scaffolding
+## Overview
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### The challenge
 
-## Build
+Users should be able to:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Create, read, update, and delete invoices
+- Receive form validations when trying to create/edit an invoice
+- Save draft invoices, and mark pending invoices as paid
+- Filter invoices by status (draft/pending/paid)
+- Toggle light and dark mode
+- **Bonus**: Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
 
-## Running unit tests
+### Screenshot
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![](./screenshot.jpg)
 
-## Running end-to-end tests
+### Links
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Solution URL: [Invoice App](https://frontendmentor-invoice.web.app/)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-## Further help
+## My process
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Built with
+
+- [Angular](https://angular.io) - JS library
+- [Angular Material](https://material.angular.io) - Angular UI framework
+- [Firebase](https://firebase.google.com/) - For backend database
+
+### What I learned
+
+Learned lots about building a CRUD app with Angular combined with Firebase. Also using Observables to communicate with components along with built in Angular animation libraries.
+
+### Continued development
+
+Looking to fine-tune more knowledge of Angular 16 latest features to do with new module systems. Looking at building project with this new approach in the near future.
+
+### Useful resources
+
+- [Angular Animations](https://zerotomastery.io/blog/angular-animations-and-examples/) - Amazing article on how to master animations using Angular
+- [Angular University](https://blog.angular-university.io/) - The best site for all new Angular tutorials and features
+
+## Author
+
+- Frontend Mentor - [@webguy83](https://www.frontendmentor.io/profile/webguy83)
+- Instagram - [@canadianwebdev83](https://www.instagram.com/canadianwebdev83)

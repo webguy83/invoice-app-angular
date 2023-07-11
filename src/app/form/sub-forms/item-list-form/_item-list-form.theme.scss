@@ -31,6 +31,12 @@ $color: map.get($custom-warning, 500);
   .add-new-item-btn {
     background-color: mat.get-color-from-palette($bg-palette, payday-rows);
   }
+
+  @media (hover: none) {
+    .add-new-item-btn:hover {
+      background-color: mat.get-color-from-palette($bg-palette, payday-rows);
+    }
+  }
 }
 
 @mixin theme($theme) {
