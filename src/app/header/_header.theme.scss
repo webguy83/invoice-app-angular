@@ -39,6 +39,15 @@ $light-color: map.get($palette, 400);
         theme-mode-icon-hover
       ) !important;
     }
+
+    @media (hover: none) {
+      &:hover {
+        color: mat.get-color-from-palette(
+          $bg-palette,
+          theme-mode-icon
+        ) !important;
+      }
+    }
   }
 }
 
