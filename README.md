@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Invoice App](https://frontendmentor-invoice.web.app/)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/reactive-invoice-app-built-using-angular-and-firebase-RAdBV4wkMK)
+- Live Site URL: [Invoice App](https://frontendmentor-invoice.web.app/)
 
 ## My process
 
