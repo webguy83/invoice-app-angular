@@ -1,3 +1,4 @@
+import { animations } from 'src/app/utils/animations';
 import { InvoicesStore } from 'src/app/services/invoices.store';
 import { NavigationService } from './../services/navigation.service';
 import { LoadingService } from './../shared/loading/loading.service';
@@ -22,6 +23,7 @@ import { openConfirmDialog } from './confirm-dialog/confirm-dialog.component';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss'],
   providers: [LoadingService],
+  animations,
 })
 export class DetailComponent implements OnInit, OnDestroy {
   $bp!: Observable<string>;

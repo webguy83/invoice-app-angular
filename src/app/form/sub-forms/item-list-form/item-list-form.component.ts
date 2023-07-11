@@ -22,6 +22,7 @@ import {
 } from '@angular/forms';
 import { Observable, Subscription } from 'rxjs';
 import { BreakpointsService } from 'src/app/services/breakpoint.service';
+import { animations } from 'src/app/utils/animations';
 import { ItemListForm } from 'src/app/utils/interfaces';
 
 interface Item {
@@ -46,6 +47,7 @@ interface Item {
       multi: true,
     },
   ],
+  animations,
 })
 export class ItemListFormComponent
   implements ControlValueAccessor, OnDestroy, Validator, OnInit

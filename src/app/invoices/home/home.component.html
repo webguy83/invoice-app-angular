@@ -13,6 +13,7 @@
     <div class="content-container">
       <div class="cards">
         <app-card
+          @fade
           *ngFor="let invoice of invoices$ | async"
           [showLargeCard]="($bp | async) !== 'mobile'"
           [cardData]="{

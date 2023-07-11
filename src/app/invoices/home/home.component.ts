@@ -5,12 +5,14 @@ import { BreakpointsService } from '../../services/breakpoint.service';
 import { InvoicesStore } from '../../services/invoices.store';
 import { LoadingService } from '../../shared/loading/loading.service';
 import { modifyQueryParams } from 'src/app/utils';
+import { animations } from 'src/app/utils/animations';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   providers: [LoadingService],
+  animations,
 })
 export class HomeComponent implements OnInit, OnDestroy {
   invoices$ = this.invoiceStore.filteredInvoices$;

@@ -7,6 +7,7 @@
 >
   <app-loading></app-loading>
   <div
+    @fade
     *ngIf="!(isLoading$ | async)"
     class="detail-view"
     [ngClass]="{
